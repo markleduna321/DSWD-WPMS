@@ -17,8 +17,12 @@ use Inertia\Inertia;
 */
 
 Route::middleware('redirectBasedOnRole')->get('/', function () {
+    return Inertia::render('landing/page');
+})->name('landing');
+
+Route::middleware('redirectBasedOnRole')->get('/log-in', function () {
     return Inertia::render('login/page');
-})->name('login');
+})->name('log-in');
 
 Route::middleware('auth:sanctum', 'role:1')->prefix('admin')->group(function () {
     
