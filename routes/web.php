@@ -61,6 +61,10 @@ Route::middleware('auth:sanctum', 'role:1')->prefix('admin')->group(function () 
         return Inertia::render('admin/reports/page');
     });
 
+    Route::get('contents', function () {
+        return Inertia::render('admin/contents/page');
+    });
+
 });
 
 Route::middleware('auth:sanctum', 'role:2')->get('/user/dashboard', function () {

@@ -27,8 +27,9 @@ import { Link } from '@inertiajs/react';
 const navigation = [
   { name: 'Dashboard', href: '/admin/dashboard', icon: HomeIcon },
   { name: 'User Management', href: '/admin/user_management', icon: UsersIcon },
-  { name: 'Products', href: '/admin/products', icon: FolderIcon },
+  { name: 'Page Contents', href: '/admin/contents', icon: FolderIcon },
   { name: 'Reports', href: '/admin/reports', icon: ChartPieIcon },
+  { name: 'Demographic Data', href: '/admin/reports', icon: ChartPieIcon },
 ];
 
 const userNavigation = [
