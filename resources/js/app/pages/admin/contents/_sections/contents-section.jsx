@@ -8,7 +8,6 @@ const people = [
     name: 'Content Sample 1',
     title: 'During the program, the President confers awards to the top three (3) winners of the National Parol-Making Competition dubbed, Isang Bituin Isang Mithii by the Office of the President (OP), Office of the Social Secretary (SoSec) and Department of Education (DepEd).',
     role: 'Admin',
-    email: 'janecooper@example.com',
     telephone: '+1-202-555-0170',
     imageUrl:
       'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60',
@@ -17,7 +16,6 @@ const people = [
     name: 'Content Sample 2',
     title: 'During the program, the President confers awards to the top three (3) winners of the National Parol-Making Competition dubbed, Isang Bituin Isang Mithii by the Office of the President (OP), Office of the Social Secretary (SoSec) and Department of Education (DepEd).',
     role: 'Admin',
-    email: 'janecooper@example.com',
     telephone: '+1-202-555-0170',
     imageUrl:
       'https://www.benarnews.org/english/news/philippine/assault-complaint-filed-in-sara-duterte-feud-with-president-marcos-11272024121358.html/@@images/a4f9ef92-2036-4da4-a3db-99f8592a6e7b.jpeg',
@@ -26,7 +24,6 @@ const people = [
     name: 'Content Sample 3',
     title: 'During the program, the President confers awards to the top three (3) winners of the National Parol-Making Competition dubbed, Isang Bituin Isang Mithii by the Office of the President (OP), Office of the Social Secretary (SoSec) and Department of Education (DepEd).',
     role: 'Admin',
-    email: 'janecooper@example.com',
     telephone: '+1-202-555-0170',
     imageUrl:
       'https://philippinerevolution.nu/wp-content/uploads/2023/11/20231130-UpdatesPH_VolVNo22-1-791x1024.png',
@@ -35,7 +32,6 @@ const people = [
     name: 'Content Sample 4',
     title: 'During the program, the President confers awards to the top three (3) winners of the National Parol-Making Competition dubbed, Isang Bituin Isang Mithii by the Office of the President (OP), Office of the Social Secretary (SoSec) and Department of Education (DepEd).',
     role: 'Admin',
-    email: 'janecooper@example.com',
     telephone: '+1-202-555-0170',
     imageUrl:
       'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQV8Ry0kGKVK7xILQKq5E4NBTMamcCZdfv3CA&s',
@@ -54,7 +50,7 @@ export default function ContentsSection() {
             disabled={false}
             icon={<PlusIcon className="h-5 w-5" />}
         >
-            Add User
+            Add Content
         </Button>
       <ul role="list" className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {people.map((person) => (
@@ -74,7 +70,7 @@ export default function ContentsSection() {
               <div className="-mt-px flex divide-x divide-gray-200">
                 <div className="flex w-0 flex-1">
                   <a
-                    href={`mailto:${person.email}`}
+                    href=''
                     className="relative -mr-px inline-flex w-0 flex-1 items-center justify-center gap-x-3 rounded-bl-lg border border-transparent py-4 text-sm font-semibold text-gray-900"
                   >
                     <ViewfinderCircleIcon aria-hidden="true" className="size-5 text-blue-400" />
