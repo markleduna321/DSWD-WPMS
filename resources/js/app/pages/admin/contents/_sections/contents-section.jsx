@@ -42,16 +42,20 @@ const people = [
 export default function ContentsSection() {
   return (
     <div>
-      <Button
-            type="button"
-            variant="primary"
-            size="md"
-            isLoading={false}
-            disabled={false}
-            icon={<PlusIcon className="h-5 w-5" />}
-        >
-            Add Content
-        </Button>
+      <div className='mb-4 flex justify-between items-center'>
+        <h2 className="text-lg font-medium text-gray-900">Contents</h2>
+          <Button
+              type="button"
+              variant="primary"
+              size="md"
+              isLoading={false}
+              disabled={false}
+              icon={<PlusIcon className="h-5 w-5" />}
+          >
+              Add Content
+          </Button>
+      </div>
+      
       <ul role="list" className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {people.map((person) => (
           <li key={person.email} className="col-span-1 divide-y divide-gray-200 rounded-lg bg-white shadow">
@@ -91,7 +95,7 @@ export default function ContentsSection() {
           </li>
         ))}
       </ul>
-      <div className="flex items-center justify-between border-t border-gray-200 bg-white px-4 py-3 sm:px-6">
+      <div className="flex items-center justify-between  px-4 py-3 sm:px-6">
         <div className="flex flex-1 justify-between sm:hidden">
           <a
             href="#"
@@ -114,7 +118,7 @@ export default function ContentsSection() {
             </p>
           </div>
           <div>
-            <nav aria-label="Pagination" className="isolate inline-flex -space-x-px rounded-md shadow-sm">
+            <nav aria-label="Pagination" className="isolate inline-flex -space-x-px rounded-md shadow-sm bg-white ring-1 ring-gray-300">
               <a
                 href="#"
                 className="relative inline-flex items-center rounded-l-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0"

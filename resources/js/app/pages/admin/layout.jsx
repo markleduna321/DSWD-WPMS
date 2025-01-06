@@ -29,7 +29,7 @@ const navigation = [
   { name: 'User Management', href: '/admin/user_management', icon: UsersIcon },
   { name: 'Page Contents', href: '/admin/contents', icon: FolderIcon },
   { name: 'Reports', href: '/admin/reports', icon: ChartPieIcon },
-  { name: 'Demographic Data', href: '/admin/reports', icon: ChartPieIcon },
+  { name: 'Demographic Data', href: '/admin/demographic_data', icon: ChartPieIcon },
 ];
 
 const userNavigation = [
