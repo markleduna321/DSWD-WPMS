@@ -1,7 +1,13 @@
 import React from 'react'
-import { ViewfinderCircleIcon, TrashIcon, PlusIcon } from '@heroicons/react/24/outline'
+import { ViewfinderCircleIcon, TrashIcon, PlusIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/20/solid'
 import Button from '@/app/pages/components/button'
+import Modal from '@/app/pages/components/modal'
+import { useState } from 'react'
+import InputLabelComponent from '@/app/pages/components/input-label-component'
+import InputTextComponent from '@/app/pages/components/input-text-component'
+import InputError from '@/Components/InputError'
+import SelectComponent from '@/app/pages/components/input-select'
 
 const people = [
   {
@@ -40,6 +46,17 @@ const people = [
 ]
 
 export default function ContentsSection() {
+  const [isModalOpen, setModalOpen] = useState(false);
+  const [errors, setErrors] = useState({})
+
+  // Open and close modal functions
+  const openModal = () => setModalOpen(true);
+  const closeModal = () => setModalOpen(false);
+
+  const typeOptions = [
+    { value: '1', label: 'Admin' },
+    { value: '2', label: 'User' },
+];
   return (
     <div>
       <div className='mb-4 flex justify-between items-center'>
@@ -51,9 +68,84 @@ export default function ContentsSection() {
               isLoading={false}
               disabled={false}
               icon={<PlusIcon className="h-5 w-5" />}
+              onClick={openModal}
           >
               Add Content
           </Button>
+
+          <Modal isOpen={isModalOpen} onClose={closeModal} width=' w-1/4'>
+                <h2 className="text-xl font-semibold mb-4">Add New User</h2>
+                <form onSubmit="">
+                    <div className="mb-4">
+                        <InputLabelComponent htmlFor="name" labelText="Name" />
+                        <InputTextComponent
+                            id="name"
+                            name="name"
+                            type="text"
+                            required
+                            value=""
+                        />
+                    </div>
+
+                    <div className="mb-4">
+                        <InputLabelComponent htmlFor="email" labelText="Email" />
+                        <InputTextComponent
+                            id="email"
+                            name="email" // Match this with the state key
+                            type="email"
+                            required
+                            value=""
+                        />
+                        <InputError message={errors?.email} className="mt-2" />
+                    </div>
+
+                    <div className="mb-4">
+                        <InputLabelComponent htmlFor="password" labelText="Password" />
+                        <InputTextComponent
+                            id="password"
+                            name="password"
+                            type="password"
+                            required
+                            value=""
+                        />
+                    </div>
+
+                    <div className="mb-4">
+                        <InputLabelComponent htmlFor="role_id" labelText="Role" />
+                        <SelectComponent
+                            id="role_id"
+                            name="role_id"
+                            options={typeOptions}
+                            required
+                            value=""
+                            
+                        />
+                    </div>
+
+                    <div className="flex justify-end gap-4">
+                        <Button
+                            type="submit"
+                            variant="primary"
+                            size="md"
+                            isLoading={false}
+                            disabled={false}
+                        >
+                            Save
+                        </Button>
+
+                        <Button
+                            type="button"
+                            variant="danger"
+                            size="md"
+                            isLoading={false}
+                            disabled={false}
+                            onClick={closeModal}
+                        >
+                            <XMarkIcon className="h-5 w-5" />
+                        </Button>
+                    </div>
+                </form>
+            </Modal>
       </div>
       
       <ul role="list" className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
