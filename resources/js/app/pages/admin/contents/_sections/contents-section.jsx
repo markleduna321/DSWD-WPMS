@@ -8,6 +8,7 @@ import InputLabelComponent from '@/app/pages/components/input-label-component'
 import InputTextComponent from '@/app/pages/components/input-text-component'
 import InputError from '@/Components/InputError'
 import SelectComponent from '@/app/pages/components/input-select'
+import InputTextareaComponent from '@/app/pages/components/input-textarea-component'
 
 const people = [
   {
@@ -88,11 +89,10 @@ export default function ContentsSection() {
                     </div>
 
                     <div className="mb-4">
-                        <InputLabelComponent htmlFor="email" labelText="Email" />
-                        <InputTextComponent
-                            id="email"
-                            name="email" // Match this with the state key
-                            type="email"
+                        <InputLabelComponent htmlFor="content" labelText="Content" />
+                        <InputTextareaComponent
+                            id="content"
+                            name="content" // Match this with the state key
                             required
                             value=""
                         />
@@ -100,25 +100,13 @@ export default function ContentsSection() {
                     </div>
 
                     <div className="mb-4">
-                        <InputLabelComponent htmlFor="password" labelText="Password" />
+                        <InputLabelComponent htmlFor="thumbnail" labelText="Thumbnail" />
                         <InputTextComponent
-                            id="password"
-                            name="password"
-                            type="password"
+                            id="thumbnail"
+                            name="thumbnail"
+                            type="file"
                             required
                             value=""
-                        />
-                    </div>
-
-                    <div className="mb-4">
-                        <InputLabelComponent htmlFor="role_id" labelText="Role" />
-                        <SelectComponent
-                            id="role_id"
-                            name="role_id"
-                            options={typeOptions}
-                            required
-                            value=""
-                            
                         />
                     </div>
 
