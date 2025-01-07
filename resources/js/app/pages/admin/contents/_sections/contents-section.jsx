@@ -74,13 +74,13 @@ export default function ContentsSection() {
           </Button>
 
           <Modal isOpen={isModalOpen} onClose={closeModal} width=' w-1/4'>
-                <h2 className="text-xl font-semibold mb-4">Add New User</h2>
+                <h2 className="text-xl font-semibold mb-4">Add New Content</h2>
                 <form onSubmit="">
                     <div className="mb-4">
-                        <InputLabelComponent htmlFor="name" labelText="Name" />
+                        <InputLabelComponent htmlFor="title" labelText="Title" />
                         <InputTextComponent
-                            id="name"
-                            name="name"
+                            id="title"
+                            name="title"
                             type="text"
                             required
                             value=""
