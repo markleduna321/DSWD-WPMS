@@ -1,6 +1,7 @@
 import React from 'react'
 import AdminLayout from '../layout'
 import DemographicTableSection from './_sections/demographic-table-section'
+import DemographicDataCreateSection from './_sections/demographic-data-create-section'
 
 export default function DemographicDataPage() {
   return (
@@ -19,7 +20,7 @@ export default function DemographicDataPage() {
           </div>
 
           <div className="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
-            
+            <DemographicDataCreateSection />
           </div>
 
         </div>
