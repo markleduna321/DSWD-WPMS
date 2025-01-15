@@ -114,12 +114,105 @@ export default function DemographicDataCreateSection() {
           </Button>
 
           <Modal isOpen={isModalOpen} onClose={closeModal} width='w-3/4'>
-          <h2 className="text-xl font-semibold mb-4">Input Household Data</h2>
+          <h2 className="text-xl font-semibold mb-4">FAMILY ASSISTANCE IN EMERGENCY AND DISASTER (FACED)</h2>
           <div className="overflow-y-auto max-h-[calc(100vh-4rem)] sm:max-h-[calc(100vh-8rem)]">
           <form onSubmit={handleSubmit}>
+          <h3 className="text-xl font-semibold mb-4">Location of the affected family</h3>
           <div className="flex flex-wrap gap-6">
+          
   {/* Left Column */}
   <div className="w-full md:flex-1">
+
+  <div className="mb-4">
+      <InputLabelComponent htmlFor="purok" labelText="Purok" />
+      <InputTextComponent
+        id="purok"
+        name="purok"
+        type="text"
+        required
+        value={newAgent.purok}
+        placeholder="Purok"
+        onChange={handleChange}
+        
+      />
+    </div>
+
+    <div className="mb-4">
+      <InputLabelComponent htmlFor="barangay" labelText="Barangay" />
+      <InputTextComponent
+        id="barangay"
+        name="barangay"
+        type="text"
+        required
+        value={newAgent.barangay}
+        placeholder="Barangay"
+        onChange={handleChange}
+        
+      />
+    </div>
+
+    <div className="mb-4">
+      <InputLabelComponent htmlFor="city" labelText="City/Municipality" />
+      <InputTextComponent
+        id="city"
+        name="city"
+        type="text"
+        required
+        value={newAgent.city}
+        placeholder="City/Municipality"
+        onChange={handleChange}
+        
+      />
+    </div>
+    </div>
+     {/* Right Column */}
+  <div className="w-full md:flex-1">
+  <div className="mb-4">
+      <InputLabelComponent htmlFor="purok" labelText="Purok" />
+      <InputTextComponent
+        id="purok"
+        name="purok"
+        type="text"
+        required
+        value={newAgent.purok}
+        placeholder="Purok"
+        onChange={handleChange}
+        
+      />
+    </div>
+
+    <div className="mb-4">
+      <InputLabelComponent htmlFor="barangay" labelText="Barangay" />
+      <InputTextComponent
+        id="barangay"
+        name="barangay"
+        type="text"
+        required
+        value={newAgent.barangay}
+        placeholder="Barangay"
+        onChange={handleChange}
+        
+      />
+    </div>
+
+    <div className="mb-4">
+      <InputLabelComponent htmlFor="city" labelText="City/Municipality" />
+      <InputTextComponent
+        id="city"
+        name="city"
+        type="text"
+        required
+        value={newAgent.city}
+        placeholder="City/Municipality"
+        onChange={handleChange}
+        
+      />
+    </div>
+  </div>
+    </div>
+    <h3 className="text-xl font-semibold mb-4">Head of the family</h3>
+    <div className="flex flex-wrap gap-6">
+    <div className="w-full md:flex-1">
     <div className="mb-4">
       <InputLabelComponent htmlFor="last_name" labelText="Last Name" />
       <InputTextComponent
@@ -177,6 +270,20 @@ export default function DemographicDataCreateSection() {
     </div>
 
     <div className="mb-4">
+      <InputLabelComponent htmlFor="age" labelText="Age" />
+      <InputTextComponent
+        id="age"
+        name="age"
+        type="text"
+        required
+        value={newAgent.first_name}
+        placeholder="Age"
+        onChange={handleChange}
+        
+      />
+    </div>
+
+    <div className="mb-4">
       <InputLabelComponent htmlFor="gender" labelText="Gender" />
       <SelectComponent
         id="gender"
@@ -190,20 +297,6 @@ export default function DemographicDataCreateSection() {
     </div>
 
     <div className="mb-4">
-      <InputLabelComponent htmlFor="contact_number" labelText="Contact #" />
-      <InputTextComponent
-        id="contact_number"
-        name="contact_number"
-        type="number"
-        required
-        value={newAgent.contact_number}
-        placeholder="09*******"
-        onChange={handleChange}
-        
-      />
-    </div>
-
-    <div className="mb-4">
       <InputLabelComponent htmlFor="birthday" labelText="Date of Birth" />
       <InputTextComponent
         id="birthday"
@@ -211,6 +304,20 @@ export default function DemographicDataCreateSection() {
         type="date"
         required
         value={newAgent.birthday}
+        onChange={handleChange}
+        
+      />
+    </div>
+
+    <div className="mb-4">
+      <InputLabelComponent htmlFor="birth_place" labelText="Birth Place" />
+      <InputTextComponent
+        id="birth_place"
+        name="birth_place"
+        type="text"
+        required
+        value={newAgent.extension_name}
+        placeholder="Birth Place"
         onChange={handleChange}
         
       />
@@ -233,76 +340,98 @@ export default function DemographicDataCreateSection() {
     </div>
 
     <div className="mb-4">
-      <InputLabelComponent htmlFor="email" labelText="Email" />
+      <InputLabelComponent htmlFor="mothername" labelText="Mother's Maiden Name" />
       <InputTextComponent
-        id="email"
-        name="email"
-        type="email"
-        required
-        value={newAgent.email}
-        placeholder="Email"
-        onChange={handleChange}
-        
-      />
-    </div>
-
-    <div className="mb-4">
-      <InputLabelComponent htmlFor="password" labelText="Password" />
-      <InputTextComponent
-        id="password"
-        name="password"
-        type="password"
-        required
-        value={newAgent.password}
-        placeholder="Password"
-        onChange={handleChange}
-        
-      />
-    </div>
-
-    <div className="mb-4">
-      <hr />
-      Address
-      <hr />
-    </div>
-
-    <div className="mb-4">
-      <InputLabelComponent htmlFor="purok" labelText="Purok" />
-      <InputTextComponent
-        id="purok"
-        name="purok"
+        id="mothername"
+        name="mothername"
         type="text"
         required
-        value={newAgent.purok}
-        placeholder="Purok"
+        value={newAgent.extension_name}
+        placeholder="Mother's Maiden Name"
         onChange={handleChange}
         
       />
     </div>
 
     <div className="mb-4">
-      <InputLabelComponent htmlFor="barangay" labelText="Barangay" />
+      <InputLabelComponent htmlFor="religion" labelText="Religion" />
       <InputTextComponent
-        id="barangay"
-        name="barangay"
+        id="religion"
+        name="religion"
         type="text"
         required
-        value={newAgent.barangay}
-        placeholder="Barangay"
+        value={newAgent.extension_name}
+        placeholder="Religion"
         onChange={handleChange}
         
       />
     </div>
 
     <div className="mb-4">
-      <InputLabelComponent htmlFor="city" labelText="City/Municipality" />
+      <InputLabelComponent htmlFor="occupation" labelText="Occupation" />
       <InputTextComponent
-        id="city"
-        name="city"
+        id="occupation"
+        name="occupation"
         type="text"
         required
-        value={newAgent.city}
-        placeholder="City/Municipality"
+        value={newAgent.extension_name}
+        placeholder="Occupation"
+        onChange={handleChange}
+        
+      />
+    </div>
+
+    <div className="mb-4">
+      <InputLabelComponent htmlFor="income" labelText="Monthly Family NET Income" />
+      <InputTextComponent
+        id="income"
+        name="income"
+        type="text"
+        required
+        value={newAgent.extension_name}
+        placeholder="Monthly Family NET Income"
+        onChange={handleChange}
+        
+      />
+    </div>
+
+    <div className="mb-4">
+      <InputLabelComponent htmlFor="idcardpresented" labelText="ID Card Presented" />
+      <InputTextComponent
+        id="idcardpresented"
+        name="idcardpresented"
+        type="text"
+        required
+        value={newAgent.extension_name}
+        placeholder="ID Card Presented"
+        onChange={handleChange}
+        
+      />
+    </div>
+
+    <div className="mb-4">
+      <InputLabelComponent htmlFor="idcardnumber" labelText="ID Card Number" />
+      <InputTextComponent
+        id="idcardnumber"
+        name="idcardnumber"
+        type="text"
+        required
+        value={newAgent.extension_name}
+        placeholder="ID Card Number"
+        onChange={handleChange}
+        
+      />
+    </div>
+
+    <div className="mb-4">
+      <InputLabelComponent htmlFor="contactnumber" labelText="Contact Number" />
+      <InputTextComponent
+        id="contactnumber"
+        name="contactnumber"
+        type="number"
+        required
+        value={newAgent.extension_name}
+        placeholder="Contact Number"
         onChange={handleChange}
         
       />
@@ -319,10 +448,21 @@ export default function DemographicDataCreateSection() {
         
       />
     </div>
-              
   </div>
 </div> 
-
+<div className="mb-4">
+      <InputLabelComponent htmlFor="permanentaddress" labelText="Permanent Address" />
+      <InputTextComponent
+        id="permanentaddress"
+        name="permanentaddress"
+        type="text"
+        required
+        value={newAgent.extension_name}
+        placeholder="Permanent Address"
+        onChange={handleChange}
+        
+      />
+    </div>
  {/* Family Members Section */}
  <div className="flex justify-start gap-3 pt-10">
                     <div className="px-4 sm:px-0">
