@@ -6,8 +6,8 @@ import InputError from '@/Components/InputError';
 
 export default function LoginFormSection({ status, canResetPassword }) {
     const { data, setData, post, processing, errors, reset } = useForm({
-        email: '',
-        password: '',
+        email: 'admin@gmail.com',
+        password: '123456',
         remember: false,
     });
 
