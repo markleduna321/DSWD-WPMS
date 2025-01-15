@@ -21,7 +21,7 @@ const navigation = {
  
   pages: [
     { name: 'About Us', href: '#' },
-    { name: 'Donate', href: '#' },
+    /* { name: 'Donate', href: '#' }, */
     { name: 'Contact Us', href: '#' },
   ],
 }
@@ -137,16 +137,7 @@ export default function LandingPage() {
               
             </div>
 
-            <div className="border-t border-gray-200 px-4 py-6">
-              <a href="#" className="-m-2 flex items-center p-2">
-                <img
-                  alt=""
-                  src="https://tailwindui.com/plus/img/flags/flag-canada.svg"
-                  className="block h-auto w-5 shrink-0"
-                />
-                
-              </a>
-            </div>
+            
           </DialogPanel>
         </div>
       </Dialog>
