@@ -124,42 +124,42 @@ export default function DemographicDataCreateSection() {
   <div className="w-full md:flex-1">
 
   <div className="mb-4">
-      <InputLabelComponent htmlFor="purok" labelText="Purok" />
+      <InputLabelComponent htmlFor="region" labelText="Region" />
       <InputTextComponent
-        id="purok"
-        name="purok"
+        id="region"
+        name="region"
         type="text"
         required
         value={newAgent.purok}
-        placeholder="Purok"
+        placeholder="Region"
         onChange={handleChange}
         
       />
     </div>
 
     <div className="mb-4">
-      <InputLabelComponent htmlFor="barangay" labelText="Barangay" />
+      <InputLabelComponent htmlFor="province" labelText="Province" />
       <InputTextComponent
-        id="barangay"
-        name="barangay"
+        id="province"
+        name="province"
         type="text"
         required
         value={newAgent.barangay}
-        placeholder="Barangay"
+        placeholder="Province"
         onChange={handleChange}
         
       />
     </div>
 
     <div className="mb-4">
-      <InputLabelComponent htmlFor="city" labelText="City/Municipality" />
+      <InputLabelComponent htmlFor="disctrict" labelText="District" />
       <InputTextComponent
-        id="city"
-        name="city"
+        id="disctrict"
+        name="disctrict"
         type="text"
         required
         value={newAgent.city}
-        placeholder="City/Municipality"
+        placeholder="District"
         onChange={handleChange}
         
       />
@@ -168,19 +168,19 @@ export default function DemographicDataCreateSection() {
      {/* Right Column */}
   <div className="w-full md:flex-1">
   <div className="mb-4">
-      <InputLabelComponent htmlFor="purok" labelText="Purok" />
+      <InputLabelComponent htmlFor="city" labelText="City/Municipality" />
       <InputTextComponent
-        id="purok"
-        name="purok"
+        id="city"
+        name="city"
         type="text"
         required
-        value={newAgent.purok}
-        placeholder="Purok"
+        value={newAgent.city}
+        placeholder="City/Municipality"
         onChange={handleChange}
         
       />
     </div>
-
+  
     <div className="mb-4">
       <InputLabelComponent htmlFor="barangay" labelText="Barangay" />
       <InputTextComponent
@@ -196,18 +196,20 @@ export default function DemographicDataCreateSection() {
     </div>
 
     <div className="mb-4">
-      <InputLabelComponent htmlFor="city" labelText="City/Municipality" />
+      <InputLabelComponent htmlFor="evacuation_site" labelText="Evacuation Site" />
       <InputTextComponent
-        id="city"
-        name="city"
+        id="evacuation_site"
+        name="evacuation_site"
         type="text"
         required
-        value={newAgent.city}
-        placeholder="City/Municipality"
+        value={newAgent.purok}
+        placeholder="Evacuation Site"
         onChange={handleChange}
         
       />
     </div>
+
+    
   </div>
     </div>
     <h3 className="text-xl font-semibold mb-4">Head of the family</h3>
@@ -488,31 +490,19 @@ export default function DemographicDataCreateSection() {
               <div key={index} className="mb-4 border p-4 rounded-md">
                 <div className="flex flex-wrap gap-4">
                   <div className="flex-1">
-                    <InputLabelComponent htmlFor={`firstName-${index}`} labelText="First Name" />
+                    <InputLabelComponent htmlFor={`fullname-${index}`} labelText="Full Name" />
                     <InputTextComponent
-                      id={`firstName-${index}`}
-                      name="firstName"
+                      id={`fullname-${index}`}
+                      name="fullname"
                       type="text"
                       required
-                      value={member.firstName}
-                      placeholder="First Name"
+                      value={member.fullname}
+                      placeholder="Full Name"
                       onChange={(e) => handleFamilyMemberChange(index, e)}
                       
                     />
                   </div>
-                  <div className="flex-1">
-                    <InputLabelComponent htmlFor={`lastName-${index}`} labelText="Last Name" />
-                    <InputTextComponent
-                      id={`lastName-${index}`}
-                      name="lastName"
-                      type="text"
-                      required
-                      value={member.lastName}
-                      placeholder="Last Name"
-                      onChange={(e) => handleFamilyMemberChange(index, e)}
-                      
-                    />
-                  </div>
+                  
                   <div className="flex-1">
                     <InputLabelComponent htmlFor={`relation-${index}`} labelText="Relation" />
                     <InputTextComponent
@@ -522,6 +512,90 @@ export default function DemographicDataCreateSection() {
                       required
                       value={member.relation}
                       placeholder="Relation"
+                      onChange={(e) => handleFamilyMemberChange(index, e)}
+                      
+                    />
+                  </div>
+
+                  <div className="flex-1">
+                    <InputLabelComponent htmlFor={`birthdate-${index}`} labelText="Birth Date" />
+                    <InputTextComponent
+                      id={`birthdate-${index}`}
+                      name="birthdate"
+                      type="date"
+                      required
+                      value={member.birthdate}
+                      placeholder="Birth Date"
+                      onChange={(e) => handleFamilyMemberChange(index, e)}
+                      
+                    />
+                  </div>
+
+                  <div className="flex-1">
+                    <InputLabelComponent htmlFor={`age-${index}`} labelText="Age" />
+                    <InputTextComponent
+                      id={`age-${index}`}
+                      name="age"
+                      type="number"
+                      required
+                      value={member.birthdate}
+                      placeholder="Age"
+                      onChange={(e) => handleFamilyMemberChange(index, e)}
+                      
+                    />
+                  </div>
+
+                  <div className="flex-1">
+                    <InputLabelComponent htmlFor={`sex-${index}`} labelText="Sex" />
+                    <InputTextComponent
+                      id={`sex-${index}`}
+                      name="sex"
+                      type="number"
+                      required
+                      value={member.sex}
+                      placeholder="Sex"
+                      onChange={(e) => handleFamilyMemberChange(index, e)}
+                      
+                    />
+                  </div>
+
+                  <div className="flex-1">
+                    <InputLabelComponent htmlFor={`age-${index}`} labelText="Highest Education" />
+                    <InputTextComponent
+                      id={`highest_educational_attainment-${index}`}
+                      name="highest_educational_attainment"
+                      type="number"
+                      required
+                      value={member.highest_educational_attainment}
+                      placeholder="Highest Educational Attainment"
+                      onChange={(e) => handleFamilyMemberChange(index, e)}
+                      
+                    />
+                  </div>
+
+                  <div className="flex-1">
+                    <InputLabelComponent htmlFor={`occupation-${index}`} labelText="Occupation" />
+                    <InputTextComponent
+                      id={`occupation-${index}`}
+                      name="occupation"
+                      type="text"
+                      required
+                      value={member.occupation}
+                      placeholder="Occupation"
+                      onChange={(e) => handleFamilyMemberChange(index, e)}
+                      
+                    />
+                  </div>
+
+                  <div className="flex-1">
+                    <InputLabelComponent htmlFor={`remarks-${index}`} labelText="Remarks" />
+                    <InputTextComponent
+                      id={`remarks-${index}`}
+                      name="remarks"
+                      type="text"
+                      required
+                      value={member.remarks}
+                      placeholder="Remarks"
                       onChange={(e) => handleFamilyMemberChange(index, e)}
                       
                     />
