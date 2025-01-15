@@ -1,0 +1,1 @@
+import{j as r}from"./app-C3YoAUYN.js";import o from"./layout-fGz1W2Hf.js";import"./dialog-fI73s4y3.js";import"./transition-DKGk-01y.js";import"./XMarkIcon-D17UOICr.js";import"./MagnifyingGlassIcon-H_0fdrmT.js";function d(){return r.jsx(o,{children:"Admin Dashboard"})}export{d as default};
