@@ -1,8 +1,10 @@
 <?php
 
+use App\Http\Controllers\ContentController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\DemographicController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,3 +23,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::get('/users', [UserController::class, 'getUsers']);
 Route::resource('usermanagement', UserController::class);
+Route::resource('demographics', DemographicController::class);
+Route::resource('contents', ContentController::class);
