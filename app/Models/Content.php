@@ -9,5 +9,5 @@ class Content extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['title', 'content', 'file_path'];
+    protected $fillable = ['title', 'content', 'is_highlight', 'file_path'];
 }

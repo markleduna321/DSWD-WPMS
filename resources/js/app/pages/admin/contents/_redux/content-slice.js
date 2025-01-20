@@ -1,27 +1,30 @@
-import { createSlice } from '@reduxjs/toolkit'
-
-const path = window.location.hash.substring(1); // Get the hash without the first character
-const hash = path.split('&')[0];
+import { createSlice } from '@reduxjs/toolkit';
 
 export const contentsSlice = createSlice({
   name: 'contents',
   initialState: {
     contents: [],
-    content:{},
+    loading: false,
+    error: null,
+    currentPage: 1, // Added for pagination
+    totalPages: 1,  // Added for pagination
   },
   reducers: {
     setContents: (state, action) => {
-      state.contents = action.payload;
+      state.contents = action.payload.contents; // Set the paginated content data
+      state.currentPage = action.payload.currentPage; // Set the current page
+      state.totalPages = action.payload.totalPages; // Set the total number of pages
     },
-    setContent: (state, action) => {
-        state.content = action.payload;
-      },
+    setLoading: (state, action) => {
+      state.loading = action.payload;
+    },
+    setError: (state, action) => {
+      state.error = action.payload;
+    },
   },
 });
 
-export const { 
-  setContents,
-  setContent
- } = contentsSlice.actions
+// Exporting actions and reducer as they are
+export const { setContents, setLoading, setError } = contentsSlice.actions;
 
-export default contentsSlice.reducer
+export default contentsSlice.reducer;

@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->text('content');
+            $table->boolean('is_highlight')->default(false);
             $table->string('file_path')->nullable();
             $table->timestamps();
         });
