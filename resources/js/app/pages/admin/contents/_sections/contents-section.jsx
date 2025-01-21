@@ -176,7 +176,7 @@ export default function ContentsSection() {
                   className="h-44 w-40 shrink-0 bg-gray-300 object-cover border-2 border-black rounded-lg"
                 />
                 <div className="flex flex-col flex-1">
-                  <div>
+                  <div className='max-w-56'>
                     <h2 className="text-xl font-bold text-gray-900 truncate">
                       {content.title}
                     </h2>

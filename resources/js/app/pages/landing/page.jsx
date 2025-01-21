@@ -302,7 +302,7 @@ export default function LandingPage() {
 
         {/* Featured section */}
         <section aria-labelledby="cause-heading">
-          <div className="relative mx-auto max-w-7xl h-72 px-4 sm:px-6 lg:px-8">
+          <div className="relative mx-auto max-w-7xl h-[500px] px-4 sm:px-6 lg:px-8">
             <div className="absolute inset-0 overflow-hidden">
               <img
                 alt=""
@@ -318,12 +318,7 @@ export default function LandingPage() {
               <p className="mt-3 text-xl text-white">
                 {latest_contents[3]?.content}
               </p>
-              <a
-                href="#"
-                className="mt-8 block w-full rounded-md border border-transparent bg-white px-8 py-3 text-base font-medium text-gray-900 hover:bg-gray-100 sm:w-auto"
-              >
-                Read Full story
-              </a>
+              
             </div>
           </div>
         </section>

@@ -23,6 +23,7 @@ import { useSelector } from 'react-redux'
 const navigation = {
 
     pages: [
+        { name: 'Home', href: '/' },
         { name: 'About Us', href: '#' },
         /* { name: 'Donate', href: '#' }, */
         { name: 'Contact Us', href: '#' },
@@ -225,7 +226,7 @@ export default function LandingPage() {
                             <div className=''>
                                 <img src={'/storage/' + latest_contents[1]?.file_path} alt="" className='w-full sm:w-[400px] sm:h-[400px]' />
                             </div>
-                            <div>
+                            <div className='flex-1'>
                                 {latest_contents[1]?.content}
                             </div>
                         </div>
@@ -239,7 +240,7 @@ export default function LandingPage() {
                             <div className=''>
                                 <img src={'/storage/' + latest_contents[2]?.file_path} alt="" className='w-full sm:w-[400px] sm:h-[400px]' />
                             </div>
-                            <div>
+                            <div className='flex-1'>
                                 {latest_contents[2]?.content}
                             </div>
                         </div>
@@ -253,7 +254,7 @@ export default function LandingPage() {
                             <div className=''>
                                 <img src={'/storage/' + latest_contents[3]?.file_path} alt="" className='w-full sm:w-[400px] sm:h-[400px]' />
                             </div>
-                            <div>
+                            <div className='flex-1'>
                                 {latest_contents[3]?.content}
                             </div>
                         </div>
@@ -267,7 +268,7 @@ export default function LandingPage() {
                             <div className=''>
                                 <img src={'/storage/' + latest_contents[4]?.file_path} alt="" className='w-full sm:w-[400px] sm:h-[400px]' />
                             </div>
-                            <div>
+                            <div className='flex-1'>
                                 {latest_contents[4]?.content}
                             </div>
                         </div>
@@ -281,7 +282,7 @@ export default function LandingPage() {
                             <div className=''>
                                 <img src={'/storage/' + latest_contents[5]?.file_path} alt="" className='w-full sm:w-[400px] sm:h-[400px]' />
                             </div>
-                            <div>
+                            <div className='flex-1'>
                                 {latest_contents[5]?.content}
                             </div>
                         </div>
@@ -295,7 +296,7 @@ export default function LandingPage() {
                             <div className=''>
                                 <img src={'/storage/' + latest_contents[6]?.file_path} alt="" className='w-full sm:w-[400px] sm:h-[400px]' />
                             </div>
-                            <div>
+                            <div className='flex-1'>
                                 {latest_contents[6]?.content}
                             </div>
                         </div>
