@@ -1,0 +1,1 @@
+import{j as r}from"./app-Cvm64G-x.js";import t from"./layout-BY-SwtqB.js";import"./dialog-BdTQToX3.js";import"./transition-Bp-hx13H.js";import"./XMarkIcon-DUGJyLDi.js";import"./MagnifyingGlassIcon-CI1In8MF.js";function a(){return r.jsx(t,{children:"Reports Page"})}export{a as default};

@@ -1,6 +1,6 @@
 'use client'
 
-import { Fragment, useState } from 'react'
+import { Fragment, useEffect, useState } from 'react'
 import {
   Dialog,
   DialogBackdrop,
@@ -16,42 +16,19 @@ import {
   TabPanels,
 } from '@headlessui/react'
 import { Bars3Icon, MagnifyingGlassIcon, ShoppingBagIcon, XMarkIcon } from '@heroicons/react/24/outline'
+import store from '@/app/store/store'
+import { get_latest_content_thunk } from '../admin/contents/_redux/content-thunk'
+import { useSelector } from 'react-redux'
 
 const navigation = {
- 
+
   pages: [
     { name: 'About Us', href: '#' },
     /* { name: 'Donate', href: '#' }, */
     { name: 'Contact Us', href: '#' },
   ],
 }
-const favorites = [
-  {
-    id: 1,
-    name: 'Black Basic Tee',
-    price: '$32',
-    href: '#',
-    imageSrc: 'https://tailwindui.com/plus/img/ecommerce-images/home-page-03-favorite-01.jpg',
-    imageAlt: "Model wearing women's black cotton crewneck tee.",
-  },
-  {
-    id: 2,
-    name: 'Off-White Basic Tee',
-    price: '$32',
-    href: '#',
-    imageSrc: 'https://tailwindui.com/plus/img/ecommerce-images/home-page-03-favorite-02.jpg',
-    imageAlt: "Model wearing women's off-white cotton crewneck tee.",
-  },
-  {
-    id: 3,
-    name: 'Mountains Artwork Tee',
-    price: '$36',
-    href: '#',
-    imageSrc: 'https://tailwindui.com/plus/img/ecommerce-images/home-page-03-favorite-03.jpg',
-    imageAlt:
-      "Model wearing women's burgundy red crewneck artwork tee with small white triangle overlapping larger black triangle.",
-  },
-]
+
 const footerNavigation = {
   shop: [
     { name: 'Bags', href: '#' },
@@ -82,7 +59,16 @@ const footerNavigation = {
 }
 
 export default function LandingPage() {
+
+  const { latest_contents } = useSelector(state => state.contents);
+
+  useEffect(() => {
+    store.dispatch(get_latest_content_thunk())
+  }, []);
+  
   const [open, setOpen] = useState(false)
+
+  console.log('ssssssss', latest_contents)
 
   return (
     <div className="bg-white">
@@ -113,9 +99,9 @@ export default function LandingPage() {
             {/* Links */}
             <TabGroup className="mt-2">
               <div className="border-b border-gray-200">
-                
+
               </div>
-              
+
             </TabGroup>
 
             <div className="space-y-6 border-t border-gray-200 px-4 py-6">
@@ -134,10 +120,10 @@ export default function LandingPage() {
                   Sign in
                 </a>
               </div>
-              
+
             </div>
 
-            
+
           </DialogPanel>
         </div>
       </Dialog>
@@ -172,8 +158,8 @@ export default function LandingPage() {
               {/* Flyout menus */}
               <PopoverGroup className="hidden lg:ml-8 lg:block lg:self-stretch h-full overflow-visible">
                 <div className="flex h-full space-x-8">
-                  
-                  
+
+
                   {navigation.pages.map((page) => (
                     <a
                       key={page.name}
@@ -195,10 +181,10 @@ export default function LandingPage() {
                     Sign in
                   </a>
                   <span aria-hidden="true" className="h-6 w-px bg-gray-200" />
-                  
+
                 </div>
 
-                
+
               </div>
             </div>
           </div>
@@ -206,12 +192,12 @@ export default function LandingPage() {
 
         {/* Hero section */}
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-    <img
-      alt="Descriptive text"
-      src="/img/dswd.jpg"
-      className="w-full object-cover"
-    />
-  </div>
+          <img
+            alt="Descriptive text"
+            src="/img/dswd.jpg"
+            className="w-full object-cover"
+          />
+        </div>
 
       </header>
 
@@ -230,10 +216,11 @@ export default function LandingPage() {
             </div>
 
             <div className="mt-6 grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:grid-rows-2 sm:gap-x-6 lg:gap-8">
+
               <div className="group relative aspect-[2/1] overflow-hidden rounded-lg sm:row-span-2 sm:aspect-square">
                 <img
                   alt="Two models wearing women's black cotton crewneck tee and off-white cotton crewneck tee."
-                  src="https://philippinerevolution.nu/wp-content/uploads/2023/11/20231130-UpdatesPH_VolVNo22-1-791x1024.png"
+                  src={'/storage/' + latest_contents[0]?.file_path}
                   className="absolute size-full object-cover group-hover:opacity-75"
                 />
                 <div
@@ -242,29 +229,14 @@ export default function LandingPage() {
                 />
                 <div className="absolute inset-0 flex items-end p-6">
                   <div>
-                    <h3 className="font-semibold text-white">
+                    <h3 className="font-bold text-3xl text-white">
                       <a href="#">
-                        <span className="absolute inset-0" />
-                        Sample News
+                        <span className="absolute inset-0 " />
+                        {latest_contents[0]?.title}
                       </a>
                     </h3>
-                    <p aria-hidden="true" className="mt-1 text-sm text-white">
-                    President Ferdinand R. Marcos Jr. and First Lady Louise Araneta Marcos lead the Christmas tree lighting ceremony at the Kalayaan Grounds in Malacañan Palace on December 1, 2024.
-
-                    During the program, the President confers awards to the top three (3) winners of the National Parol-Making Competition dubbed, 'Isang Bituin, Isang Mithiin,' by the Office of the President (OP), Office of the Social Secretary (SoSec) and Department of Education (DepEd).
-
-                    This year's competition gathere...
-                    See more
-                    10
-                    2
-                    2
-
-                    Department of Social Welfare and Development - DSWD
-                    5 hours ago
-                    IN PHOTOS: The Department of Social Welfare and Development (DSWD) Field Office 5 - Bicol Region distributed family food packs (FFPs) to 1,680 families in San Andres, Catanduanes, on November 28-29, 2024, to assist those affected by the aftermath of Super Typhoon #PepitoPH.
-
-                    Residents from nine heavily affected barangays—Lubas, Cabungahan, Agojo, Tominawog, Datag, Comagaycay, Alibuag, Salvacion, and San Roque—received vital assistance through the joint efforts of the DSWD Muni...
-                    See more
+                    <p aria-hidden="true" className="mt-1 text-sm text-white ">
+                     {latest_contents[0]?.content}
                     </p>
                   </div>
                 </div>
@@ -272,7 +244,7 @@ export default function LandingPage() {
               <div className="group relative aspect-[2/1] overflow-hidden rounded-lg sm:aspect-auto">
                 <img
                   alt="Wooden shelf with gray and olive drab green baseball caps, next to wooden clothes hanger with sweaters."
-                  src="https://www.benarnews.org/english/news/philippine/assault-complaint-filed-in-sara-duterte-feud-with-president-marcos-11272024121358.html/@@images/a4f9ef92-2036-4da4-a3db-99f8592a6e7b.jpeg"
+                  src={'/storage/' + latest_contents[1]?.file_path}
                   className="absolute size-full object-cover group-hover:opacity-75"
                 />
                 <div
@@ -281,17 +253,14 @@ export default function LandingPage() {
                 />
                 <div className="absolute inset-0 flex items-end p-6">
                   <div>
-                    <h3 className="font-semibold text-white">
+                    <h3 className="font-bold text-3xl text-white">
                       <a href="#">
                         <span className="absolute inset-0" />
-                        Sample Announcement
+                        {latest_contents[1]?.title} 
                       </a>
                     </h3>
                     <p aria-hidden="true" className="mt-1 text-sm text-white">
-                      President Ferdinand R. Marcos Jr. and First Lady Louise Araneta Marcos lead the Christmas tree lighting ceremony at the Kalayaan Grounds in Malacañan Palace on December 1, 2024.
-
-                    Residents from nine heavily affected barangays—Lubas, Cabungahan, Agojo, Tominawog, Datag, Comagaycay, Alibuag, Salvacion, and San Roque—received vital assistance through the joint efforts of the DSWD Muni...
-                    See more
+                      {latest_contents[1]?.content}
                     </p>
                   </div>
                 </div>
@@ -299,7 +268,7 @@ export default function LandingPage() {
               <div className="group relative aspect-[2/1] overflow-hidden rounded-lg sm:aspect-auto">
                 <img
                   alt="Walnut desk organizer set with white modular trays, next to porcelain mug on wooden desk."
-                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQV8Ry0kGKVK7xILQKq5E4NBTMamcCZdfv3CA&s"
+                  src={'/storage/' + latest_contents[2]?.file_path}
                   className="absolute size-full object-cover group-hover:opacity-75"
                 />
                 <div
@@ -308,14 +277,14 @@ export default function LandingPage() {
                 />
                 <div className="absolute inset-0 flex items-end p-6">
                   <div>
-                    <h3 className="font-semibold text-white">
+                    <h3 className="font-bold text-3xl text-white">
                       <a href="#">
                         <span className="absolute inset-0" />
-                        Post Tile
+                        {latest_contents[2]?.title}
                       </a>
                     </h3>
                     <p aria-hidden="true" className="mt-1 text-sm text-white">
-                      Content Here.
+                      {latest_contents[2]?.content}
                     </p>
                   </div>
                 </div>
@@ -337,19 +306,17 @@ export default function LandingPage() {
             <div className="absolute inset-0 overflow-hidden">
               <img
                 alt=""
-                src="https://tailwindui.com/plus/img/ecommerce-images/home-page-03-feature-section-full-width.jpg"
+                src={'/storage/' + latest_contents[3]?.file_path} 
                 className="size-full object-cover"
               />
             </div>
             <div aria-hidden="true" className="absolute inset-0 bg-gray-900/50" />
             <div className="relative mx-auto flex max-w-3xl flex-col items-center text-center pt-10">
               <h2 id="cause-heading" className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
-                News / Announcement Highlight
+                {latest_contents[3]?.title}
               </h2>
               <p className="mt-3 text-xl text-white">
-                We're committed to responsible, sustainable, and ethical manufacturing. Our small-scale approach allows
-                us to focus on quality and reduce our impact. We're doing our best to delay the inevitable heat-death of
-                the universe.
+                {latest_contents[3]?.content}
               </p>
               <a
                 href="#"
@@ -361,9 +328,9 @@ export default function LandingPage() {
           </div>
         </section>
 
-        
 
-       
+
+
       </main>
 
       <footer aria-labelledby="footer-heading" className="bg-white">

@@ -10,3 +10,8 @@ export async function fetch_all_contents_service(page = 1) {
     const res = await axios.get(`/api/contents?page=${page}`); // Pass page number in query string
     return res.data; // Assuming the data contains paginated response (e.g., data, currentPage, totalPages)
 }
+
+export async function fetch_latest_contents_service() {
+    const res = await axios.get(`/api/get_latest_content`); // Pass page number in query string
+    return res.data; // Assuming the data contains paginated response (e.g., data, currentPage, totalPages)
+}

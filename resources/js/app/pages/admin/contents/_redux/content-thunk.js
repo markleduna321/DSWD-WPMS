@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-import { fetch_all_contents_service,create_content_service } from "@/app/services/content-service";
+import { fetch_all_contents_service,create_content_service, fetch_latest_contents_service } from "@/app/services/content-service";
 import { contentsSlice } from "./content-slice";
 
 
@@ -41,6 +41,17 @@ export function fetchAllContents(page = 1) {
     try {
       const data = await fetch_all_contents_service(page); // Pass page number
       dispatch(contentsSlice.actions.setContents(data)); // Store paginated data
+    } catch (error) {
+      console.error("Error fetching contents:", error);
+    }
+  };
+}
+
+export function get_latest_content_thunk() {
+  return async function (dispatch, getState) {
+    try {
+      const data = await fetch_latest_contents_service(); // Pass page number
+      dispatch(contentsSlice.actions.setLatestContents(data.latest_content)); // Store paginated data
     } catch (error) {
       console.error("Error fetching contents:", error);
     }

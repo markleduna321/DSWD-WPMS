@@ -25,3 +25,4 @@ Route::get('/users', [UserController::class, 'getUsers']);
 Route::resource('usermanagement', UserController::class);
 Route::resource('demographics', DemographicController::class);
 Route::resource('contents', ContentController::class);
+Route::get('/get_latest_content', [ContentController::class, 'get_latest_content']);

@@ -4,6 +4,7 @@ export const contentsSlice = createSlice({
   name: 'contents',
   initialState: {
     contents: [],
+    latest_contents: [],
     loading: false,
     error: null,
     currentPage: 1, // Added for pagination
@@ -15,6 +16,9 @@ export const contentsSlice = createSlice({
       state.currentPage = action.payload.currentPage; // Set the current page
       state.totalPages = action.payload.totalPages; // Set the total number of pages
     },
+    setLatestContents: (state, action) => {
+      state.latest_contents = action.payload;
+    },
     setLoading: (state, action) => {
       state.loading = action.payload;
     },
@@ -25,6 +29,6 @@ export const contentsSlice = createSlice({
 });
 
 // Exporting actions and reducer as they are
-export const { setContents, setLoading, setError } = contentsSlice.actions;
+export const { setContents, setLoading, setError, setLatestContents } = contentsSlice.actions;
 
 export default contentsSlice.reducer;

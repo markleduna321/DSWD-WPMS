@@ -24,6 +24,20 @@ class ContentController extends Controller
         ]);
     }
 
+    public function get_latest_content(Request $request)
+    {
+        // Get the latest 3 content with selected columns (example: 'id', 'title', 'description')
+        $latest_content = Content::orderBy('id', 'desc')->take(4)->get();
+
+
+        // Return the data as JSON
+        return response()->json([
+            'latest_content' => $latest_content, // Return the collection with limited fields
+        ]);
+    }
+
+
+
 
     /**
      * Show the form for creating a new resource.
