@@ -235,7 +235,7 @@ export default function LandingPage() {
                         {latest_contents[0]?.title}
                       </a>
                     </h3>
-                    <p aria-hidden="true" className="mt-1 text-sm text-white ">
+                    <p aria-hidden="true" className="mt-1 text-sm text-white max-h-[190px]">
                      {latest_contents[0]?.content}
                     </p>
                   </div>
@@ -259,7 +259,7 @@ export default function LandingPage() {
                         {latest_contents[1]?.title} 
                       </a>
                     </h3>
-                    <p aria-hidden="true" className="mt-1 text-sm text-white">
+                    <p aria-hidden="true" className="mt-1 text-sm text-white max-h-[100px]">
                       {latest_contents[1]?.content}
                     </p>
                   </div>
@@ -283,7 +283,7 @@ export default function LandingPage() {
                         {latest_contents[2]?.title}
                       </a>
                     </h3>
-                    <p aria-hidden="true" className="mt-1 text-sm text-white">
+                    <p aria-hidden="true" className="mt-1 text-sm text-white max-h-[100px]">
                       {latest_contents[2]?.content}
                     </p>
                   </div>
@@ -311,7 +311,7 @@ export default function LandingPage() {
               />
             </div>
             <div aria-hidden="true" className="absolute inset-0 bg-gray-900/50" />
-            <div className="relative mx-auto flex max-w-3xl flex-col items-center text-center pt-10">
+            <div className="relative mx-auto max-w-3xl items-center text-center pt-20">
               <h2 id="cause-heading" className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
                 {latest_contents[3]?.title}
               </h2>
