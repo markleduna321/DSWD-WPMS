@@ -209,7 +209,7 @@ export default function LandingPage() {
               <h2 id="category-heading" className="text-2xl font-bold tracking-tight text-gray-900">
                 News and Events
               </h2>
-              <a href="#" className="hidden text-sm font-semibold text-indigo-600 hover:text-indigo-500 sm:block">
+              <a href="news" className="hidden text-sm font-semibold text-indigo-600 hover:text-indigo-500 sm:block">
                 Show All
                 <span aria-hidden="true"> &rarr;</span>
               </a>

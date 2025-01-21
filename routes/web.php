@@ -20,6 +20,10 @@ Route::middleware('redirectBasedOnRole')->get('/', function () {
     return Inertia::render('landing/page');
 })->name('landing');
 
+Route::middleware('redirectBasedOnRole')->get('/news', function () {
+    return Inertia::render('news/page');
+})->name('news');
+
 Route::middleware('redirectBasedOnRole')->get('/log-in', function () {
     return Inertia::render('login/page');
 })->name('log-in');

@@ -27,7 +27,7 @@ class ContentController extends Controller
     public function get_latest_content(Request $request)
     {
         // Get the latest 3 content with selected columns (example: 'id', 'title', 'description')
-        $latest_content = Content::orderBy('id', 'desc')->take(4)->get();
+        $latest_content = Content::orderBy('id', 'desc')->take(7)->get();
 
 
         // Return the data as JSON
