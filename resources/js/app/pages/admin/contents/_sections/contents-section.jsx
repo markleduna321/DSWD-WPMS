@@ -9,6 +9,8 @@ import InputError from '@/Components/InputError';
 import InputTextareaComponent from '@/app/pages/components/input-textarea-component';
 import { fetchAllContents, saveContent } from '../_redux/content-thunk';
 import store from '@/app/store/store';
+import Edit from '@/Pages/Profile/Edit';
+import EditConentSection from './edit-content-section';
 
 export default function ContentsSection() {
   const [isModalOpen, setModalOpen] = useState(false);
@@ -188,7 +190,7 @@ export default function ContentsSection() {
                     </p>
                   </div>
                   <div className="mt-auto flex justify-end">
-                    <a href="#" className='flex text-sm text-blue-500 cursor-pointer hover:underline'><EyeIcon className='w-4 h-4' />  Show full details</a>
+                    <EditConentSection contentId={content.id} />
                   </div>
                 </div>
               </div>

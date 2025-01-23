@@ -1,6 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-
-import { fetch_all_contents_service,create_content_service, fetch_latest_contents_service } from "@/app/services/content-service";
+import { fetch_all_contents_service,create_content_service, fetch_latest_contents_service, get_content_by_id_service, updateContentService } from "@/app/services/content-service";
 import { contentsSlice } from "./content-slice";
 
 
@@ -57,6 +56,34 @@ export function get_latest_content_thunk() {
     }
   };
 }
+
+// Thunk to fetch a user by ID
+export function get_content_by_id_thunk(content_id) {
+  return async function (dispatch) {
+    try {
+      const result = await get_content_by_id_service(content_id);
+      return result; // Return the fetched content data
+    } catch (error) {
+      console.error("Error fetching content by ID:", error);
+      throw error; // Ensure errors are propagated
+    }
+  };
+}
+
+export function updateContentThunk(updatedData) {
+  return async function (dispatch) {
+    try {
+      const result = await updateContentService(updatedData);
+      console.log("Updated content:", result);
+      dispatch(fetchAllContents()); // Refresh the contents list
+    } catch (error) {
+      console.error("Error updating content:", error);
+      throw error;
+    }
+  };
+}
+
+
 
 // export function get_user_login_thunk() {
 //   return async function (dispatch, getState) {

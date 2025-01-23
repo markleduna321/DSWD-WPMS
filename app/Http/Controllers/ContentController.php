@@ -15,7 +15,7 @@ class ContentController extends Controller
     public function index(Request $request)
     {
         $perPage = 9; // Number of items per page
-        $contents = Content::paginate($perPage);
+        $contents = Content::orderBy('id', 'desc')->paginate($perPage);
 
         return response()->json([
             'contents' => $contents->items(), // The actual data
@@ -37,7 +37,10 @@ class ContentController extends Controller
     }
 
 
+    public function get_content_by_id()
+    {
 
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -83,9 +86,12 @@ class ContentController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Content $content)
+    public function show($id)
     {
-        //
+        $content =  Content::where('id', $id)->first();
+        return response()->json([
+            'response' => $content
+        ], 200);
     }
 
     /**
@@ -99,10 +105,18 @@ class ContentController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateContentRequest $request, Content $content)
-    {
-        //
-    }
+    public function update(Request $request, $id)
+{
+    $content = Content::findOrFail($id);
+    $content->title = $request->title;
+    $content->content = $request->content;
+    $content->save();
+
+    return response()->json([
+        'response' => $content,
+    ], 200);
+}
+
 
     /**
      * Remove the specified resource from storage.
