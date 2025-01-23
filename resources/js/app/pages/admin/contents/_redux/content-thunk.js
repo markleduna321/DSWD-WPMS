@@ -1,5 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { fetch_all_contents_service,create_content_service, fetch_latest_contents_service, get_content_by_id_service, updateContentService } from "@/app/services/content-service";
+import { fetch_all_contents_service, create_content_service, fetch_latest_contents_service, get_content_by_id_service, updateContentService, deleteContentService } from "@/app/services/content-service";
 import { contentsSlice } from "./content-slice";
 
 
@@ -20,7 +20,7 @@ import { contentsSlice } from "./content-slice";
 // );
 export function saveContent(formData) {
   return async function (dispatch, getState) {
-      await create_content_service(formData);
+    await create_content_service(formData);
     return 'success'
   };
 }
@@ -82,6 +82,19 @@ export function updateContentThunk(updatedData) {
     }
   };
 }
+
+export function deleteContentThunk(id) {
+  return async function (dispatch) {
+    try {
+      await deleteContentService(id);
+      console.log('Content deleted successfully');
+    } catch (error) {
+      console.error('Error deleting content:', error);
+      throw error;
+    }
+  };
+}
+
 
 
 

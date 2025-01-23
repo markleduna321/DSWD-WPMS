@@ -37,10 +37,7 @@ class ContentController extends Controller
     }
 
 
-    public function get_content_by_id()
-    {
-
-    }
+    public function get_content_by_id() {}
 
     /**
      * Show the form for creating a new resource.
@@ -106,23 +103,35 @@ class ContentController extends Controller
      * Update the specified resource in storage.
      */
     public function update(Request $request, $id)
-{
-    $content = Content::findOrFail($id);
-    $content->title = $request->title;
-    $content->content = $request->content;
-    $content->save();
+    {
+        $content = Content::findOrFail($id);
+        $content->title = $request->title;
+        $content->content = $request->content;
+        $content->save();
 
-    return response()->json([
-        'response' => $content,
-    ], 200);
-}
+        return response()->json([
+            'response' => $content,
+        ], 200);
+    }
 
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Content $content)
+    public function destroy($id)
     {
-        //
+        $content = Content::find($id);
+
+        if (!$content) {
+            return response()->json([
+                'message' => 'Content not found'
+            ], 404);
+        }
+
+        $content->delete();
+
+        return response()->json([
+            'message' => 'Content deleted successfully'
+        ], 200);
     }
 }

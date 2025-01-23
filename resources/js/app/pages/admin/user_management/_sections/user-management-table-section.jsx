@@ -8,7 +8,7 @@ import AlertComponent from "@/app/pages/components/alert";
 
 export default function UserManagementTableSection() {
   const dispatch = useDispatch();
-  const { users } = useSelector((store) => store.users);  
+  const { users } = useSelector((store) => store.users);
   const userData = Array.isArray(users) ? users : [];
 
   const [isViewModalOpen, setViewModalOpen] = useState(false);
@@ -22,17 +22,17 @@ export default function UserManagementTableSection() {
 
   const handleViewUser = (user) => {
     setSelectedUser(user);
-    setViewModalOpen(true); 
+    setViewModalOpen(true);
   };
 
   const closeViewModal = () => {
-    setViewModalOpen(false); 
-    setSelectedUser(null); 
+    setViewModalOpen(false);
+    setSelectedUser(null);
   };
 
   const handleDeleteUser = (user) => {
     setUserToDelete(user);
-    setDeleteModalOpen(true); 
+    setDeleteModalOpen(true);
   };
 
   const confirmDeleteUser = async () => {
@@ -50,12 +50,12 @@ export default function UserManagementTableSection() {
         setDeleteModalOpen(false);
         setUserToDelete(null);
 
-         // Automatically close the alert after 10 seconds (10000ms)
-         setTimeout(() => {
-              setShowAlert(false);
-              setAlertMessage("");  // Optional: Clear the message
-              setAlertType("");    // Optional: Clear the alert type
-          }, 5000); // 10000ms = 5 seconds
+        // Automatically close the alert after 10 seconds (10000ms)
+        setTimeout(() => {
+          setShowAlert(false);
+          setAlertMessage("");  // Optional: Clear the message
+          setAlertType("");    // Optional: Clear the alert type
+        }, 5000); // 10000ms = 5 seconds
       }
     }
   };
@@ -64,7 +64,7 @@ export default function UserManagementTableSection() {
     setDeleteModalOpen(false);
     setUserToDelete(null);
   };
-  
+
 
   return (
     <div className="mt-8 flow-root bg-white p-5 rounded-lg">
@@ -110,32 +110,30 @@ export default function UserManagementTableSection() {
                     </td>
                     <td className="whitespace-nowrap px-3 py-5 text-sm text-gray-500">
                       <div
-                        className={`text-sm font-medium px-3 py-1 rounded-lg ${
-                          userM.role_id === 1
+                        className={`text-sm font-medium px-3 py-1 rounded-lg ${userM.role_id === 1
                             ? "text-blue-800"
                             : userM.role_id === 2
-                            ? "text-green-800"
-                            : userM.role_id === 3
-                            ? "text-yellow-800"
-                            : "text-gray-800"
-                        }`}
+                              ? "text-green-800"
+                              : userM.role_id === 3
+                                ? "text-yellow-800"
+                                : "text-gray-800"
+                          }`}
                       >
                         {userM.role_id === 1
                           ? "Admin"
                           : userM.role_id === 2
-                          ? "User"
-                          : userM.role_id === 3
-                          ? "Household"
-                          : "Unknown"}
+                            ? "User"
+                            : userM.role_id === 3
+                              ? "Household"
+                              : "Unknown"}
                       </div>
                     </td>
                     <td className="whitespace-nowrap px-3 py-5 text-sm text-gray-500">
                       <span
-                        className={`inline-flex items-center rounded-md px-2 py-1 text-xs font-medium ring-1 ring-inset ${
-                          userM.is_online
+                        className={`inline-flex items-center rounded-md px-2 py-1 text-xs font-medium ring-1 ring-inset ${userM.is_online
                             ? "bg-green-50 text-green-700 ring-green-600/20"
                             : "bg-red-50 text-red-700 ring-red-600/20"
-                        }`}
+                          }`}
                       >
                         {userM.is_online ? "Online" : "Offline"}
                       </span>
@@ -173,9 +171,9 @@ export default function UserManagementTableSection() {
 
       {/* View/Edit Modal */}
       <Modal isOpen={isViewModalOpen} onClose={closeViewModal}>
-        <UserEditSection 
-          selectedUser={selectedUser} 
-          onClose={closeViewModal} 
+        <UserEditSection
+          selectedUser={selectedUser}
+          onClose={closeViewModal}
           setAlertMessage={setAlertMessage}
           setAlertType={setAlertType}
           setShowAlert={setShowAlert}

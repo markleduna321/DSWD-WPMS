@@ -24,5 +24,10 @@ export async function get_content_by_id_service(id) {
 export async function updateContentService(data) {
     const res = await axios.put(`/api/contents/${data.id}`, data);
     return res.data.response;
-  }
-  
+}
+
+export async function deleteContentService(id) {
+    const response = await axios.delete(`/api/contents/${id}`);
+    return response.data;
+}
+
