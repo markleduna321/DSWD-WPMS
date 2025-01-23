@@ -65,7 +65,7 @@ export default function EditContentSection({ contentId }) {
             console.log('Deleting content with ID:', contentId);
         }
     };
-    
+
     return (
         <div>
             <a
@@ -108,13 +108,17 @@ export default function EditContentSection({ contentId }) {
                             />
                         )}
                     </div>
-                    <div className="flex justify-end gap-4">
+                    <div className='flex justify-between'>
+                    <div className=' justify-start'>
                         <button
                             className="rounded-md bg-red-500 text-white p-2"
                             onClick={handleDelete}
                         >
-                            <TrashIcon className="w-4 h-4 inline-block mr-1" /> Delete
+                            <TrashIcon className="w-4 h-4 inline-block mr-1" />
                         </button>
+                    </div>
+                    
+                    <div className="flex justify-end gap-4">
                         <button
                             className="rounded-md bg-green-500 p-2 text-white"
                             onClick={handleSave}
@@ -127,6 +131,7 @@ export default function EditContentSection({ contentId }) {
                         >
                             Close
                         </button>
+                    </div>
                     </div>
                 </Modal>
             )}

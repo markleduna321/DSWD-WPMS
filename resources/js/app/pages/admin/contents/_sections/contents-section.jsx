@@ -126,14 +126,14 @@ export default function ContentsSection() {
           {/* Highlight Checkbox */}
           <div className="mb-4">
             <input
-              type="checkbox"
+              type="hidden"
               name="is_highlight"
               id="is_highlight"
               value={formData.is_highlight}
               checked={formData.is_highlight === '1'}
               onChange={handleInputChange}
             />{' '}
-            Highlight
+            
           </div>
 
           {/* File Upload */}
