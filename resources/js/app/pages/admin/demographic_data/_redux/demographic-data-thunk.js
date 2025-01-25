@@ -1,50 +1,55 @@
-import { createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
+// src/redux/thunks/demographicDataThunk.js
+import { create_demographic_service, get_demographics_service } from '@/app/services/demographic-data-service';
+import { demographicSlice } from './demographic-data-slice';
 
-export const fetchDemographicData = createAsyncThunk(
-    'demographicData/fetchDemographicData',
-    async (_, { rejectWithValue }) => {
-        try {
-            const response = await axios.get('/api/demographics');
-            return response.data;
-        } catch (error) {
-            return rejectWithValue(error.response.data);
-        }
-    }
-);
+// Action types
+const CREATE_DEMOGRAPHIC_REQUEST = 'CREATE_DEMOGRAPHIC_REQUEST';
+const CREATE_DEMOGRAPHIC_SUCCESS = 'CREATE_DEMOGRAPHIC_SUCCESS';
+const CREATE_DEMOGRAPHIC_FAILURE = 'CREATE_DEMOGRAPHIC_FAILURE';
 
-export const addDemographicData = createAsyncThunk(
-    'demographicData/addDemographicData',
-    async (newData, { rejectWithValue }) => {
-        try {
-            const response = await axios.post('/api/demographics', newData);
-            return response.data;
-        } catch (error) {
-            return rejectWithValue(error.response.data);
-        }
-    }
-);
+// Action creators
+const createDemographicRequest = () => ({
+    type: CREATE_DEMOGRAPHIC_REQUEST
+});
 
-export const updateDemographicData = createAsyncThunk(
-    'demographicData/updateDemographicData',
-    async (updatedData, { rejectWithValue }) => {
-        try {
-            const response = await axios.put(`/api/demographic-data/${updatedData.id}`, updatedData);
-            return response.data;
-        } catch (error) {
-            return rejectWithValue(error.response.data);
-        }
-    }
-);
+const createDemographicSuccess = (data) => ({
+    type: CREATE_DEMOGRAPHIC_SUCCESS,
+    payload: data
+});
 
-export const deleteDemographicData = createAsyncThunk(
-    'demographicData/deleteDemographicData',
-    async (id, { rejectWithValue }) => {
+const createDemographicFailure = (error) => ({
+    type: CREATE_DEMOGRAPHIC_FAILURE,
+    payload: error
+});
+
+// Thunk function for creating demographic data
+// export const create_demographic_thunk = (data) => {
+//     return async (dispatch) => {
+//         dispatch(createDemographicRequest());
+//         try {
+//             const response = await create_demographic_service(data);
+//             dispatch(createDemographicSuccess(response));
+//         } catch (error) {
+//             dispatch(createDemographicFailure(error.message));
+//         }
+//     };
+// };
+export function create_demographic_thunk(data) {
+    return async function (dispatch, getState) {
+        const result = await create_demographic_service(data);
+        return result
+    };
+}
+
+// Thunk to fetch all users
+export function get_demographics_thunk() {
+    return async function (dispatch) {
         try {
-            await axios.delete(`/api/demographic-data/${id}`);
-            return id;
+            const result = await get_demographics_service();
+            console.log("Fetched demographic:", result);
+            dispatch(demographicSlice.actions.setDemographics(result));
         } catch (error) {
-            return rejectWithValue(error.response.data);
+            console.error("Error fetching demographic:", error);
         }
-    }
-);
+    };
+}

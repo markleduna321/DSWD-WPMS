@@ -13,6 +13,28 @@ return new class extends Migration
     {
         Schema::create('demographics', function (Blueprint $table) {
             $table->id();
+            $table->string('region')->nullable();
+            $table->string('province')->nullable();
+            $table->string('district')->nullable();
+            $table->string('city')->nullable();
+            $table->string('barangay')->nullable();
+            $table->string('evacuation_site')->nullable();
+            $table->string('head_last_name')->nullable();
+            $table->string('head_first_name')->nullable();
+            $table->string('head_middle_name')->nullable();
+            $table->string('extension_name')->nullable();
+            $table->string('gender')->nullable();
+            $table->date('birthday')->nullable();
+            $table->string('birth_place')->nullable();
+            $table->string('civil_status')->nullable();
+            $table->string('mother_maiden_name')->nullable();
+            $table->string('religion')->nullable();
+            $table->string('occupation')->nullable();
+            $table->decimal('income', 10, 2)->nullable();
+            $table->string('id_card_presented')->nullable();
+            $table->string('id_card_number')->nullable();
+            $table->string('contact_number')->nullable();
+            $table->string('permanent_address')->nullable();
             $table->timestamps();
         });
     }

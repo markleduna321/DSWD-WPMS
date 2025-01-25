@@ -1,6 +1,11 @@
 import axios from "axios";
 
-export async function create_user_service(data) {
-    const res = await axios.post('/api/usermanagement', data);
-    return res;
+export async function create_demographic_service(data) {
+    const res = await axios.post('/api/demographics', data);
+    return res.data;
+}
+
+export async function get_demographics_service() {
+    const res = await axios.get('/api/demographics');
+    return res.data.response;
 }

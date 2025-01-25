@@ -1,9 +1,19 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import AdminLayout from '../layout'
 import DemographicTableSection from './_sections/demographic-table-section'
 import DemographicDataCreateSection from './_sections/demographic-data-create-section'
+import store from '@/app/store/store';
+import { get_demographics_thunk } from './_redux/demographic-data-thunk';
 
 export default function DemographicDataPage() {
+  useEffect(() => {
+    store.dispatch(get_demographics_thunk())
+    console.log('main page', store)
+  }, []);
+
+  function handleAccountAdded(params) {
+    // Handle account addition here
+  }
   return (
     <AdminLayout>
       <div className="px-4 sm:px-6 lg:px-8">
