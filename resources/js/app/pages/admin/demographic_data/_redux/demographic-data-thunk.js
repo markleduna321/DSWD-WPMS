@@ -1,5 +1,5 @@
 // src/redux/thunks/demographicDataThunk.js
-import { create_demographic_service, get_demographics_service } from '@/app/services/demographic-data-service';
+import { create_demographic_service, get_demographic_by_id_service, get_demographics_service } from '@/app/services/demographic-data-service';
 import { demographicSlice } from './demographic-data-slice';
 
 // Action types
@@ -50,6 +50,19 @@ export function get_demographics_thunk() {
             dispatch(demographicSlice.actions.setDemographics(result));
         } catch (error) {
             console.error("Error fetching demographic:", error);
+        }
+    };
+}
+
+// Thunk to fetch a user by ID
+export function get_demographic_by_id_thunk(demographic_id) {
+    return async function (dispatch) {
+        try {
+            const result = await get_demographic_by_id_service(demographic_id);
+            console.log("Fetched demographic by ID:", result);
+            dispatch(demographicSlice.actions.setDemographic(result));
+        } catch (error) {
+            console.error("Error fetching user by ID:", error);
         }
     };
 }

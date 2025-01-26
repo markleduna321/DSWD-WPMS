@@ -1,11 +1,29 @@
+import Modal from '@/app/pages/components/modal';
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import DemographicEditSection from './demographic-edit-section';
 
 export default function DemographicTableSection() {
+  
   const { demographics } = useSelector((store) => store.demographic);
   const demographicData = Array.isArray(demographics) ? demographics : [];
 
+  const [isViewModalOpen, setViewModalOpen] = useState(false);
+  const [selectedDemographic, setSelectedDemographic] = useState(null);
+
   console.log('table', demographicData)
+
+  // Opens the view/edit modal and sets the selected user
+  const handleViewDemographic = (demographic) => {
+    setSelectedDemographic(demographic);
+    setViewModalOpen(true);
+  };
+
+  // Closes the view/edit modal
+  const closeViewModal = () => {
+    setViewModalOpen(false);
+    setSelectedDemographic(null);
+  };
 
 
   return (
@@ -54,9 +72,13 @@ export default function DemographicTableSection() {
                   <td className="hidden px-3 py-4 text-sm text-gray-500 sm:table-cell">{demographic.barangay}</td>
                   <td className="px-3 py-4 text-sm text-gray-500">{demographic.gender}</td>
                   <td className="py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-0">
-                    <a href="#" className="text-indigo-600 hover:text-indigo-900">
-                      Edit<span className="sr-only">, {demographic.gender}</span>
-                    </a>
+                  <a
+                        href="#"
+                        className="text-indigo-600 hover:text-indigo-900"
+                        onClick={() => handleViewDemographic(demographic)}
+                      >
+                        View
+                      </a>
                   </td>
                 </tr>
               ))
@@ -71,6 +93,15 @@ export default function DemographicTableSection() {
           </tbody>
         </table>
       </div>
+
+      <Modal isOpen={isViewModalOpen} onClose={closeViewModal}>
+        <DemographicEditSection
+          selectedDemographic={selectedDemographic} // User to edit
+          onClose={closeViewModal} // Close modal
+        />
+      </Modal>
     </div>
+
+    
   )
 }
