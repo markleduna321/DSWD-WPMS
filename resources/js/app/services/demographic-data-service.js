@@ -10,7 +10,12 @@ export async function get_demographics_service() {
     return res.data.response;
 }
 
-export async function get_demographic_by_id_service(id) {
-    const res = await axios.get('/api/demographics/' + id);
-    return res.data.response;
+export async function fetch_demographic_by_id_service(id) {
+    try {
+        const response = await axios.get(`/api/demographics/${id}`);
+        return response.data; // Return the data from the response
+    } catch (error) {
+        handleError(error); // Handle error using the utility function
+        throw error; // Ensure error is propagated
+    }
 }

@@ -97,9 +97,10 @@ class DemographicController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Demographic $demographic)
+    public function show($id)
     {
-        //
+        $demographic = Demographic::with('familyMembers')->findOrFail($id);
+        return response()->json($demographic);
     }
 
     /**

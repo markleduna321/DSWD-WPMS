@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Models\Demographic;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -69,8 +70,22 @@ Route::middleware('auth:sanctum', 'role:1')->prefix('admin')->group(function () 
         return Inertia::render('admin/contents/page');
     });
 
-    Route::get('demographic_data', function () {
-        return Inertia::render('admin/demographic_data/page');
+    Route::prefix('demographic_data')->group(function () {
+        Route::get('/', function () {
+            return Inertia::render('admin/demographic_data/page');
+        });
+        
+        Route::get('/{id}', function ($id) {
+            $purchaseOrder = Demographic::find($id);
+    
+            if (!$purchaseOrder) {
+                return redirect()->route('demographic_data.index')->withErrors('Account not found');
+            }
+    
+            return Inertia::render('admin/demographic_data/id/page', [
+                'purchaseOrder' => $purchaseOrder
+            ]);
+        });
     });
 
 });

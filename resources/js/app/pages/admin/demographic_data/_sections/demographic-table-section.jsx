@@ -72,13 +72,7 @@ export default function DemographicTableSection() {
                   <td className="hidden px-3 py-4 text-sm text-gray-500 sm:table-cell">{demographic.barangay}</td>
                   <td className="px-3 py-4 text-sm text-gray-500">{demographic.gender}</td>
                   <td className="py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-0">
-                  <a
-                        href="#"
-                        className="text-indigo-600 hover:text-indigo-900"
-                        onClick={() => handleViewDemographic(demographic)}
-                      >
-                        View
-                      </a>
+                  <a href={`/admin/demographic_data/${demographic.id}`} className="text-indigo-600 hover:text-indigo-900">View</a>
                   </td>
                 </tr>
               ))
@@ -94,12 +88,7 @@ export default function DemographicTableSection() {
         </table>
       </div>
 
-      <Modal isOpen={isViewModalOpen} onClose={closeViewModal}>
-        <DemographicEditSection
-          selectedDemographic={selectedDemographic} // User to edit
-          onClose={closeViewModal} // Close modal
-        />
-      </Modal>
+      
     </div>
 
     
