@@ -4,6 +4,7 @@ import { selectDemographic, selectError, selectLoading } from '../../_redux/demo
 import InputTextComponent from '@/app/pages/components/input-text-component';
 import InputLabelComponent from '@/app/pages/components/input-label-component';
 import SelectComponent from '@/app/pages/components/input-select';
+import Button from '@/app/pages/components/button';
 
 export default function DemographicDetailSection() {
     const demographic = useSelector(selectDemographic); // Use selector to access purchase order
@@ -493,6 +494,13 @@ export default function DemographicDetailSection() {
 
 
                 </div>
+                <Button
+                    type='submit'
+                    variant='primary'
+                    size='md'
+                    >
+                        Save Changes
+                    </Button>
             </div>
         </div>
     )
