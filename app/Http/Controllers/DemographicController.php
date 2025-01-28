@@ -45,6 +45,7 @@ class DemographicController extends Controller
             'head_first_name' => 'required|string',
             'head_middle_name' => 'required|string',
             'extension_name' => 'nullable|string',
+            'age' => 'nullable|string',
             'gender' => 'required|string|in:Male,Female', // Adjust options as necessary
             'birthday' => 'required|date',
             'birth_place' => 'required|string',
@@ -82,6 +83,7 @@ class DemographicController extends Controller
                     'full_name' => $family['fullname'],
                     'relation' => $family['relation'],
                     'birth_date' => $family['birth_date'],
+                    'age' => $family['age'],
                     'gender' => $family['gender'],
                     'highest_education' => $family['highest_educational_attainment'],
                     'occupation' => $family['occupation'],

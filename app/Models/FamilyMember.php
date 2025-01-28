@@ -14,6 +14,7 @@ class FamilyMember extends Model
         'full_name',
         'relation',
         'birth_date',
+        'age',
         'gender',
         'highest_education',
         'occupation',

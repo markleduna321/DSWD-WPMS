@@ -20,6 +20,7 @@ class Demographic extends Model
         'head_first_name',
         'head_middle_name',
         'extension_name',
+        'age',
         'gender',
         'birthday',
         'birth_place',

@@ -531,19 +531,19 @@ export default function DemographicDataCreateSection() {
                       />
                     </div>
 
-                    {/* <div className="flex-1">
+                    <div className="flex-1">
                       <InputLabelComponent htmlFor={`age-${index}`} labelText="Age" />
                       <InputTextComponent
                         id={`age-${index}`}
                         name="age"
                         type="number"
                         required
-                        value={member.birthdate}
+                        value={member.age}
                         placeholder="Age"
                         onChange={(e) => handleFamilyMemberChange(index, e)}
 
                       />
-                    </div> */}
+                    </div>
 
                     <div className="flex-1">
                       <InputLabelComponent htmlFor={`gender-${index}`} labelText="Sex" />

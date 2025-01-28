@@ -74,8 +74,8 @@ export default function DemographicDetailSection() {
 
     };
     return (
-        <div className="mt-6 border-gray-100">
-            <h1 className='mb-5 font-bold text-3xl'>Demographic Data of : {demographic.head_last_name || 'N/A'}</h1>
+        <div className="mt-6 p-5 rounded-md shadow-2xl border-gray-100 bg-white">
+            <h1 className='mb-5 font-bold text-3xl'>Demographic Data of : {demographic.head_last_name || 'N/A'} {demographic.head_first_name || 'N/A'}</h1>
             <hr />
 
             <div className=' overflow-auto h-[700px]'>
@@ -514,9 +514,9 @@ export default function DemographicDetailSection() {
                         <div className="flex justify-between gap-20 w-1/4 text-lg text-lime-900">
 
                         </div>
-                        <div className="flex flex-wrap gap-4">
+                        <div className="flex flex-wrap gap-4 border rounded-md mt-2 p-3">
                             {form?.family_members?.map((member, index) => (
-                                <div key={index} className="mb-4 border p-4 rounded-md">
+                                <div key={index} className="">
                                     <div className="flex flex-wrap gap-4">
                                         <div className="flex-1">
                                             <InputLabelComponent htmlFor={`full_name-${index}`} labelText="Full Name" />
@@ -560,19 +560,19 @@ export default function DemographicDetailSection() {
                                             />
                                         </div>
 
-                                        {/* <div className="flex-1">
-                      <InputLabelComponent htmlFor={`age-${index}`} labelText="Age" />
-                      <InputTextComponent
-                        id={`age-${index}`}
-                        name="age"
-                        type="number"
-                        required
-                        value={member.birthdate}
-                        placeholder="Age"
-                        onChange={(e) => handleFamilyMemberChange(index, e)}
+                                        <div className="flex-1">
+                                            <InputLabelComponent htmlFor={`age-${index}`} labelText="Age" />
+                                            <InputTextComponent
+                                                id={`age-${index}`}
+                                                name="age"
+                                                type="number"
+                                                required
+                                                value={member.age}
+                                                placeholder="Age"
+                                                onChange={(e) => handleFamilyMemberChange(index, e)}
 
-                      />
-                    </div> */}
+                                            />
+                                        </div>
 
                                         <div className="flex-1">
                                             <InputLabelComponent htmlFor={`gender-${index}`} labelText="Sex" />
@@ -631,16 +631,7 @@ export default function DemographicDetailSection() {
                                         </div>
                                     </div>
 
-                                    <div className="flex gap-4 mt-4">
-                                        <Button
-                                            type="button"
-                                            variant="danger"
-                                            size="sm"
-                                            onClick={() => removeFamilyMember(index)}
-                                        >
-                                            Remove Member
-                                        </Button>
-                                    </div>
+                                    
                                 </div>
                             ))}
                         </div>

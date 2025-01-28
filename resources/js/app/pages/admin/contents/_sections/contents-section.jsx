@@ -169,9 +169,9 @@ export default function ContentsSection() {
           {contents.map((content) => (
             <li
               key={content.id}
-              className="col-span-1 divide-y divide-gray-200 rounded-lg bg-white shadow"
+              className="col-span-1 divide-y divide-gray-200 rounded-lg bg-white shadow-xl"
             >
-              <div className="flex w-full space-x-6 p-6">
+              <div className="flex w-full space-x-6 p-4">
                 <img
                   alt={content.title}
                   src={`/storage/${content.file_path}`}
@@ -184,7 +184,7 @@ export default function ContentsSection() {
                     </h2>
                   </div>
                   <hr />
-                  <div>
+                  <div className='bg-slate-100 sm:h-[120px] h-[120px] mt-2 mb-1 p-1 rounded-md'>
                     <p className="mt-1 text-sm text-gray-500 line-clamp-3 max-w-56 sm:max-w-64">
                       {content.content}
                     </p>

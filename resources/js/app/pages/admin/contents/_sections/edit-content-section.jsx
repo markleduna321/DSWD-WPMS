@@ -78,8 +78,18 @@ export default function EditContentSection({ contentId }) {
 
             {isModalOpen && contentData && (
                 <Modal isOpen={isModalOpen} onClose={closeModal} width="w-1/4">
-                    <h1>Edit Content</h1>
-                    <div className=' justify-end'></div>
+                    <h1>
+                        Edit Content
+                        <button
+                            className="rounded-md text-red-600 p-1"
+                            onClick={handleDelete}
+                        >
+                            <TrashIcon className="w-4 h-4 inline-block mr-1" />
+                        </button>
+                    </h1>
+                    <div className=' justify-end'>
+
+                    </div>
                     <div className="mb-4">
                         <InputLabelComponent label="Title" />
                         <InputTextComponent
@@ -109,29 +119,24 @@ export default function EditContentSection({ contentId }) {
                         )}
                     </div>
                     <div className='flex justify-between'>
-                    <div className=' justify-start'>
-                        <button
-                            className="rounded-md bg-red-500 text-white p-2"
-                            onClick={handleDelete}
-                        >
-                            <TrashIcon className="w-4 h-4 inline-block mr-1" />
-                        </button>
-                    </div>
-                    
-                    <div className="flex justify-end gap-4">
-                        <button
-                            className="rounded-md bg-green-500 p-2 text-white"
-                            onClick={handleSave}
-                        >
-                            Save
-                        </button>
-                        <button
-                            className="rounded-md bg-red-500 p-2 text-white"
-                            onClick={closeModal}
-                        >
-                            Close
-                        </button>
-                    </div>
+                        <div className=' justify-start'>
+
+                        </div>
+
+                        <div className="flex justify-end gap-4">
+                            <button
+                                className="rounded-md bg-green-500 p-2 text-white"
+                                onClick={handleSave}
+                            >
+                                Save
+                            </button>
+                            <button
+                                className="rounded-md bg-red-500 p-2 text-white"
+                                onClick={closeModal}
+                            >
+                                Close
+                            </button>
+                        </div>
                     </div>
                 </Modal>
             )}
