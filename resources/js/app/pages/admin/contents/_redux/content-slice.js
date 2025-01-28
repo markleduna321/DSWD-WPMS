@@ -15,7 +15,7 @@ export const contentsSlice = createSlice({
   },
   reducers: {
     setContents: (state, action) => {
-      console.log('klajdlakjda',action.payload)
+      console.log('slice',action.payload)
       state.contents = action.payload; // Set the paginated content data
     },
     setContent: (state, action) => {

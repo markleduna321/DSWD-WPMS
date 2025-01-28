@@ -2,16 +2,40 @@ import Modal from '@/app/pages/components/modal';
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import DemographicEditSection from './demographic-edit-section';
+import { router } from '@inertiajs/react';
+import Button from '@/app/pages/components/button';
+import { get_demographics_thunk } from '../_redux/demographic-data-thunk';
+import { useEffect } from 'react';
 
 export default function DemographicTableSection() {
-  
-  const { demographics } = useSelector((store) => store.demographic);
+const dispatch = useDispatch();
+  const { demographics,  currentPage, totalPages} = useSelector((state) => state.demographic);
   const demographicData = Array.isArray(demographics) ? demographics : [];
 
   const [isViewModalOpen, setViewModalOpen] = useState(false);
   const [selectedDemographic, setSelectedDemographic] = useState(null);
 
-  console.log('table', demographicData)
+  console.log('table', demographics)
+
+  const getQueryParam = (param) => {
+    const searchParams = new URLSearchParams(window.location.search);
+    return searchParams.get(param);
+  };
+
+  const page = getQueryParam('page') || 1;
+
+  useEffect(() => {
+      dispatch(get_demographics_thunk(currentPage)); // Fetch contents for the current page
+    }, [dispatch, currentPage]);
+
+  const handlePageChange = (value) => {
+    if (value == 'next') {
+      router.visit(`?page=${parseInt(page) + 1}`)
+    } else {
+      router.visit(`?page=${parseInt(page) - 1}`)
+    }
+
+  };
 
   // Opens the view/edit modal and sets the selected user
   const handleViewDemographic = (demographic) => {
@@ -56,11 +80,11 @@ export default function DemographicTableSection() {
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-200 bg-white">
-            {demographicData.length > 0 ? (
-              demographicData.map((demographic) => (
+            {demographics.data.length > 0 ? (
+              demographics.data.map((demographic) => (
                 <tr key={demographic.id}>
                   <td className="w-full max-w-0 py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:w-auto sm:max-w-none sm:pl-0">
-                  {demographic.head_last_name} {demographic.head_first_name} {/* Assuming this holds the person's name */}
+                    {demographic.head_last_name} {demographic.head_first_name} {/* Assuming this holds the person's name */}
                     <dl className="font-normal lg:hidden">
                       <dt className="sr-only">Title</dt>
                       <dd className="mt-1 truncate text-gray-700">{demographic.permanent_address}</dd>
@@ -72,7 +96,7 @@ export default function DemographicTableSection() {
                   <td className="hidden px-3 py-4 text-sm text-gray-500 sm:table-cell">{demographic.civil_status}</td>
                   <td className="px-3 py-4 text-sm text-gray-500">{demographic.id_card_number}</td>
                   <td className="py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-0">
-                  <a href={`/admin/demographic_data/${demographic.id}`} className="text-indigo-600 hover:text-indigo-900">View</a>
+                    <a href={`/admin/demographic_data/${demographic.id}`} className="text-indigo-600 hover:text-indigo-900">View</a>
                   </td>
                 </tr>
               ))
@@ -87,10 +111,33 @@ export default function DemographicTableSection() {
           </tbody>
         </table>
       </div>
+      {/* Pagination Controls */}
+      <div className="flex justify-between items-center mt-4">
+        <Button
+          type="button"
+          variant="secondary"
+          size="md"
+          onClick={() => handlePageChange('back')}
+        // disabled={currentPage === 1}
+        >
+          Previous
+        </Button>
+        <span className="text-sm text-gray-700">
+          Page {currentPage} of {totalPages}
+        </span>
+        <Button
+          type="button"
+          variant="secondary"
+          size="md"
+          onClick={() => handlePageChange('next')}
+        // disabled={currentPage === totalPages}
+        >
+          Next
+        </Button>
+      </div>
 
-      
     </div>
 
-    
+
   )
 }

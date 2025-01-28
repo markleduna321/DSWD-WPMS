@@ -15,10 +15,12 @@ class DemographicController extends Controller
      */
     public function index()
     {
-        $demographics = Demographic::all();
+        $perPage = 10; // Number of items per page
+        $demographics = Demographic::orderBy('id', 'desc')->paginate($perPage);
+
         return response()->json([
-            'response' => $demographics
-        ], 200);
+            'response' => $demographics,
+        ]);
     }
     /**
      * Show the form for creating a new resource.

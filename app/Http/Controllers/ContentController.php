@@ -14,8 +14,8 @@ class ContentController extends Controller
      */
     public function index(Request $request)
     {
-        $perPage = 10; // Number of items per page
-        $contents = Content::orderBy('id', 'desc')->paginate();
+        $perPage = 9; // Number of items per page
+        $contents = Content::orderBy('id', 'desc')->paginate($perPage);
 
         return response()->json([
             'contents' => $contents, // The actual data

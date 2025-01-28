@@ -24,7 +24,7 @@ export default function ContentsSection() {
   const [errors, setErrors] = useState({});
   const dispatch = useDispatch();
   const { contents, loading, error, currentPage, totalPages } = useSelector((state) => state.contents); // Added pagination states
-  console.log('contents', contents)
+  console.log('contentsdas', contents)
 
   const getQueryParam = (param) => {
     const searchParams = new URLSearchParams(window.location.search);
@@ -183,20 +183,20 @@ export default function ContentsSection() {
               key={content.id}
               className="col-span-1 divide-y divide-gray-200 rounded-lg bg-white shadow"
             >
-              <div className="flex w-full space-x-6 p-3">
+              <div className="flex w-full space-x-6 p-6">
                 <img
                   alt={content.title}
                   src={`/storage/${content.file_path}`}
                   className="h-44 w-40 shrink-0 bg-gray-300 object-cover border-2 border-black rounded-lg"
                 />
                 <div className="flex flex-col flex-1">
-                  <div className='max-w-56 mb-1'>
+                  <div className='max-w-56'>
                     <h2 className="text-xl font-bold text-gray-900 truncate">
                       {content.title}
                     </h2>
                   </div>
                   <hr />
-                  <div className='bg-slate-100 mt-2 p-2 rounded-md sm:h-[120px] h-[120px]'>
+                  <div>
                     <p className="mt-1 text-sm text-gray-500 line-clamp-3 max-w-56 sm:max-w-64">
                       {content.content}
                     </p>

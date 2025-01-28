@@ -42,16 +42,28 @@ export function create_demographic_thunk(data) {
 }
 
 // Thunk to fetch all users
-export function get_demographics_thunk() {
-    return async function (dispatch) {
-        try {
-            const result = await get_demographics_service();
-            console.log("Fetched demographic:", result);
-            dispatch(demographicSlice.actions.setDemographics(result));
-        } catch (error) {
-            console.error("Error fetching demographic:", error);
-        }
-    };
+// export function get_demographics_thunk() {
+//     return async function (dispatch) {
+//         try {
+//             const result = await get_demographics_service();
+//             console.log("Fetched demographic:", result);
+//             dispatch(demographicSlice.actions.setDemographics(result));
+//         } catch (error) {
+//             console.error("Error fetching demographic:", error);
+//         }
+//     };
+// }
+
+export function get_demographics_thunk(page = 1) {
+  return async function (dispatch, getState) {
+    try {
+      const data = await get_demographics_service(page); // Pass page number
+      dispatch(demographicSlice.actions.setDemographics(data.response)); // Store paginated data
+      console.log('Demographic thunk', data.response);
+    } catch (error) {
+      console.error("Error fetching contents:", error);
+    }
+  };
 }
 
 export function fetch_demographic_by_id_thunk(demographicId) {

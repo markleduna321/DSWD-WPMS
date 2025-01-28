@@ -6,13 +6,18 @@ const hash = path.split('&')[0];
 export const demographicSlice = createSlice({
   name: 'demographic',
   initialState: {
-    demographics: [],
+    demographics: {
+      data:[]
+    },
     demographic: {},
     loading: false,
     error: null,
+    currentPage: 1, // Added for pagination
+    totalPages: 1,  // Added for pagination
   },
   reducers: {
     setDemographics: (state, action) => {
+      console.log('Demo slice', action.payload)
       state.demographics = action.payload;
     },
     setDemographic: (state, action) => {
