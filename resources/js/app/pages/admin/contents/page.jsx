@@ -10,6 +10,7 @@ export default function ContentPage() {
   useEffect(() => {
     store.dispatch(fetchAllContents())
   }, []);
+  
   return (
     <AdminLayout>
         <ContentsSection/>

@@ -23,6 +23,11 @@ export default function ContentsSection() {
   const [errors, setErrors] = useState({});
   const dispatch = useDispatch();
   const { contents, loading, error, currentPage, totalPages } = useSelector((state) => state.contents); // Added pagination states
+  const contentData = Array.isArray(contents) ? contents : [];
+  
+
+  console.log('contentData', contents)
+
 
   useEffect(() => {
     dispatch(fetchAllContents(currentPage)); // Fetch contents for the current page
@@ -166,7 +171,7 @@ export default function ContentsSection() {
           role="list"
           className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 sm:gap-6 sm:p-0"
         >
-          {contents.map((content) => (
+          {contentData.map((content) => (
             <li
               key={content.id}
               className="col-span-1 divide-y divide-gray-200 rounded-lg bg-white shadow-xl"

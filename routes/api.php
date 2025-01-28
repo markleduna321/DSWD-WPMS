@@ -28,3 +28,4 @@ Route::resource('demographics', DemographicController::class);
 Route::resource('contents', ContentController::class);
 Route::get('/get_latest_content', [ContentController::class, 'get_latest_content']);
 Route::get('/beneficiaries', [DashboardController::class, 'beneficiaries']);
+Route::get('/contents', [DashboardController::class, 'contents']);

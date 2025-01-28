@@ -8,6 +8,7 @@ export const dashboardSlice = createSlice({
     initialState: {
         dashboards: [],
         dashboard: {},
+        contents: [],
     },
     reducers: {
         setDashboards: (state, action) => {
@@ -16,12 +17,16 @@ export const dashboardSlice = createSlice({
         setDashboard: (state, action) => {
             state.dashboard = action.payload;
         },
+        setContents: (state, action) => {
+            state.contents = action.payload;
+        },
     },
 });
 
 export const {
     setDashboards,
-    setDashboard
+    setDashboard,
+    setContents 
 } = dashboardSlice.actions
 
 export default dashboardSlice.reducer

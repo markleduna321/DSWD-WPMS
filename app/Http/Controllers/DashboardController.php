@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Dashboard;
 use App\Http\Requests\StoreDashboardRequest;
 use App\Http\Requests\UpdateDashboardRequest;
+use App\Models\Content;
 use App\Models\Demographic;
 
 class DashboardController extends Controller
@@ -22,6 +23,16 @@ class DashboardController extends Controller
         return response()->json([
             'response' => $beneficiaries,
             'total_count' => $totalCount
+        ], 200);
+    }
+
+    public function contents()
+    {
+        $contents = Content::all();
+        
+        return response()->json([
+            'response' => $contents,
+            
         ], 200);
     }
 

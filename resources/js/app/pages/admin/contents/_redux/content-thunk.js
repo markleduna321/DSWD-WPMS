@@ -40,6 +40,7 @@ export function fetchAllContents(page = 1) {
     try {
       const data = await fetch_all_contents_service(page); // Pass page number
       dispatch(contentsSlice.actions.setContents(data)); // Store paginated data
+      console.log('Contents thunk:', data);
     } catch (error) {
       console.error("Error fetching contents:", error);
     }
