@@ -11,6 +11,7 @@ import { fetchAllContents, saveContent } from '../_redux/content-thunk';
 import store from '@/app/store/store';
 import Edit from '@/Pages/Profile/Edit';
 import EditConentSection from './edit-content-section';
+import { router } from '@inertiajs/react';
 
 export default function ContentsSection() {
   const [isModalOpen, setModalOpen] = useState(false);
@@ -23,11 +24,14 @@ export default function ContentsSection() {
   const [errors, setErrors] = useState({});
   const dispatch = useDispatch();
   const { contents, loading, error, currentPage, totalPages } = useSelector((state) => state.contents); // Added pagination states
-  const contentData = Array.isArray(contents) ? contents : [];
-  
+  console.log('contents', contents)
 
-  console.log('contentData', contents)
+  const getQueryParam = (param) => {
+    const searchParams = new URLSearchParams(window.location.search);
+    return searchParams.get(param);
+  };
 
+  const page = getQueryParam('page') || 1;
 
   useEffect(() => {
     dispatch(fetchAllContents(currentPage)); // Fetch contents for the current page
@@ -78,10 +82,13 @@ export default function ContentsSection() {
     }
   };
 
-  const handlePageChange = (newPage) => {
-    if (newPage > 0 && newPage <= totalPages) {
-      dispatch(fetchAllContents(newPage)); // Dispatch fetch with new page
+  const handlePageChange = (value) => {
+    if (value == 'next') {
+      router.visit(`?page=${parseInt(page) + 1}`)
+    } else {
+      router.visit(`?page=${parseInt(page) - 1}`)
     }
+
   };
 
   return (
@@ -138,7 +145,7 @@ export default function ContentsSection() {
               checked={formData.is_highlight === '1'}
               onChange={handleInputChange}
             />{' '}
-            
+
           </div>
 
           {/* File Upload */}
@@ -171,25 +178,25 @@ export default function ContentsSection() {
           role="list"
           className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 sm:gap-6 sm:p-0"
         >
-          {contentData.map((content) => (
+          {contents.data.map((content) => (
             <li
               key={content.id}
-              className="col-span-1 divide-y divide-gray-200 rounded-lg bg-white shadow-xl"
+              className="col-span-1 divide-y divide-gray-200 rounded-lg bg-white shadow"
             >
-              <div className="flex w-full space-x-6 p-4">
+              <div className="flex w-full space-x-6 p-3">
                 <img
                   alt={content.title}
                   src={`/storage/${content.file_path}`}
                   className="h-44 w-40 shrink-0 bg-gray-300 object-cover border-2 border-black rounded-lg"
                 />
                 <div className="flex flex-col flex-1">
-                  <div className='max-w-56'>
+                  <div className='max-w-56 mb-1'>
                     <h2 className="text-xl font-bold text-gray-900 truncate">
                       {content.title}
                     </h2>
                   </div>
                   <hr />
-                  <div className='bg-slate-100 sm:h-[120px] h-[120px] mt-2 mb-1 p-1 rounded-md'>
+                  <div className='bg-slate-100 mt-2 p-2 rounded-md sm:h-[120px] h-[120px]'>
                     <p className="mt-1 text-sm text-gray-500 line-clamp-3 max-w-56 sm:max-w-64">
                       {content.content}
                     </p>
@@ -210,8 +217,8 @@ export default function ContentsSection() {
           type="button"
           variant="secondary"
           size="md"
-          onClick={() => handlePageChange(currentPage - 1)}
-          disabled={currentPage === 1}
+          onClick={() => handlePageChange('back')}
+        // disabled={currentPage === 1}
         >
           Previous
         </Button>
@@ -222,8 +229,8 @@ export default function ContentsSection() {
           type="button"
           variant="secondary"
           size="md"
-          onClick={() => handlePageChange(currentPage + 1)}
-          disabled={currentPage === totalPages}
+          onClick={() => handlePageChange('next')}
+        // disabled={currentPage === totalPages}
         >
           Next
         </Button>

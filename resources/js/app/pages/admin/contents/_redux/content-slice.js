@@ -3,7 +3,9 @@ import { createSlice } from '@reduxjs/toolkit';
 export const contentsSlice = createSlice({
   name: 'contents',
   initialState: {
-    contents: [],
+    contents: {
+      data:[]
+    },
     content: {},
     latest_contents: [],
     loading: false,
@@ -13,9 +15,8 @@ export const contentsSlice = createSlice({
   },
   reducers: {
     setContents: (state, action) => {
-      state.contents = action.payload.contents; // Set the paginated content data
-      state.currentPage = action.payload.currentPage; // Set the current page
-      state.totalPages = action.payload.totalPages; // Set the total number of pages
+      console.log('klajdlakjda',action.payload)
+      state.contents = action.payload; // Set the paginated content data
     },
     setContent: (state, action) => {
       state.content = action.payload;

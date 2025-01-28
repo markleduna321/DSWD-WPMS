@@ -26,7 +26,7 @@ class DashboardController extends Controller
         ], 200);
     }
 
-    public function contents()
+    public function dashboardContents()
     {
         $contents = Content::all();
         

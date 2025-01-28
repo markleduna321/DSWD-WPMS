@@ -1,0 +1,1 @@
+import{j as e}from"./app-CqPu8YF2.js";function d(){return e.jsxs("div",{className:"flex justify-center bg-white shadow overflow-hidden sm:rounded-md p-5 sm:w-1/2",children:[e.jsx("div",{children:e.jsx("h1",{className:"text-2xl font-bold",children:"Total Users : "})}),e.jsx("div",{children:e.jsx("h1",{className:"text-3xl font-bold",children:" 0"})})]})}export{d as default};

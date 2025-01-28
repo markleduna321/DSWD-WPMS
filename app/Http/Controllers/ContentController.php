@@ -14,13 +14,11 @@ class ContentController extends Controller
      */
     public function index(Request $request)
     {
-        $perPage = 9; // Number of items per page
-        $contents = Content::orderBy('id', 'desc')->paginate($perPage);
+        $perPage = 10; // Number of items per page
+        $contents = Content::orderBy('id', 'desc')->paginate();
 
         return response()->json([
-            'contents' => $contents->items(), // The actual data
-            'currentPage' => $contents->currentPage(), // Current page number
-            'totalPages' => $contents->lastPage(), // Total number of pages
+            'contents' => $contents, // The actual data
         ]);
     }
 

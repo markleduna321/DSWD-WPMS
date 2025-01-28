@@ -11,7 +11,6 @@ import { get_beneficiaries_thunk, get_contents_thunk } from './_redux/dashboard-
 export default function AdminDashboardPage() {
   useEffect(() => {
     store.dispatch(get_beneficiaries_thunk())
-    console.log('main page', store)
   }, []);
 
   useEffect(() => {
@@ -27,7 +26,6 @@ export default function AdminDashboardPage() {
 
         <div className='flex gap-4'>
           <NewsCardSection /> 
-          <UsersCardSection />
           <BeneficiaryCardSection />
         </div>
 

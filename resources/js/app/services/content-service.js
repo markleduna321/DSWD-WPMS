@@ -6,8 +6,8 @@ export async function create_content_service(data) {
 }
 
 // Function to fetch all contents
-export async function fetch_all_contents_service(page = 1) {
-    const res = await axios.get(`/api/contents?page=${page}`); // Pass page number in query string
+export async function fetch_all_contents_service() {
+    const res = await axios.get(`/api/contents${window.location.search??'?page=1'}`); // Pass page number in query string
     return res.data; // Assuming the data contains paginated response (e.g., data, currentPage, totalPages)
 }
 

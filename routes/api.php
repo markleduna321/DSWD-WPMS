@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DemographicController;
 
-/*
+/*con
 |--------------------------------------------------------------------------
 | API Routes
 |--------------------------------------------------------------------------
@@ -28,4 +28,4 @@ Route::resource('demographics', DemographicController::class);
 Route::resource('contents', ContentController::class);
 Route::get('/get_latest_content', [ContentController::class, 'get_latest_content']);
 Route::get('/beneficiaries', [DashboardController::class, 'beneficiaries']);
-Route::get('/contents', [DashboardController::class, 'contents']);
+Route::get('/dashboardContents', [DashboardController::class, 'dashboardContents']);

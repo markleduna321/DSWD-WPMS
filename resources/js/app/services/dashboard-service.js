@@ -6,6 +6,6 @@ export async function get_beneficiaries_service() {
 }
 
 export async function get_contents_service() {
-    const res = await axios.get('/api/contents');
+    const res = await axios.get('/api/dashboardContents');
     return res.data.response;
 }
