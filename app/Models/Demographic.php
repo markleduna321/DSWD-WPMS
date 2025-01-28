@@ -42,5 +42,10 @@ class Demographic extends Model
     {
         return $this->hasMany(FamilyMember::class,'demographics_id','id');
     }
+    public function family_members()
+    {
+        return $this->hasMany(FamilyMember::class,'demographics_id','id');
+    }
+    
 
 }

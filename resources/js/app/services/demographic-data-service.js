@@ -11,11 +11,11 @@ export async function get_demographics_service() {
 }
 
 export async function fetch_demographic_by_id_service(id) {
-    try {
-        const response = await axios.get(`/api/demographics/${id}`);
-        return response.data; // Return the data from the response
-    } catch (error) {
-        handleError(error); // Handle error using the utility function
-        throw error; // Ensure error is propagated
-    }
+    const response = await axios.get(`/api/demographics/${id}`);
+    return response.data; // Return the data from the response
 }
+
+export async function update_demographic_service(data) {
+    const response = await axios.put(`/api/demographics/${data.id}`, data);
+    return response.data;
+};

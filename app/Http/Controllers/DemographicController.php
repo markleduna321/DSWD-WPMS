@@ -40,7 +40,7 @@ class DemographicController extends Controller
             'city' => 'required|string',
             'barangay' => 'required|string',
             'evacuation_site' => 'nullable|string',
-            
+
             'head_last_name' => 'required|string',
             'head_first_name' => 'required|string',
             'head_middle_name' => 'required|string',
@@ -57,7 +57,7 @@ class DemographicController extends Controller
             'id_card_presented' => 'nullable|string',
             'id_card_number' => 'nullable|string',
             'contact_number' => 'nullable|string', // This is nullable if it can be empty
-            
+
             'permanent_address' => 'required|string',
             // 'role_id' => 'nullable|string',
             // 'familyMembers' => 'nullable|array',
@@ -114,9 +114,41 @@ class DemographicController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateDemographicRequest $request, Demographic $demographic)
+    public function update(Request $request, $id)
     {
-        //
+        $data = $request->all();
+
+        $demographic = Demographic::findOrFail($id);
+        $demographic->update($data);
+
+        // Update family members
+
+        foreach ($data['family_members'] as $member) {
+            // Find the existing family member by ID
+            $familyMember = FamilyMember::find($member['id']);
+
+            if ($familyMember) {
+                // Update only if the family member exists
+                $familyMember->update([
+                    'full_name' => $member['full_name'], // Use $member to reference incoming data
+                    'relation' => $member['relation'],
+                    'birth_date' => $member['birth_date'],
+                    'gender' => $member['gender'],
+                    'highest_education' => $member['highest_education'],
+                    'occupation' => $member['occupation'],
+                    'remarks' => $member['remarks'],
+                ]);
+            } else {
+                // Optionally handle missing family members (e.g., log or throw an error)
+                // Log::warning("Family member with ID {$member['id']} not found.");
+            }
+        }
+
+
+        // Delete removed family members
+        // $demographic->familyMembers()->whereNotIn('id', $existingIds)->delete();
+
+        return response()->json('success', 200);
     }
 
     /**

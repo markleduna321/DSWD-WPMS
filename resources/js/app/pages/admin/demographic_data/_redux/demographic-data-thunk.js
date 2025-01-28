@@ -1,5 +1,5 @@
 // src/redux/thunks/demographicDataThunk.js
-import { create_demographic_service, fetch_demographic_by_id_service, get_demographics_service } from '@/app/services/demographic-data-service';
+import { create_demographic_service, fetch_demographic_by_id_service, get_demographics_service, update_demographic_service } from '@/app/services/demographic-data-service';
 import { demographicSlice, setDemographic } from './demographic-data-slice';
 
 // Action types
@@ -56,20 +56,15 @@ export function get_demographics_thunk() {
 
 export function fetch_demographic_by_id_thunk(demographicId) {
     return async function (dispatch) {
-        try {
-            // dispatch(setLoading(true)); // Indicate loading has started
-            
-            const demographic = await fetch_demographic_by_id_service(demographicId); // Fetch a specific purchase order by ID
-            
-            console.log('Fetched demographic:', demographic); // Log the fetched purchase order
-            
-            dispatch(setDemographic(demographic)); // Dispatch the action to set the purchase order
-            // console.log('Dispatched setPurchase_order with:', demographic); // Log the dispatched action
-        } catch (error) {
-            console.error('Error fetching demographic:', error);
-            // dispatch(setError(error.message)); // Dispatch an error action
-        } finally {
-            // dispatch(setLoading(false)); // Indicate loading has finished
-        }
+        const demographic = await fetch_demographic_by_id_service(demographicId); // Fetch a specific purchase order by ID  
+        console.log('Fetched demographic:', demographic); // Log the fetched purchase order 
+        dispatch(setDemographic(demographic)); // Dispatch the action to set the purchase order
     };
 }
+
+// Thunk to update demographic data
+export const update_demographic_data_thunk = (data) => async (dispatch) => {
+    // dispatch(setLoading(true));
+    const updatedDemographic = await update_demographic_service(data);
+    dispatch(setDemographic(updatedDemographic)); // Update Redux state with new data
+};
