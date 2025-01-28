@@ -34,10 +34,10 @@ class DemographicController extends Controller
     public function store(Request $request)
     {
         $data = $request->validate([
-            'region' => 'required|string',
-            'province' => 'required|string',
-            'district' => 'required|string',
-            'city' => 'required|string',
+            'region' => 'nullable|string',
+            'province' => 'nullable|string',
+            'district' => 'nullable|string',
+            'city' => 'nullable|string',
             'barangay' => 'required|string',
             'evacuation_site' => 'nullable|string',
 

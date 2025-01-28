@@ -149,8 +149,8 @@ export default function LandingPage() {
                   <span className="sr-only">Your Company</span>
                   <img
                     alt=""
-                    src="https://myschoolportal.net/blog/wp-content/uploads/2024/11/DSWD-Logo.png"
-                    className="h-8 w-auto"
+                    src="/img/logo.jpg"
+                    className="h-10 w-auto"
                   />
                 </a>
               </div>

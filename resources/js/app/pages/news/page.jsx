@@ -205,7 +205,7 @@ export default function LandingPage() {
             <main>
                 <div className='mx-auto max-w-7xl px-4 py-24 sm:px-6 sm:py-32 lg:px-8'>
                     <div className="overflow-hidden rounded-lg bg-slate-100 shadow">
-                        <div className="px-4 py-5 sm:px-6">
+                        <div className="px-4 py-5 sm:px-6 text-3xl">
                             {latest_contents[0]?.title}
                         </div>
                         <div className="sm:flex sm:gap-4 bg-gray-50 px-4 py-5 sm:p-6">
@@ -219,7 +219,7 @@ export default function LandingPage() {
                     </div>
 
                     <div className="overflow-hidden rounded-lg bg-slate-100 shadow mt-8">
-                        <div className="px-4 py-5 sm:px-6">
+                        <div className="px-4 py-5 sm:px-6 text-3xl">
                             {latest_contents[1]?.title}
                         </div>
                         <div className="sm:flex sm:gap-4 bg-gray-50 px-4 py-5 sm:p-6">
@@ -233,7 +233,7 @@ export default function LandingPage() {
                     </div>
 
                     <div className="overflow-hidden rounded-lg bg-slate-100 shadow mt-8">
-                        <div className="px-4 py-5 sm:px-6">
+                        <div className="px-4 py-5 sm:px-6 text-3xl">
                             {latest_contents[2]?.title}
                         </div>
                         <div className="sm:flex sm:gap-4 bg-gray-50 px-4 py-5 sm:p-6">
@@ -247,7 +247,7 @@ export default function LandingPage() {
                     </div>
 
                     <div className="overflow-hidden rounded-lg bg-slate-100 shadow mt-8">
-                        <div className="px-4 py-5 sm:px-6">
+                        <div className="px-4 py-5 sm:px-6 text-3xl">
                             {latest_contents[3]?.title}
                         </div>
                         <div className="sm:flex sm:gap-4 bg-gray-50 px-4 py-5 sm:p-6">
@@ -261,7 +261,7 @@ export default function LandingPage() {
                     </div>
 
                     <div className="overflow-hidden rounded-lg bg-slate-100 shadow mt-8">
-                        <div className="px-4 py-5 sm:px-6">
+                        <div className="px-4 py-5 sm:px-6 text-3xl">
                             {latest_contents[4]?.title}
                         </div>
                         <div className="sm:flex sm:gap-4 bg-gray-50 px-4 py-5 sm:p-6">
@@ -275,7 +275,7 @@ export default function LandingPage() {
                     </div>
 
                     <div className="overflow-hidden rounded-lg bg-slate-100 shadow mt-8">
-                        <div className="px-4 py-5 sm:px-6">
+                        <div className="px-4 py-5 sm:px-6 text-3xl">
                             {latest_contents[5]?.title}
                         </div>
                         <div className="sm:flex sm:gap-4 bg-gray-50 px-4 py-5 sm:p-6">
@@ -289,7 +289,7 @@ export default function LandingPage() {
                     </div>
 
                     <div className="overflow-hidden rounded-lg bg-slate-100 shadow mt-8">
-                        <div className="px-4 py-5 sm:px-6">
+                        <div className="px-4 py-5 sm:px-6 text-3xl">
                             {latest_contents[6]?.title}
                         </div>
                         <div className="sm:flex sm:gap-4 bg-gray-50 px-4 py-5 sm:p-6">

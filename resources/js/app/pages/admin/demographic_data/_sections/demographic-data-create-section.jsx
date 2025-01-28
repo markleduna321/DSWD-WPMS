@@ -19,6 +19,10 @@ export default function DemographicDataCreateSection() {
     email: '',
     contact_number: '',
     role_id: '',
+    region: 'IV',
+    province: 'Negross Occidental',
+    city: 'Calatrava',
+    district: 'II',
   });
 
   const dispatch = useDispatch();
@@ -98,6 +102,49 @@ export default function DemographicDataCreateSection() {
     { value: 'Seperated', label: 'Seperated' },
   ];
 
+  const barangay = [
+    { value: 'Agpangi', label: 'Agpangi' },
+    { value: 'Ani-e', label: 'Ani-e' },
+    { value: 'Bagacay', label: 'Bagacay' },
+    { value: 'Bantayanon', label: 'Bantayanon' },
+    { value: 'Buenavista', label: 'Buenavista' },
+    { value: 'Cabungahan', label: 'Cabungahan' },
+    { value: 'Calampisawan', label: 'Calampisawan' },
+    { value: 'Cambayobo', label: 'Cambayobo' },
+    { value: 'Castellano', label: 'Castellano' },
+    { value: 'Cruz', label: 'Cruz' },
+    { value: 'Dolis', label: 'Dolis' },
+    { value: 'Hilub-Ang', label: 'Hilub-Ang' },
+    { value: 'Hinab-Ongan', label: 'Hinab-Ongan' },
+    { value: 'Ilaya', label: 'Ilaya' },
+    { value: 'Laga-an', label: 'Laga-an' },
+    { value: 'Lalong', label: 'Lalong' },
+    { value: 'Lemery', label: 'Lemery' },
+    { value: 'Lipat-on', label: 'Lipat-on' },
+    { value: 'Lo-ok (Poblacion)', label: 'Lo-ok (Poblacion)' },
+    { value: 'Ma-aslob', label: 'Ma-aslob' },
+    { value: 'Macasilao', label: 'Macasilao' },
+    { value: 'Malanog', label: 'Malanog' },
+    { value: 'Malatas', label: 'Malatas' },
+    { value: 'Marcelo', label: 'Marcelo' },
+    { value: 'Mina-utok', label: 'Mina-utok' },
+    { value: 'Menchaca', label: 'Menchaca' },
+    { value: 'Minapasuk', label: 'Minapasuk' },
+    { value: 'Mahilum', label: 'Mahilum' },
+    { value: 'Paghumayan', label: 'Paghumayan' },
+    { value: 'Pantao', label: 'Pantao' },
+    { value: 'Patun-an', label: 'Patun-an' },
+    { value: 'Pinocutan', label: 'Pinocutan' },
+    { value: 'Refugio', label: 'Refugio' },
+    { value: 'San Benito', label: 'San Benito' },
+    { value: 'San Isidro', label: 'San Isidro' },
+    { value: 'Suba (Poblacion)', label: 'Suba (Poblacion)' },
+    { value: 'Telim', label: 'Telim' },
+    { value: 'Tigbao', label: 'Tigbao' },
+    { value: 'Tigbon', label: 'Tigbon' },
+    { value: 'Winaswasan', label: 'Winaswasan' },
+  ];
+
   return (
     <div>
       <div className='mb-4 flex justify-between items-center'>
@@ -121,16 +168,16 @@ export default function DemographicDataCreateSection() {
               <div className="flex flex-wrap gap-6">
 
                 {/* Left Column */}
-                <div className="w-full md:flex-1">
+                <div className="w-full md:flex-1 mb-6">
 
                   <div className="mb-4">
-                    <InputLabelComponent htmlFor="region" labelText="Region" />
+                    {/* <InputLabelComponent htmlFor="region" labelText="Region" /> */}
                     <InputTextComponent
                       id="region"
                       name="region"
-                      type="text"
+                      type="hidden"
                       required
-                      value={newAgent.purok}
+                      value={newAgent.region}
                       placeholder="Region"
                       onChange={handleChange}
 
@@ -138,11 +185,11 @@ export default function DemographicDataCreateSection() {
                   </div>
 
                   <div className="mb-4">
-                    <InputLabelComponent htmlFor="province" labelText="Province" />
+                    {/* <InputLabelComponent htmlFor="province" labelText="Province" /> */}
                     <InputTextComponent
                       id="province"
                       name="province"
-                      type="text"
+                      type="hidden"
                       required
                       value={newAgent.province}
                       placeholder="Province"
@@ -152,11 +199,11 @@ export default function DemographicDataCreateSection() {
                   </div>
 
                   <div className="mb-4">
-                    <InputLabelComponent htmlFor="district" labelText="District" />
+                    {/* <InputLabelComponent htmlFor="district" labelText="District" /> */}
                     <InputTextComponent
                       id="district"
                       name="district"
-                      type="text"
+                      type="hidden"
                       required
                       value={newAgent.district}
                       placeholder="District"
@@ -164,33 +211,16 @@ export default function DemographicDataCreateSection() {
 
                     />
                   </div>
-                </div>
-                {/* Right Column */}
-                <div className="w-full md:flex-1">
-                  <div className="mb-4">
-                    <InputLabelComponent htmlFor="city" labelText="City/Municipality" />
-                    <InputTextComponent
-                      id="city"
-                      name="city"
-                      type="text"
-                      required
-                      value={newAgent.city}
-                      placeholder="City/Municipality"
-                      onChange={handleChange}
-
-                    />
-                  </div>
 
                   <div className="mb-4">
                     <InputLabelComponent htmlFor="barangay" labelText="Barangay" />
-                    <InputTextComponent
+                    <SelectComponent
                       id="barangay"
                       name="barangay"
-                      type="text"
-                      required
                       value={newAgent.barangay}
-                      placeholder="Barangay"
                       onChange={handleChange}
+                      options={barangay}
+                      required
 
                     />
                   </div>
@@ -208,6 +238,25 @@ export default function DemographicDataCreateSection() {
 
                     />
                   </div>
+
+                </div>
+                {/* Right Column */}
+                <div className="w-full md:flex-1">
+                  <div className="mb-4">
+                    {/* <InputLabelComponent htmlFor="city" labelText="City/Municipality" /> */}
+                    <InputTextComponent
+                      id="city"
+                      name="city"
+                      type="hidden"
+                      required
+                      value={newAgent.city}
+                      placeholder="City/Municipality"
+                      onChange={handleChange}
+
+                    />
+                  </div>
+
+                  
 
 
                 </div>
@@ -276,7 +325,7 @@ export default function DemographicDataCreateSection() {
                     <InputTextComponent
                       id="age"
                       name="age"
-                      type="text"
+                      type="number"
                       required
                       value={newAgent.age}
                       placeholder="Age"
@@ -547,16 +596,15 @@ export default function DemographicDataCreateSection() {
 
                     <div className="flex-1">
                       <InputLabelComponent htmlFor={`gender-${index}`} labelText="Sex" />
-                      <InputTextComponent
-                        id={`gender-${index}`}
-                        name="gender"
-                        type="text"
-                        required
-                        value={member.gender}
-                        placeholder="Sex"
-                        onChange={(e) => handleFamilyMemberChange(index, e)}
+                      <SelectComponent
+                      id="gender"
+                      name="gender"
+                      value={member.gender}
+                      onChange={(e) => handleFamilyMemberChange(index, e)}
+                      options={typeOptionsG}
+                      required
 
-                      />
+                    />
                     </div>
 
                     <div className="flex-1">

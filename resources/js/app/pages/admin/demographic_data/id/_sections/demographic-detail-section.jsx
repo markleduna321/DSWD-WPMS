@@ -99,7 +99,7 @@ export default function DemographicDetailSection() {
                                     required
                                     value={form?.region}
                                     placeholder="Region"
-
+                                    readOnly
 
                                 />
                             </div>
@@ -117,7 +117,7 @@ export default function DemographicDetailSection() {
                                     required
                                     value={form.province ?? ""}
                                     placeholder="Province"
-
+                                    readOnly
 
                                 />
                             </div>
@@ -135,7 +135,7 @@ export default function DemographicDetailSection() {
                                     required
                                     value={form.district ?? ""}
                                     placeholder="District"
-
+                                    readOnly
 
                                 />
                             </div>
@@ -155,7 +155,7 @@ export default function DemographicDetailSection() {
                                     })}
                                     value={form.city ?? ""}
                                     placeholder="City/Municipality"
-
+                                    readOnly
 
                                 />
                             </div>

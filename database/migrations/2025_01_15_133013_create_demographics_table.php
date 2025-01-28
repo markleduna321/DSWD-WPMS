@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('head_last_name')->nullable();
             $table->string('head_first_name')->nullable();
             $table->string('head_middle_name')->nullable();
+            $table->string('age')->nullable();
             $table->string('extension_name')->nullable();
             $table->string('gender')->nullable();
             $table->date('birthday')->nullable();
