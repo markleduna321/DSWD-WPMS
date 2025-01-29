@@ -13,16 +13,25 @@ export default function ReportSearchSection() {
     const [endtDate, setEndDate] = useState(null);
     const [selectedType, setSelectedType] = useState("");
     const [barangay, setBarangay] = useState("");
+    const [evacuationSite, setEvacuationSite] = useState("");
 
     const typeOptions = [
         { value: 'Beneficiaries', label: 'Beneficiaries' },
         { value: 'Beneficiaries per Barangay', label: 'Beneficiaries per Barangay' },
+        { value: 'Evacuation site', label: 'Evacuation site' },
     ];
 
     const barangayOptions = [
         { value: "brgy1", label: "Barangay 1" },
         { value: "brgy2", label: "Barangay 2" },
         { value: "brgy3", label: "Barangay 3" },
+    ];
+
+    const evacuationSiteOptions = [
+        {value: "Evacuation 1", label: "Evac 1"},
+        {value: "Evacuation 2", label: "Evac 2"},
+        {value: "Evacuation 3", label: "Evac 3"},
+        {value: "Evacuation 4", label: "Evac 4"},
     ];
 
     return (
@@ -84,15 +93,35 @@ export default function ReportSearchSection() {
                 </div>
             )}
 
+            {/* Hidden Input (Only Visible if 'Evacuation site' is Selected) */}
+            {selectedType === "Evacuation site" && (
+                <div className="relative">
+                    <select
+                        id="evacuationSite"
+                        name="evacuationSite"
+                        className="border border-black p-[.33rem] w-56"
+                        value={evacuationSite}
+                        onChange={(e) => setEvacuationSite(e.target.value)}
+                    >
+                        <option value="">Select Evacuation Site</option>
+                        {evacuationSiteOptions.map((option) => (
+                            <option key={option.value} value={option.value}>
+                                {option.label}
+                            </option>
+                        ))}
+                    </select>
+                </div>
+            )}
+
             <div>
                 <Button
                     type='button' // By default, it's a 'button', but can be 'submit' for form submission
-                    variant = 'primary'
-                    size = 'md'
+                    variant='primary'
+                    size='md'
                     icon={<MagnifyingGlassIcon className="h-5 w-5" />}
-                    >
-                Search
-            </Button>
+                >
+                    Search
+                </Button>
             </div>
 
         </div>

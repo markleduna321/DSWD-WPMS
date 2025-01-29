@@ -118,19 +118,19 @@ const dispatch = useDispatch();
           variant="secondary"
           size="md"
           onClick={() => handlePageChange('back')}
-        // disabled={currentPage === 1}
+          disabled={demographics.current_page === 1}
         >
           Previous
         </Button>
         <span className="text-sm text-gray-700">
-          Page {currentPage} of {totalPages}
+          Page {demographics.current_page} of {demographics.last_page}
         </span>
         <Button
           type="button"
           variant="secondary"
           size="md"
           onClick={() => handlePageChange('next')}
-        // disabled={currentPage === totalPages}
+          disabled={demographics.current_page === demographics.last_page}
         >
           Next
         </Button>

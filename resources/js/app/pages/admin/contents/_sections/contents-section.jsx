@@ -218,19 +218,19 @@ export default function ContentsSection() {
           variant="secondary"
           size="md"
           onClick={() => handlePageChange('back')}
-        // disabled={currentPage === 1}
+          disabled={contents.current_page === 1}
         >
           Previous
         </Button>
         <span className="text-sm text-gray-700">
-          Page {currentPage} of {totalPages}
+          Page {contents.current_page} of {contents.last_page}
         </span>
         <Button
           type="button"
           variant="secondary"
           size="md"
           onClick={() => handlePageChange('next')}
-        // disabled={currentPage === totalPages}
+          disabled={contents.current_page === contents.last_page}
         >
           Next
         </Button>
