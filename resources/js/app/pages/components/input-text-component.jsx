@@ -1,6 +1,6 @@
 import React from 'react';
 
-const InputTextComponent = ({ id, name, type = "text", required = false, autoComplete,placeholder,onChange,value,readOnly }) => {
+const InputTextComponent = ({ id, name, type = "text", required = false, autoComplete, placeholder, onChange, value, readOnly, onFocus, onBlur }) => {
   return (
     <div className="mt-1">
       <div className="relative rounded-md shadow-sm">
@@ -15,6 +15,8 @@ const InputTextComponent = ({ id, name, type = "text", required = false, autoCom
           placeholder={placeholder} // Optional placeholder
           onChange={onChange}
           readOnly={readOnly}
+          onFocus={onFocus}
+          onBlur={onBlur}
         />
       </div>
     </div>

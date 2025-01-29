@@ -114,7 +114,7 @@ export default function EditContentSection({ contentId }) {
                             <img
                                 src={`/storage/${contentData.file_path}`}
                                 alt="Thumbnail"
-                                className="w-[500px] h-[500px] rounded-md"
+                                className="w-[500px] h-[500px] rounded-md border border-black"
                             />
                         )}
                     </div>

@@ -22,14 +22,14 @@ export default function AdminDashboardPage() {
   }
   return (
     <AdminLayout>
-        <h1 className='font-bold text-1xl mb-5'>Admin Dashboard</h1>
-
-        <div className='flex gap-4'>
+        
+        <div className='flex gap-4 justify-between'>
           <NewsCardSection /> 
+          <UsersCardSection/>
           <BeneficiaryCardSection />
         </div>
 
-        <div className='mt-5 bg-white shadow sm:rounded-md p-5'>
+        <div className='mt-4 bg-white shadow sm:rounded-md p-5'>
           <ChartSection/>
         </div>
     </AdminLayout>

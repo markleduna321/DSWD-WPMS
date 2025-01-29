@@ -9,12 +9,12 @@ export default function BeneficiaryCardSection() {
     console.log('benef', beneficiaries)
     console.log('total', totalBeneficiaries)
     return (
-        <div className='flex justify-center bg-white shadow overflow-hidden sm:rounded-md p-5 sm:w-1/2'>
-            <div>
-                <h1 className='text-2xl font-bold'>Total Beneficiaries : </h1>
+        <div className=' bg-white rounded-md shadow-2xl  w-[500px] text-center'>
+            <div className=' bg-slate-100 p-3 text-xl font-bold'>
+                Total Beneficiaries
             </div>
-            <div>
-                <h1 className='text-3xl font-bold'> {totalBeneficiaries} </h1>
+            <div className=' text-8xl p-3 text-center'>
+                {totalBeneficiaries}
             </div>
         </div>
     )

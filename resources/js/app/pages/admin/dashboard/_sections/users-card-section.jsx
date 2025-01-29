@@ -2,12 +2,12 @@ import React from 'react'
 
 export default function UsersCardSection() {
   return (
-    <div className='flex justify-center bg-white shadow overflow-hidden sm:rounded-md p-5 sm:w-1/2'>
-      <div>
-        <h1 className='text-2xl font-bold'>Total Users : </h1>
+    <div className=' bg-white rounded-md shadow-2xl  w-[500px]'>
+      <div className=' bg-slate-100 p-3 text-xl font-bold text-center'>
+        Number of Barangays with Beneficiaries
       </div>
-      <div>
-        <h1 className='text-3xl font-bold'> 0</h1>
+      <div className=' text-8xl p-3 text-center'>
+        24
       </div>
     </div>
   )

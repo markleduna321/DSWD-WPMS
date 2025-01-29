@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function SelectComponent({ id, name, value, onChange, options, required }) {
+export default function SelectComponent({ id, name, value, onChange, options, required, className='"block w-full px-3 py-2 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"' }) {
   return (
     <select
       id={id}
@@ -8,7 +8,7 @@ export default function SelectComponent({ id, name, value, onChange, options, re
       value={value}
       onChange={onChange}
       required={required}
-      className="block w-full px-3 py-2 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+      className={className}
     >
       <option value="">Select</option> {/* Optional default placeholder */}
       {options.map((option, index) => (
