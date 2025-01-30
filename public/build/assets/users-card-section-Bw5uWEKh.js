@@ -1,0 +1,1 @@
+import{j as e}from"./app-BsJomMnZ.js";function s(){return e.jsxs("div",{className:" bg-white rounded-md shadow-2xl  w-[500px]",children:[e.jsx("div",{className:" bg-slate-100 p-3 text-xl font-bold text-center",children:"Number of Barangays with Beneficiaries"}),e.jsx("div",{className:" text-8xl p-3 text-center",children:"24"})]})}export{s as default};
