@@ -66,6 +66,8 @@ export function get_demographics_thunk(page = 1) {
   };
 }
 
+
+
 export function fetch_demographic_by_id_thunk(demographicId) {
     return async function (dispatch) {
         const demographic = await fetch_demographic_by_id_service(demographicId); // Fetch a specific purchase order by ID  

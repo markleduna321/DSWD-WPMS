@@ -9,7 +9,7 @@ export default function BeneficiaryCardSection() {
     console.log('benef', beneficiaries)
     console.log('total', totalBeneficiaries)
     return (
-        <div className=' bg-white rounded-md shadow-2xl  w-[500px] text-center'>
+        <div className=' bg-white rounded-md shadow-2xl  w-full text-center'>
             <div className=' bg-slate-100 p-3 text-xl font-bold'>
                 Total Beneficiaries
             </div>

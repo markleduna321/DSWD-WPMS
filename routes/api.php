@@ -6,6 +6,7 @@ use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DemographicController;
+use App\Http\Controllers\ReportController;
 
 /*con
 |--------------------------------------------------------------------------
@@ -26,6 +27,8 @@ Route::get('/users', [UserController::class, 'getUsers']);
 Route::resource('usermanagement', UserController::class);
 Route::resource('demographics', DemographicController::class);
 Route::resource('contents', ContentController::class);
+Route::get('/reports', [ReportController::class, 'index']);
 Route::get('/get_latest_content', [ContentController::class, 'get_latest_content']);
 Route::get('/beneficiaries', [DashboardController::class, 'beneficiaries']);
 Route::get('/dashboardContents', [DashboardController::class, 'dashboardContents']);
+Route::get('/countbrgy', [DashboardController::class, 'countbrgy']);

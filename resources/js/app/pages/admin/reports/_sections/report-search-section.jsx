@@ -1,43 +1,31 @@
-import Button from '@/app/pages/components/button';
-import InputLabelComponent from '@/app/pages/components/input-label-component'
-import SelectComponent from '@/app/pages/components/input-select';
-import InputTextComponent from '@/app/pages/components/input-text-component'
-import { MagnifyingGlassIcon } from '@heroicons/react/24/outline';
-import { router } from '@inertiajs/react';
+import React, { useState, useEffect } from 'react';
 import moment from 'moment';
-import React from 'react'
-import { useEffect } from 'react';
-import { useState } from 'react';
 import DatePicker from 'react-datepicker';
-import "react-datepicker/dist/react-datepicker.css";
+import 'react-datepicker/dist/react-datepicker.css';
+import { MagnifyingGlassIcon } from '@heroicons/react/24/outline';
+import Button from '@/app/pages/components/button';
+import SelectComponent from '@/app/pages/components/input-select';
 
-
-export default function ReportSearchSection() {
-    const [startDate, setStartDate] = useState(null);
-    const [endtDate, setEndDate] = useState(null);
-    const [selectedType, setSelectedType] = useState("");
-    const [barangay, setBarangay] = useState("");
-    const [evacuationSite, setEvacuationSite] = useState("");
-
-
+export default function ReportSearchSection({ onSearch }) {
+    const [startDate, setStartDate] = useState(null); // Default to null
+    const [endDate, setEndDate] = useState(null); // Default to null
+    const [selectedType, setSelectedType] = useState('');
+    const [barangay, setBarangay] = useState('');
+    const [evacuationSite, setEvacuationSite] = useState('');
 
     const getQueryParam = (param) => {
         const searchParams = new URLSearchParams(window.location.search);
         return searchParams.get(param);
     };
 
-    const start = getQueryParam('start') || moment().format('M-D-Y');
-    const end = getQueryParam('end') || moment().format('M-D-Y');
     const category = getQueryParam('category') || '';
     const where = getQueryParam('where') || '';
 
     useEffect(() => {
-        setStartDate(start)
-        setEndDate(end)
-        setSelectedType(category)
-        setBarangay(where)
-        setEvacuationSite(where)
-    }, [])
+        setSelectedType(category);
+        setBarangay(where);
+        setEvacuationSite(where);
+    }, [category, where]);
 
     const typeOptions = [
         { value: 'beneficiaries', label: 'Beneficiaries' },
@@ -46,31 +34,80 @@ export default function ReportSearchSection() {
     ];
 
     const barangayOptions = [
-        { value: "brgy1", label: "Barangay 1" },
-        { value: "brgy2", label: "Barangay 2" },
-        { value: "brgy3", label: "Barangay 3" },
+        { value: 'Barangay 1', label: 'Barangay 1' },
+        { value: 'brgy2', label: 'Barangay 2' },
+        { value: 'brgy3', label: 'Barangay 3' },
     ];
 
     const evacuationSiteOptions = [
-        { value: "Evacuation 1", label: "Evac 1" },
-        { value: "Evacuation 2", label: "Evac 2" },
-        { value: "Evacuation 3", label: "Evac 3" },
-        { value: "Evacuation 4", label: "Evac 4" },
+        { value: 'Evacuation 1', label: 'Evac 1' },
+        { value: 'Evacuation 2', label: 'Evac 2' },
+        { value: 'Evacuation 3', label: 'Evac 3' },
+        { value: 'Evacuation 4', label: 'Evac 4' },
     ];
 
-    function seach_data(params) {
-        router.visit(`?start=${startDate}&end=${endtDate}&category=${selectedType}&where=${selectedType == 'barangay' ? barangay ?? '' :selectedType == 'evacuation'?evacuationSite?? '': '' }`)
-    }
+    const searchData = async () => {
+        if (!startDate || !endDate) {
+            alert("Please select both start and end dates.");
+            return;
+        }
+    
+        if (!selectedType) {
+            alert("Please select a report type.");
+            return;
+        }
+    
+        if (selectedType === 'barangay' && !barangay) {
+            alert("Please select a barangay.");
+            return;
+        }
+    
+        if (selectedType === 'evacuation' && !evacuationSite) {
+            alert("Please select an evacuation site.");
+            return;
+        }
+    
+        const params = {
+            start: moment(startDate).format('MM-DD-YYYY'),
+            end: moment(endDate).format('MM-DD-YYYY'),
+            category: selectedType,
+            where: selectedType === 'barangay' ? barangay : selectedType === 'evacuation' ? evacuationSite : '',
+        };
+    
+        try {
+            const response = await fetch(`http://127.0.0.1:8000/api/reports?${new URLSearchParams(params).toString()}`, {
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                },
+            });
+    
+            const text = await response.text();
+            console.log('API Response:', text);
+    
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+    
+            const data = JSON.parse(text);
+            onSearch(data);
+        } catch (error) {
+            console.error('Error fetching data:', error);
+        }
+    };
+    
+
     return (
-        <div className=' flex w-fit mb-5 gap-4'>
+        <div className="flex w-fit mb-5 gap-4">
+            {/* Date Pickers */}
             <div className="relative">
                 <DatePicker
-                    selected={startDate}
-                    onChange={(date) => setStartDate(moment(date).format('M-D-Y'))}
+                    selected={startDate} // Default null value works with isClearable
+                    onChange={(date) => setStartDate(date ? moment(date).toDate() : null)} // Reset to null if cleared
                     isClearable
                     showIcon
                     placeholderText="Search from date"
-                    //className="border border-gray-300 rounded-lg py-2 px-3 w-44 shadow-sm text-gray-700 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                    dateFormat="MM-dd-yyyy"
                     calendarClassName="bg-white border border-gray-300 rounded-lg shadow-lg p-2 text-gray-900"
                     popperClassName="z-50"
                     showPopperArrow={false}
@@ -79,18 +116,19 @@ export default function ReportSearchSection() {
             -
             <div className="relative">
                 <DatePicker
-                    selected={endtDate}
-                    onChange={(date) => setEndDate(moment(date).format('M-D-Y'))}
+                    selected={endDate} // Default null value works with isClearable
+                    onChange={(date) => setEndDate(date ? moment(date).toDate() : null)} // Reset to null if cleared
                     isClearable
                     showIcon
                     placeholderText="Search to date"
-                    //className="border border-gray-300 rounded-lg py-2 px-3 w-44 shadow-sm text-gray-700 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                    dateFormat="MM-dd-yyyy"
                     calendarClassName="bg-white border border-gray-300 rounded-lg shadow-lg p-2 text-gray-900"
                     popperClassName="z-50"
                     showPopperArrow={false}
                 />
             </div>
 
+            {/* Type Select */}
             <div className="relative">
                 <SelectComponent
                     id="select"
@@ -98,11 +136,12 @@ export default function ReportSearchSection() {
                     name="select"
                     onChange={(e) => setSelectedType(e.target.value)}
                     options={typeOptions}
-                    className='border border-black p-[.33rem] w-56'
+                    className="border border-black p-[.33rem] w-56"
                 />
             </div>
-            {/* Hidden Input (Only Visible if Barangay is Selected) */}
-            {selectedType === "barangay" && (
+
+            {/* Barangay Select (Conditional) */}
+            {selectedType === 'barangay' && (
                 <div className="relative">
                     <select
                         id="barangay"
@@ -121,8 +160,8 @@ export default function ReportSearchSection() {
                 </div>
             )}
 
-            {/* Hidden Input (Only Visible if 'Evacuation site' is Selected) */}
-            {selectedType === "evacuation" && (
+            {/* Evacuation Site Select (Conditional) */}
+            {selectedType === 'evacuation' && (
                 <div className="relative">
                     <select
                         id="evacuationSite"
@@ -141,18 +180,18 @@ export default function ReportSearchSection() {
                 </div>
             )}
 
+            {/* Search Button */}
             <div>
                 <Button
-                    type='button' // By default, it's a 'button', but can be 'submit' for form submission
-                    variant='primary'
-                    size='md'
-                    onClick={seach_data}
+                    type="button"
+                    variant="primary"
+                    size="md"
+                    onClick={searchData}
                     icon={<MagnifyingGlassIcon className="h-5 w-5" />}
                 >
                     Search
                 </Button>
             </div>
-
         </div>
-    )
+    );
 }

@@ -22,6 +22,8 @@ class DemographicController extends Controller
             'response' => $demographics,
         ]);
     }
+
+    
     /**
      * Show the form for creating a new resource.
      */

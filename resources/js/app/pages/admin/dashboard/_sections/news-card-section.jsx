@@ -9,7 +9,7 @@ export default function NewsCardSection() {
     console.log('contents card', news)
     console.log('total contents card', totalNews)
     return (
-        <div className=' bg-white rounded-md shadow-2xl  w-[500px]'>
+        <div className=' bg-white rounded-md shadow-2xl  w-full'>
             <div className=' bg-slate-100 p-3 text-xl font-bold text-center'>
                 Total News and Events Uploaded
             </div>

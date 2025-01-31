@@ -26,6 +26,16 @@ class DashboardController extends Controller
         ], 200);
     }
 
+    public function countbrgy()
+    {
+        
+        $demographics = Demographic::all();
+
+        return response()->json([
+            'response' => $demographics,
+        ]);
+    }
+
     public function dashboardContents()
     {
         $contents = Content::all();

@@ -16,6 +16,7 @@ export async function get_demographics_service() {
     return res.data; // Assuming the data contains paginated response (e.g., data, currentPage, totalPages)
 }
 
+
 export async function fetch_demographic_by_id_service(id) {
     const response = await axios.get(`/api/demographics/${id}`);
     return response.data; // Return the data from the response
