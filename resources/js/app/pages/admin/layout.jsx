@@ -15,6 +15,7 @@ import {
   CalendarIcon,
   ChartPieIcon,
   Cog6ToothIcon,
+  Cog8ToothIcon,
   DocumentDuplicateIcon,
   FolderIcon,
   HomeIcon,
@@ -91,7 +92,7 @@ export default function AdminLayout({ children }) {
                 <div className="flex h-16 shrink-0 items-center">
                   <img
                     alt="Your Company"
-                    src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
+                    src="/img/logo.jpg"
                     className="h-8 w-auto"
                   />
                 </div>
@@ -119,13 +120,13 @@ export default function AdminLayout({ children }) {
                     </li>
                     
                     <li className="mt-auto">
-                      <a
+                      {/* <a
                         href="#"
                         className="group -mx-2 flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6 text-gray-400 hover:bg-gray-800 hover:text-white"
                       >
                         <Cog6ToothIcon aria-hidden="true" className="h-6 w-6 shrink-0" />
                         Settings
-                      </a>
+                      </a> */}
                     </li>
                   </ul>
                 </nav>
@@ -139,10 +140,11 @@ export default function AdminLayout({ children }) {
           <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-gray-900 px-6 pb-4">
             <div className="flex h-16 shrink-0 items-center">
               <img
-                alt="Your Company"
-                src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
+                alt="Your Companys"
+                src="/img/logo.jpg"
                 className="h-8 w-auto"
               />
+              <div className='ml-4 text-white'>MSWDO</div>
             </div>
             <nav className="flex flex-1 flex-col">
               <ul role="list" className="flex flex-1 flex-col gap-y-7">
@@ -168,13 +170,13 @@ export default function AdminLayout({ children }) {
                 </li>
                 
                 <li className="mt-auto">
-                  <a
+                  {/* <a
                     href="#"
                     className="group -mx-2 flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6 text-gray-400 hover:bg-gray-800 hover:text-white"
                   >
                     <Cog6ToothIcon aria-hidden="true" className="h-6 w-6 shrink-0" />
                     Settings
-                  </a>
+                  </a> */}
                 </li>
               </ul>
             </nav>
@@ -221,11 +223,7 @@ export default function AdminLayout({ children }) {
                 <Menu as="div" className="relative">
                   <MenuButton className="-m-1.5 flex items-center p-1.5">
                     <span className="sr-only">Open user menu</span>
-                    <img
-                      alt=""
-                      src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                      className="h-8 w-8 rounded-full bg-gray-50"
-                    />
+                    <Cog8ToothIcon className='h-5 w-5 text-slate-500' />
                     <span className="hidden lg:flex lg:items-center">
                       <span aria-hidden="true" className="ml-4 text-sm font-semibold leading-6 text-gray-900">
                       {user ? (

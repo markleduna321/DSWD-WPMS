@@ -47,8 +47,11 @@ export default function ReportTableSection({ data }) {
             <div className="overflow-hidden shadow ring-1 ring-black/5">
               
               <table id="report-table" className="min-w-full divide-y divide-gray-300">
-                <thead className="bg-gray-50">
+                <thead className="bg-slate-200 ">
                   <tr>
+                  <th scope="col" className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">
+                      Name
+                    </th>
                     <th scope="col" className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">
                       Barangay
                     </th>
@@ -56,13 +59,16 @@ export default function ReportTableSection({ data }) {
                       Evacuation Site
                     </th>
                     <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
-                      Created At
+                      Registration Date
                     </th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-gray-200 bg-white">
                   {data.map((item) => (
                     <tr key={item.id}>
+                      <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">
+                        {item.head_last_name}, {item.head_first_name}
+                      </td>
                       <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">
                         {item.barangay}
                       </td>

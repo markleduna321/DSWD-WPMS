@@ -98,7 +98,7 @@ export default function ReportSearchSection({ onSearch }) {
     
 
     return (
-        <div className="flex w-fit mb-5 gap-4">
+        <div className="flex w-fit mb-1 gap-4">
             {/* Date Pickers */}
             <div className="relative">
                 <DatePicker
