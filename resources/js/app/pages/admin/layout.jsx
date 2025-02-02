@@ -226,11 +226,11 @@ export default function AdminLayout({ children }) {
                     <Cog8ToothIcon className='h-5 w-5 text-slate-500' />
                     <span className="hidden lg:flex lg:items-center">
                       <span aria-hidden="true" className="ml-4 text-sm font-semibold leading-6 text-gray-900">
-                      {user ? (
+                      {/* {user ? (
                           <span className="mb-0 text-sm font-weight-bold">{user.name}</span>
                         ) : (
                           <span className="mb-0 text-sm font-weight-bold">Loading...</span>
-                        )}
+                        )} */}
                       </span>
                       <ChevronDownIcon aria-hidden="true" className="ml-2 h-5 w-5 text-gray-400" />
                     </span>

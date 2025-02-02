@@ -105,13 +105,15 @@ export default function LandingPage() {
             </TabGroup>
 
             <div className="space-y-6 border-t border-gray-200 px-4 py-6">
-              {navigation.pages.map((page) => (
-                <div key={page.name} className="flow-root">
-                  <a href={page.href} className="-m-2 block p-2 font-medium text-gray-900">
-                    {page.name}
-                  </a>
-                </div>
-              ))}
+            <div className=' mt-5 text-md text-slate-600'>
+                    <a href='/'>About Us</a>
+                  </div>
+                  <div className=' mt-5 text-md text-slate-600'>
+                    <a href="/">Contact Us</a>
+                  </div>
+                  <div className=' mt-5 text-md text-slate-600'>
+                    <a href="/">List of Brgy</a>
+                  </div>
             </div>
 
             <div className="space-y-6 border-t border-gray-200 px-4 py-6">
@@ -158,17 +160,15 @@ export default function LandingPage() {
               {/* Flyout menus */}
               <PopoverGroup className="hidden lg:ml-8 lg:block lg:self-stretch h-full overflow-visible">
                 <div className="flex h-full space-x-8">
-
-
-                  {navigation.pages.map((page) => (
-                    <a
-                      key={page.name}
-                      href={page.href}
-                      className="flex items-center text-sm font-medium text-gray-700 hover:text-gray-800"
-                    >
-                      {page.name}
-                    </a>
-                  ))}
+                  <div className=' mt-5 text-md text-slate-600'>
+                    <a href='/'>About Us</a>
+                  </div>
+                  <div className=' mt-5 text-md text-slate-600'>
+                    <a href="/">Contact Us</a>
+                  </div>
+                  <div className=' mt-5 text-md text-slate-600'>
+                    <a href="/">List of Brgy</a>
+                  </div>
                 </div>
               </PopoverGroup>
 
