@@ -65,7 +65,7 @@ export default function LandingPage() {
   useEffect(() => {
     store.dispatch(get_latest_content_thunk())
   }, []);
-  
+
   const [open, setOpen] = useState(false)
 
   console.log('ssssssss', latest_contents)
@@ -105,15 +105,15 @@ export default function LandingPage() {
             </TabGroup>
 
             <div className="space-y-6 border-t border-gray-200 px-4 py-6">
-            <div className=' mt-5 text-md text-slate-600'>
-                    <a href='/'>About Us</a>
-                  </div>
-                  <div className=' mt-5 text-md text-slate-600'>
-                    <a href="/">Contact Us</a>
-                  </div>
-                  <div className=' mt-5 text-md text-slate-600'>
-                    <a href="/">List of Brgy</a>
-                  </div>
+              <div className=' mt-5 text-md text-slate-600'>
+                <a href='/about-us'>About Us</a>
+              </div>
+              <div className=' mt-5 text-md text-slate-600'>
+                <a href="/">Contact Us</a>
+              </div>
+              <div className=' mt-5 text-md text-slate-600'>
+                <a href="/">List of Brgy</a>
+              </div>
             </div>
 
             <div className="space-y-6 border-t border-gray-200 px-4 py-6">
@@ -161,10 +161,10 @@ export default function LandingPage() {
               <PopoverGroup className="hidden lg:ml-8 lg:block lg:self-stretch h-full overflow-visible">
                 <div className="flex h-full space-x-8">
                   <div className=' mt-5 text-md text-slate-600'>
-                    <a href='/'>About Us</a>
+                    <a href='/about-us'>About Us</a>
                   </div>
                   <div className=' mt-5 text-md text-slate-600'>
-                    <a href="/">Contact Us</a>
+                    <a href="/contact-us">Contact Us</a>
                   </div>
                   <div className=' mt-5 text-md text-slate-600'>
                     <a href="/">List of Brgy</a>
@@ -236,7 +236,7 @@ export default function LandingPage() {
                       </a>
                     </h3>
                     <p aria-hidden="true" className="mt-1 text-sm text-white max-h-[190px]">
-                     {latest_contents[0]?.content}
+                      {latest_contents[0]?.content}
                     </p>
                   </div>
                 </div>
@@ -256,7 +256,7 @@ export default function LandingPage() {
                     <h3 className="font-bold text-3xl text-white">
                       <a href="#">
                         <span className="absolute inset-0" />
-                        {latest_contents[1]?.title} 
+                        {latest_contents[1]?.title}
                       </a>
                     </h3>
                     <p aria-hidden="true" className="mt-1 text-sm text-white max-h-[100px]">
@@ -306,7 +306,7 @@ export default function LandingPage() {
             <div className="absolute inset-0 overflow-hidden">
               <img
                 alt=""
-                src={'/storage/' + latest_contents[3]?.file_path} 
+                src={'/storage/' + latest_contents[3]?.file_path}
                 className="size-full object-cover"
               />
             </div>
@@ -318,7 +318,7 @@ export default function LandingPage() {
               <p className="mt-3 text-xl text-white">
                 {latest_contents[3]?.content}
               </p>
-              
+
             </div>
           </div>
         </section>
@@ -333,7 +333,7 @@ export default function LandingPage() {
           Footer
         </h2>
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          
+
 
           <div className="border-t border-gray-200 py-10">
             <p className="text-sm text-gray-500">Copyright &copy; 2021 Your Company, Inc.</p>

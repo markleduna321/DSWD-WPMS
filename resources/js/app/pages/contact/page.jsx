@@ -59,7 +59,7 @@ const footerNavigation = {
     ],
 }
 
-export default function LandingPage() {
+export default function AboutPage() {
 
     const { latest_contents } = useSelector(state => state.contents);
 
@@ -209,102 +209,29 @@ export default function LandingPage() {
             </header>
 
             <main>
-                <div className='mx-auto max-w-7xl px-4 py-24 sm:px-6 sm:py-32 lg:px-8'>
-                    <div className="overflow-hidden rounded-lg bg-slate-100 shadow">
-                        <div className="px-4 py-5 sm:px-6 text-3xl">
-                            {latest_contents[0]?.title}
-                        </div>
-                        <div className="sm:flex sm:gap-4 bg-gray-50 px-4 py-5 sm:p-6">
-                            <div className=''>
-                                <img src={'/storage/' + latest_contents[0]?.file_path} alt="" className='w-full sm:w-[400px] sm:h-[400px]' />
-                            </div>
-                            <div className='flex-1'>
-                                {latest_contents[0]?.content}
-                            </div>
-                        </div>
-                    </div>
+                <div className='mx-auto max-w-7xl px-4 py-10 sm:px-6 sm:py-10 lg:px-8'>
+                    <div className="max-w-3xl mx-auto px-6 py-12 bg-white shadow-lg rounded-lg">
+                        <h2 className="text-3xl font-bold text-center text-gray-800 mb-6">
+                            Contact Us
+                        </h2>
 
-                    <div className="overflow-hidden rounded-lg bg-slate-100 shadow mt-8">
-                        <div className="px-4 py-5 sm:px-6 text-3xl">
-                            {latest_contents[1]?.title}
-                        </div>
-                        <div className="sm:flex sm:gap-4 bg-gray-50 px-4 py-5 sm:p-6">
-                            <div className=''>
-                                <img src={'/storage/' + latest_contents[1]?.file_path} alt="" className='w-full sm:w-[400px] sm:h-[400px]' />
-                            </div>
-                            <div className='flex-1'>
-                                {latest_contents[1]?.content}
-                            </div>
-                        </div>
-                    </div>
+                        <p className="text-gray-700 text-center mb-4">
+                            <strong>Department of Social Welfare and Development</strong> <br />
+                            DSWD Central Office, Constitution Hills, Batasan Complex, <br />
+                            Quezon City, Philippines 1126
+                        </p>
 
-                    <div className="overflow-hidden rounded-lg bg-slate-100 shadow mt-8">
-                        <div className="px-4 py-5 sm:px-6 text-3xl">
-                            {latest_contents[2]?.title}
-                        </div>
-                        <div className="sm:flex sm:gap-4 bg-gray-50 px-4 py-5 sm:p-6">
-                            <div className=''>
-                                <img src={'/storage/' + latest_contents[2]?.file_path} alt="" className='w-full sm:w-[400px] sm:h-[400px]' />
-                            </div>
-                            <div className='flex-1'>
-                                {latest_contents[2]?.content}
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className="overflow-hidden rounded-lg bg-slate-100 shadow mt-8">
-                        <div className="px-4 py-5 sm:px-6 text-3xl">
-                            {latest_contents[3]?.title}
-                        </div>
-                        <div className="sm:flex sm:gap-4 bg-gray-50 px-4 py-5 sm:p-6">
-                            <div className=''>
-                                <img src={'/storage/' + latest_contents[3]?.file_path} alt="" className='w-full sm:w-[400px] sm:h-[400px]' />
-                            </div>
-                            <div className='flex-1'>
-                                {latest_contents[3]?.content}
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className="overflow-hidden rounded-lg bg-slate-100 shadow mt-8">
-                        <div className="px-4 py-5 sm:px-6 text-3xl">
-                            {latest_contents[4]?.title}
-                        </div>
-                        <div className="sm:flex sm:gap-4 bg-gray-50 px-4 py-5 sm:p-6">
-                            <div className=''>
-                                <img src={'/storage/' + latest_contents[4]?.file_path} alt="" className='w-full sm:w-[400px] sm:h-[400px]' />
-                            </div>
-                            <div className='flex-1'>
-                                {latest_contents[4]?.content}
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className="overflow-hidden rounded-lg bg-slate-100 shadow mt-8">
-                        <div className="px-4 py-5 sm:px-6 text-3xl">
-                            {latest_contents[5]?.title}
-                        </div>
-                        <div className="sm:flex sm:gap-4 bg-gray-50 px-4 py-5 sm:p-6">
-                            <div className=''>
-                                <img src={'/storage/' + latest_contents[5]?.file_path} alt="" className='w-full sm:w-[400px] sm:h-[400px]' />
-                            </div>
-                            <div className='flex-1'>
-                                {latest_contents[5]?.content}
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className="overflow-hidden rounded-lg bg-slate-100 shadow mt-8">
-                        <div className="px-4 py-5 sm:px-6 text-3xl">
-                            {latest_contents[6]?.title}
-                        </div>
-                        <div className="sm:flex sm:gap-4 bg-gray-50 px-4 py-5 sm:p-6">
-                            <div className=''>
-                                <img src={'/storage/' + latest_contents[6]?.file_path} alt="" className='w-full sm:w-[400px] sm:h-[400px]' />
-                            </div>
-                            <div className='flex-1'>
-                                {latest_contents[6]?.content}
-                            </div>
+                        <div className="text-gray-700 text-center mb-6 space-y-2">
+                            <p>☎️ (632) 8-931-81-01 to 07</p>
+                            <p>📲 GLOBE: 09171105686, 09178272543</p>
+                            <p>📲 SMART: 09199116200</p>
+                            <p>
+                                📧{" "}
+                                <a href="mailto:inquiry@dswd.gov.ph" className="text-blue-600 hover:underline">
+                                    inquiry@dswd.gov.ph
+                                </a>
+                            </p>
+                            <p><strong>Office Hours:</strong> Monday to Friday, 8:00 AM - 5:00 PM</p>
                         </div>
                     </div>
                 </div>
@@ -323,4 +250,15 @@ export default function LandingPage() {
             </footer>
         </div>
     )
+}
+
+function TimelineItem({ year, description }) {
+    return (
+        <div className="flex items-start space-x-4">
+            <div className="w-16 h-16 flex items-center justify-center bg-blue-600 text-white font-bold rounded-full">
+                {year}
+            </div>
+            <p className="text-gray-700 leading-relaxed">{description}</p>
+        </div>
+    );
 }

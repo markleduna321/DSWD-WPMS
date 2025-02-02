@@ -21,6 +21,14 @@ Route::middleware('redirectBasedOnRole')->get('/', function () {
     return Inertia::render('landing/page');
 })->name('landing');
 
+Route::middleware('redirectBasedOnRole')->get('/about-us', function () {
+    return Inertia::render('about_us/page');
+})->name('about_us');
+
+Route::middleware('redirectBasedOnRole')->get('/contact-us', function () {
+    return Inertia::render('contact/page');
+})->name('contact');
+
 Route::middleware('redirectBasedOnRole')->get('/news', function () {
     return Inertia::render('news/page');
 })->name('news');

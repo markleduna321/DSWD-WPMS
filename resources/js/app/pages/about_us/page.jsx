@@ -59,7 +59,7 @@ const footerNavigation = {
     ],
 }
 
-export default function LandingPage() {
+export default function AboutPage() {
 
     const { latest_contents } = useSelector(state => state.contents);
 
@@ -209,102 +209,35 @@ export default function LandingPage() {
             </header>
 
             <main>
-                <div className='mx-auto max-w-7xl px-4 py-24 sm:px-6 sm:py-32 lg:px-8'>
-                    <div className="overflow-hidden rounded-lg bg-slate-100 shadow">
-                        <div className="px-4 py-5 sm:px-6 text-3xl">
-                            {latest_contents[0]?.title}
-                        </div>
-                        <div className="sm:flex sm:gap-4 bg-gray-50 px-4 py-5 sm:p-6">
-                            <div className=''>
-                                <img src={'/storage/' + latest_contents[0]?.file_path} alt="" className='w-full sm:w-[400px] sm:h-[400px]' />
-                            </div>
-                            <div className='flex-1'>
-                                {latest_contents[0]?.content}
-                            </div>
-                        </div>
-                    </div>
+                <div className='mx-auto max-w-7xl px-4 py-10 sm:px-6 sm:py-10 lg:px-8'>
+                    <div className=" mx-auto px-6 py-12 bg-white shadow-lg">
+                        <h1 className="text-3xl font-bold text-center text-gray-800 mb-6">
+                            History of Social Welfare in the Philippines
+                        </h1>
 
-                    <div className="overflow-hidden rounded-lg bg-slate-100 shadow mt-8">
-                        <div className="px-4 py-5 sm:px-6 text-3xl">
-                            {latest_contents[1]?.title}
-                        </div>
-                        <div className="sm:flex sm:gap-4 bg-gray-50 px-4 py-5 sm:p-6">
-                            <div className=''>
-                                <img src={'/storage/' + latest_contents[1]?.file_path} alt="" className='w-full sm:w-[400px] sm:h-[400px]' />
-                            </div>
-                            <div className='flex-1'>
-                                {latest_contents[1]?.content}
-                            </div>
-                        </div>
-                    </div>
+                        <p className="text-gray-700 leading-relaxed mb-6">
+                            Social welfare as a basic function of the state materialized after World War II. However,
+                            various groups had already been involved in social work during the early years of
+                            American occupation. After the war, the Philippine government gradually assumed
+                            greater responsibility for social welfare.
+                        </p>
 
-                    <div className="overflow-hidden rounded-lg bg-slate-100 shadow mt-8">
-                        <div className="px-4 py-5 sm:px-6 text-3xl">
-                            {latest_contents[2]?.title}
-                        </div>
-                        <div className="sm:flex sm:gap-4 bg-gray-50 px-4 py-5 sm:p-6">
-                            <div className=''>
-                                <img src={'/storage/' + latest_contents[2]?.file_path} alt="" className='w-full sm:w-[400px] sm:h-[400px]' />
-                            </div>
-                            <div className='flex-1'>
-                                {latest_contents[2]?.content}
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className="overflow-hidden rounded-lg bg-slate-100 shadow mt-8">
-                        <div className="px-4 py-5 sm:px-6 text-3xl">
-                            {latest_contents[3]?.title}
-                        </div>
-                        <div className="sm:flex sm:gap-4 bg-gray-50 px-4 py-5 sm:p-6">
-                            <div className=''>
-                                <img src={'/storage/' + latest_contents[3]?.file_path} alt="" className='w-full sm:w-[400px] sm:h-[400px]' />
-                            </div>
-                            <div className='flex-1'>
-                                {latest_contents[3]?.content}
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className="overflow-hidden rounded-lg bg-slate-100 shadow mt-8">
-                        <div className="px-4 py-5 sm:px-6 text-3xl">
-                            {latest_contents[4]?.title}
-                        </div>
-                        <div className="sm:flex sm:gap-4 bg-gray-50 px-4 py-5 sm:p-6">
-                            <div className=''>
-                                <img src={'/storage/' + latest_contents[4]?.file_path} alt="" className='w-full sm:w-[400px] sm:h-[400px]' />
-                            </div>
-                            <div className='flex-1'>
-                                {latest_contents[4]?.content}
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className="overflow-hidden rounded-lg bg-slate-100 shadow mt-8">
-                        <div className="px-4 py-5 sm:px-6 text-3xl">
-                            {latest_contents[5]?.title}
-                        </div>
-                        <div className="sm:flex sm:gap-4 bg-gray-50 px-4 py-5 sm:p-6">
-                            <div className=''>
-                                <img src={'/storage/' + latest_contents[5]?.file_path} alt="" className='w-full sm:w-[400px] sm:h-[400px]' />
-                            </div>
-                            <div className='flex-1'>
-                                {latest_contents[5]?.content}
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className="overflow-hidden rounded-lg bg-slate-100 shadow mt-8">
-                        <div className="px-4 py-5 sm:px-6 text-3xl">
-                            {latest_contents[6]?.title}
-                        </div>
-                        <div className="sm:flex sm:gap-4 bg-gray-50 px-4 py-5 sm:p-6">
-                            <div className=''>
-                                <img src={'/storage/' + latest_contents[6]?.file_path} alt="" className='w-full sm:w-[400px] sm:h-[400px]' />
-                            </div>
-                            <div className='flex-1'>
-                                {latest_contents[6]?.content}
-                            </div>
+                        <div className="space-y-6">
+                            <TimelineItem year="1915" description="The Public Welfare Board (PWB) was created to study, coordinate, and regulate all government and private social service entities." />
+                            <TimelineItem year="1921" description="PWB was abolished and replaced by the Bureau of Public Welfare under the Department of Public Instruction." />
+                            <TimelineItem year="1939" description="Commonwealth Act No. 439 established the Department of Health and Public Welfare." />
+                            <TimelineItem year="1941" description="The Bureau of Public Welfare officially became part of the Department of Health and Public Welfare." />
+                            <TimelineItem year="1947" description="President Manuel Roxas abolished the Bureau of Public Welfare and replaced it with the Social Welfare Commission (SWC) under the Office of the President." />
+                            <TimelineItem year="1948" description="President Elpidio Quirino created the President’s Action Committee on Social Amelioration (PACSA) to address socio-economic reforms." />
+                            <TimelineItem year="1951" description="SWC and PACSA were merged into the Social Welfare Administration (SWA), marking the start of an integrated public welfare program." />
+                            <TimelineItem year="1968" description="Republic Act 5416 elevated the SWA into a Department, giving it equal status with agencies like health and education." />
+                            <TimelineItem year="1976" description="Under Presidential Decree No. 994, President Ferdinand Marcos renamed the Department to the Department of Social Services and Development (DSSD)." />
+                            <TimelineItem year="1978" description="DSSD was renamed the Ministry of Social Services and Development (MSSD) following the shift to a parliamentary government." />
+                            <TimelineItem year="1987" description="President Corazon Aquino reorganized the MSSD into the Department of Social Welfare and Development (DSWD) under Executive Order 123." />
+                            <TimelineItem year="1991" description="Republic Act 7160 (Local Government Code) devolved many DSWD services to local government units (LGUs)." />
+                            <TimelineItem year="1998" description="President Joseph Estrada issued Executive Order No. 15 to strengthen DSWD’s repositioning efforts." />
+                            <TimelineItem year="2003" description="President Gloria Macapagal Arroyo issued Executive Order No. 221 to further define the DSWD’s mandate, roles, and functions." />
+                            <TimelineItem year="2005" description="The Department of Budget and Management (DBM) approved the DSWD’s Rationalization and Streamlining Plan (RSP) to improve efficiency." />
                         </div>
                     </div>
                 </div>
@@ -323,4 +256,15 @@ export default function LandingPage() {
             </footer>
         </div>
     )
+}
+
+function TimelineItem({ year, description }) {
+    return (
+        <div className="flex items-start space-x-4">
+            <div className="w-16 h-16 flex items-center justify-center bg-blue-600 text-white font-bold rounded-full">
+                {year}
+            </div>
+            <p className="text-gray-700 leading-relaxed">{description}</p>
+        </div>
+    );
 }
