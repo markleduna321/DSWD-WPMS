@@ -173,8 +173,25 @@ export default function AboutPage() {
                                     <div className=' mt-5 text-md text-slate-600'>
                                         <a href="/contact-us">Contact Us</a>
                                     </div>
-                                    <div className=' mt-5 text-md text-slate-600'>
-                                        <a href="/">List of Brgy</a>
+                                    {/* Dropdown for List of Brgy */}
+                                    <div className="mt-5 text-md text-slate-600 relative">
+                                        <Popover>
+                                            {({ open }) => (
+                                                <>
+                                                    <Popover.Button className="focus:outline-none">
+                                                        List of Brgy
+                                                    </Popover.Button>
+
+                                                    <Popover.Panel className={`absolute bg-white shadow-lg rounded-md p-4 mt-2 space-y-2 ${open ? 'block' : 'hidden'}`}>
+                                                        <a href="/brgy-1" className="block text-sm text-gray-700">Brgy 1</a>
+                                                        <a href="/brgy-2" className="block text-sm text-gray-700">Brgy 2</a>
+                                                        <a href="/brgy-3" className="block text-sm text-gray-700">Brgy 3</a>
+                                                        <a href="/brgy-4" className="block text-sm text-gray-700">Brgy 4</a>
+                                                        <a href="/brgy-5" className="block text-sm text-gray-700">Brgy 5</a>
+                                                    </Popover.Panel>
+                                                </>
+                                            )}
+                                        </Popover>
                                     </div>
                                 </div>
                             </PopoverGroup>
