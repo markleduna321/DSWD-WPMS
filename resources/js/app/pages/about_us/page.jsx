@@ -229,6 +229,48 @@ export default function AboutPage() {
                 <div className='mx-auto max-w-7xl px-4 py-10 sm:px-6 sm:py-10 lg:px-8'>
                     <div className=" mx-auto px-6 py-12 bg-white shadow-lg">
                         <h1 className="text-3xl font-bold text-center text-gray-800 mb-6">
+                            VISION
+                        </h1>
+
+                        <p className="text-gray-700 leading-relaxed mb-6">
+                            By 2030, all Calatravanhons especially the poor, vulnerable and marginalized individuals, families and communities are resilient to disasters and calamities, capacitated to make use of indigenous resources to reduce dependency on government services and empowered for an improved quality of life through honest and service-oriented employees with integrity and passion for excellence.
+                        </p>
+
+                        <h1 className="text-3xl font-bold text-center text-gray-800 mb-6">
+                            MISSION
+                        </h1>
+
+                        <p className="text-gray-700 leading-relaxed mb-6">
+                            To provide social protection to all Calatravanhons through execution and implementation of various social welfare policies, programs and services to promote the rights and welfare of the poor, vulnerable and marginalized individuals, families and communities to contribute to poverty reduction and empowerment through building a strong partnership with other agency within and outside the Local Government Unit, Non-Government organization, people's organization and all the constituents of Calatrava as a whole.
+
+                        </p>
+
+                        <h1 className="text-3xl font-bold text-center text-gray-800 mb-6">
+                            MANDATE
+                        </h1>
+
+                        <p className="text-gray-700 leading-relaxed mb-6">
+                            The Municipal Social Welfare and Development Office (MSWDO) is the agency mandated to care, protect and rehabilitate all Calatravanhons especially the poor, vulnerable and marginalized as well as those who are victims whos functionality to the community has been affected due to several crisis and cycle of violence and abuses, discrimination, calamities and disaster.
+                        </p>
+
+                        <h1 className="text-3xl font-bold text-center text-gray-800 mb-6">
+                            CORE VALUES
+                        </h1>
+
+                        <p className="text-gray-700 leading-relaxed mb-6">
+                            "Serbisyong de Kalidad, may Integridad og Pagtahud sa Dignidad sa Tawo"
+                        </p>
+
+                        <h1 className="text-3xl font-bold text-center text-gray-800 mb-6">
+                            MSWD SERVICE PLEDGE
+                        </h1>
+
+                        <p className="text-gray-700 leading-relaxed mb-6">
+                        We are committed to provide quality, prompt, and courteous service from Mondays to Fridays, 8:00 A.M. to 5:00 P.M., without noon breaks and thereby ensure that all applicants or requesting parties who are within the MSWDO premises prior to the end of the official working hours and during lunch break shall be attended to. In view of this, we shall ensure availability of Officers-in-Charge of our frontline services at all times for consultation and advice. Furthermore, we shall endeavor to complete transactions within the day and in the event that we are unable to do so, we shall inform you promptly of our actions taken so far and clearly explain the reason/s for such delay. We shall appreciate any positive or negative feedback regarding our services, facilities, and personnel. All these we pledge for the best interest of the clients/customers we
+                        serve.
+                        </p>
+
+                        <h1 className="text-3xl font-bold text-center text-gray-800 mb-6">
                             History of Social Welfare in the Philippines
                         </h1>
 

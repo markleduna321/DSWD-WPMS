@@ -19,6 +19,7 @@ import { Bars3Icon, MagnifyingGlassIcon, ShoppingBagIcon, XMarkIcon } from '@her
 import store from '@/app/store/store'
 import { get_latest_content_thunk } from '../admin/contents/_redux/content-thunk'
 import { useSelector } from 'react-redux'
+import { get_beneficiaries_thunk } from '../admin/dashboard/_redux/dashboard-thunk'
 
 const navigation = {
 
@@ -61,14 +62,16 @@ const footerNavigation = {
 export default function LandingPage() {
 
   const { latest_contents } = useSelector(state => state.contents);
+  const { dashboard = [] } = useSelector((store) => store.dashboard || {});
 
   useEffect(() => {
     store.dispatch(get_latest_content_thunk())
+    store.dispatch(get_beneficiaries_thunk())
   }, []);
 
   const [open, setOpen] = useState(false)
 
-  console.log('ssssssss', latest_contents)
+  console.log('benefi', dashboard)
 
   return (
     <div className="bg-white">
@@ -130,9 +133,9 @@ export default function LandingPage() {
         </div>
       </Dialog>
 
-      <header className="relative overflow-hidden">
+      <header className="relative ">
         {/* Top navigation */}
-        <nav aria-label="Top" className="relative z-20 bg-white/90 backdrop-blur-xl backdrop-filter">
+        <nav aria-label="Top" className="relative z-50 bg-white/90 backdrop-blur-xl backdrop-filter">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="flex h-16 items-center">
               <button
@@ -175,17 +178,28 @@ export default function LandingPage() {
                             List of Brgy
                           </Popover.Button>
 
-                          <Popover.Panel className={`absolute bg-white shadow-lg rounded-md p-4 mt-2 space-y-2 ${open ? 'block' : 'hidden'}`}>
-                            <a href="/brgy-1" className="block text-sm text-gray-700">Brgy 1</a>
-                            <a href="/brgy-2" className="block text-sm text-gray-700">Brgy 2</a>
-                            <a href="/brgy-3" className="block text-sm text-gray-700">Brgy 3</a>
-                            <a href="/brgy-4" className="block text-sm text-gray-700">Brgy 4</a>
-                            <a href="/brgy-5" className="block text-sm text-gray-700">Brgy 5</a>
+                          <Popover.Panel className="absolute bg-white shadow-lg rounded-md p-4 mt-2 space-y-2 max-h-96 w-32 overflow-y-auto z-50">
+                            {dashboard.length > 0 ? (
+                              [...new Map(dashboard.map(item => [item.barangay, item])).values()].map((item, index) => (
+                                <a
+                                  key={index}
+                                  href={`/brgy-${item.id}`}
+                                  className="block text-sm text-gray-700"
+                                >
+                                  {item.barangay}
+                                </a>
+                              ))
+                            ) : (
+                              <p className="text-sm text-gray-500">
+                                No barangays available
+                              </p>
+                            )}
                           </Popover.Panel>
                         </>
                       )}
                     </Popover>
                   </div>
+
                 </div>
               </PopoverGroup>
 
