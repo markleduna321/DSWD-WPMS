@@ -40,10 +40,8 @@ export default function ReportSearchSection({ onSearch }) {
     ];
 
     const evacuationSiteOptions = [
-        { value: 'Evacuation 1', label: 'Evac 1' },
-        { value: 'Evacuation 2', label: 'Evac 2' },
-        { value: 'Evacuation 3', label: 'Evac 3' },
-        { value: 'Evacuation 4', label: 'Evac 4' },
+        { value: 'Calatrava Evacuation Center', label: 'Calatrava Evacuation Center' },
+        { value: 'Bantayanon Evacuation Center', label: 'Bantayanon Evacuation Center' },
     ];
 
     const searchData = async () => {
@@ -51,29 +49,29 @@ export default function ReportSearchSection({ onSearch }) {
             alert("Please select both start and end dates.");
             return;
         }
-    
+
         if (!selectedType) {
             alert("Please select a report type.");
             return;
         }
-    
+
         if (selectedType === 'barangay' && !barangay) {
             alert("Please select a barangay.");
             return;
         }
-    
+
         if (selectedType === 'evacuation' && !evacuationSite) {
             alert("Please select an evacuation site.");
             return;
         }
-    
+
         const params = {
             start: moment(startDate).format('MM-DD-YYYY'),
             end: moment(endDate).format('MM-DD-YYYY'),
             category: selectedType,
             where: selectedType === 'barangay' ? barangay : selectedType === 'evacuation' ? evacuationSite : '',
         };
-    
+
         try {
             const response = await fetch(`http://127.0.0.1:8000/api/reports?${new URLSearchParams(params).toString()}`, {
                 headers: {
@@ -81,21 +79,21 @@ export default function ReportSearchSection({ onSearch }) {
                     'Content-Type': 'application/json',
                 },
             });
-    
+
             const text = await response.text();
             console.log('API Response:', text);
-    
+
             if (!response.ok) {
                 throw new Error(`HTTP error! Status: ${response.status}`);
             }
-    
+
             const data = JSON.parse(text);
             onSearch(data);
         } catch (error) {
             console.error('Error fetching data:', error);
         }
     };
-    
+
 
     return (
         <div className="flex w-fit mb-1 gap-4">
