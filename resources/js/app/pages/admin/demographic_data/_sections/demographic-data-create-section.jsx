@@ -102,6 +102,11 @@ export default function DemographicDataCreateSection() {
     { value: 'Seperated', label: 'Seperated' },
   ];
 
+  const typeEvac = [
+    { value: 'Calatrava Evacuation Center', label: 'Calatrava Evacuation Center' },
+    { value: 'Bantayanon Evacuation Center', label: 'Bantayanon Evacuation Center' },
+  ];
+
   const barangay = [
     { value: 'Agpangi', label: 'Agpangi' },
     { value: 'Ani-e', label: 'Ani-e' },
@@ -227,14 +232,13 @@ export default function DemographicDataCreateSection() {
 
                   <div className="mb-4">
                     <InputLabelComponent htmlFor="evacuation_site" labelText="Evacuation Site" />
-                    <InputTextComponent
+                    <SelectComponent
                       id="evacuation_site"
                       name="evacuation_site"
-                      type="text"
-                      required
-                      value={newAgent.purok}
-                      placeholder="Evacuation Site"
+                      value={newAgent.evacuation_site}
                       onChange={handleChange}
+                      options={typeEvac}
+                      required
 
                     />
                   </div>
@@ -256,7 +260,7 @@ export default function DemographicDataCreateSection() {
                     />
                   </div>
 
-                  
+
 
 
                 </div>
@@ -597,14 +601,14 @@ export default function DemographicDataCreateSection() {
                     <div className="flex-1">
                       <InputLabelComponent htmlFor={`gender-${index}`} labelText="Sex" />
                       <SelectComponent
-                      id="gender"
-                      name="gender"
-                      value={member.gender}
-                      onChange={(e) => handleFamilyMemberChange(index, e)}
-                      options={typeOptionsG}
-                      required
+                        id="gender"
+                        name="gender"
+                        value={member.gender}
+                        onChange={(e) => handleFamilyMemberChange(index, e)}
+                        options={typeOptionsG}
+                        required
 
-                    />
+                      />
                     </div>
 
                     <div className="flex-1">
