@@ -15,10 +15,10 @@ class UserSeeder extends Seeder
     {
         DB::table('users')->insert([
             [
-                'name' => 'Mark Harvey',
+                'name' => 'Administrator',
                 'email' => 'admin@gmail.com',
                 'email_verified_at' => now(),
-                'password' => Hash::make('123456'),
+                'password' => Hash::make('Mswd!@#'),
                 'role_id' => 1, // Assuming '1' is the admin role
                 'is_online' => false,
                 'created_at' => now(),
