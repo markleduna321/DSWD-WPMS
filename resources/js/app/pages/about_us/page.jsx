@@ -218,7 +218,7 @@ export default function AboutPage() {
                 <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                     <img
                         alt="Descriptive text"
-                        src="/img/dswd.jpg"
+                        src="/img/mswdo.jpg"
                         className="w-full object-cover"
                     />
                 </div>
