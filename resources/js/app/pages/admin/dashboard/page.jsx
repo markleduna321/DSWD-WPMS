@@ -27,7 +27,7 @@ export default function AdminDashboardPage() {
   }
   return (
     <AdminLayout>
-        
+        <div className=''>
         <div className='flex gap-4 justify-center'>
           <NewsCardSection /> 
           {/* <UsersCardSection/> */}
@@ -37,6 +37,8 @@ export default function AdminDashboardPage() {
         <div className='mt-4 bg-white shadow sm:rounded-md p-5'>
           <ChartSection/>
         </div>
+        </div>
+        
     </AdminLayout>
   )
 }

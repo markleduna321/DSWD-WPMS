@@ -51,7 +51,7 @@ class ReportController extends Controller
         }
 
         // Filter by category and where
-        if ($category === 'barangay' && $where) {
+        if ($category === 'bargit angay' && $where) {
             $query->where('barangay', $where);
         } elseif ($category === 'evacuation' && $where) {
             $query->where('evacuation_site', $where);
