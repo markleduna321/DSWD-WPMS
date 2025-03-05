@@ -1,1 +1,0 @@
-import{j as r}from"./app-DiOjJUKa.js";import o from"./layout--czA3_IF.js";import"./XMarkIcon-D_kcoUtQ.js";import"./Bars3Icon-oQZk8Dkp.js";import"./transition-cXEe_Tde.js";import"./floating-ui.react-dom-CDu92ojx.js";import"./MagnifyingGlassIcon-4tULUo3C.js";function d(){return r.jsx(o,{children:r.jsx("div",{children:"UserDashboardPage"})})}export{d as default};
