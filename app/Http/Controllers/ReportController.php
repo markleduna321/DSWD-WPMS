@@ -18,8 +18,8 @@ class ReportController extends Controller
     {
         // Validate the request parameters
         $request->validate([
-            'start' => 'nullable|date_format:m-d-Y',  // Expecting m-d-Y format
-            'end' => 'nullable|date_format:m-d-Y|after_or_equal:start',  // Ensure end is after start
+            'start' => 'nullable|date_format:m-d-Y',
+            'end' => 'nullable|date_format:m-d-Y|after_or_equal:start',
             'category' => 'nullable|string|in:beneficiaries,barangay,evacuation',
             'where' => 'nullable|string',
         ]);
@@ -34,7 +34,7 @@ class ReportController extends Controller
         if ($startDate) {
             $startDate = Carbon::createFromFormat('m-d-Y', $startDate)->format('Y-m-d');
         }
-        
+
         if ($endDate) {
             $endDate = Carbon::createFromFormat('m-d-Y', $endDate)->format('Y-m-d');
         }
@@ -51,19 +51,26 @@ class ReportController extends Controller
         }
 
         // Filter by category and where
-        if ($category === 'bargit angay' && $where) {
-            $query->where('barangay', $where);
-        } elseif ($category === 'evacuation' && $where) {
-            $query->where('evacuation_site', $where);
+        if (!empty($where)) {
+            if ($category === 'barangay') {
+                $query->where('barangay', $where);
+            } elseif ($category === 'evacuation') {
+                $query->where('evacuation_site', $where);
+            }
         }
 
-        // Execute the query and return the results
+        // Fetch results
         $demographics = $query->get();
+
+        // If no results, return an empty array instead of a blank response
+        if ($demographics->isEmpty()) {
+            return response()->json([]);
+        }
 
         return response()->json($demographics);
     }
-    
-    
+
+
 
 
 

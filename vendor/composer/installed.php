@@ -3,7 +3,7 @@
         'name' => 'laravel/laravel',
         'pretty_version' => 'dev-deathwish',
         'version' => 'dev-deathwish',
-        'reference' => '305bd88b757def6026241817fcedacb2873494fc',
+        'reference' => 'f7c15670b92d7c466aa5dfaa93ef37d92c695fd4',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -400,7 +400,7 @@
         'laravel/laravel' => array(
             'pretty_version' => 'dev-deathwish',
             'version' => 'dev-deathwish',
-            'reference' => '305bd88b757def6026241817fcedacb2873494fc',
+            'reference' => 'f7c15670b92d7c466aa5dfaa93ef37d92c695fd4',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
