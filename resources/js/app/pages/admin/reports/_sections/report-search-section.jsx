@@ -110,7 +110,7 @@ export default function ReportSearchSection({ onSearch }) {
         };
 
         try {
-            const response = await fetch(`http://127.0.0.1:8000/api/reports?${new URLSearchParams(params).toString()}`, {
+            const response = await fetch(`https://mswdo.site/api/reports?${new URLSearchParams(params).toString()}`, {
                 headers: {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json',
