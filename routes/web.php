@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
 use App\Models\Demographic;
 use Illuminate\Foundation\Application;
@@ -16,6 +17,13 @@ use Inertia\Inertia;
 | contains the "web" middleware group. Now create something great!
 |
 */
+// Route for rendering the Inertia page
+Route::get('/beneficiaries/barangay/{barangay}', function ($barangay) {
+    return Inertia::render('landing/beneficiaries-by-barangay', ['barangay' => $barangay]);
+});
+
+// API Route to fetch beneficiaries by barangay
+Route::get('/api/beneficiaries/barangay/{barangay}', [DashboardController::class, 'getByBarangay']);
 
 Route::middleware('redirectBasedOnRole')->get('/', function () {
     return Inertia::render('landing/page');

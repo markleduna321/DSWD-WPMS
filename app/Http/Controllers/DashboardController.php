@@ -7,6 +7,7 @@ use App\Http\Requests\StoreDashboardRequest;
 use App\Http\Requests\UpdateDashboardRequest;
 use App\Models\Content;
 use App\Models\Demographic;
+use Illuminate\Http\Request;
 
 class DashboardController extends Controller
 {
@@ -28,7 +29,7 @@ class DashboardController extends Controller
 
     public function countbrgy()
     {
-        
+
         $demographics = Demographic::all();
 
         return response()->json([
@@ -39,12 +40,22 @@ class DashboardController extends Controller
     public function dashboardContents()
     {
         $contents = Content::all();
-        
+
         return response()->json([
             'response' => $contents,
-            
+
         ], 200);
     }
+
+    public function getByBarangay($barangay)
+    {
+        // Fetch beneficiaries from database where barangay matches
+        $beneficiaries = Demographic::where('barangay', $barangay)->get();
+
+        // Return JSON response
+        return response()->json($beneficiaries);
+    }
+
 
     /**
      * Show the form for creating a new resource.

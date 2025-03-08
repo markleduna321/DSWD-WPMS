@@ -20,6 +20,7 @@ import store from '@/app/store/store'
 import { get_latest_content_thunk } from '../admin/contents/_redux/content-thunk'
 import { useSelector } from 'react-redux'
 import { get_beneficiaries_thunk } from '../admin/dashboard/_redux/dashboard-thunk'
+import { Link } from '@inertiajs/react'
 
 const navigation = {
 
@@ -181,18 +182,16 @@ export default function LandingPage() {
                           <Popover.Panel className="absolute bg-white shadow-lg rounded-md p-4 mt-2 space-y-2 max-h-96 w-32 overflow-y-auto z-50">
                             {dashboard.length > 0 ? (
                               [...new Map(dashboard.map(item => [item.barangay, item])).values()].map((item, index) => (
-                                <a
+                                <Link
                                   key={index}
-                                  href={`/brgy-${item.id}`}
-                                  className="block text-sm text-gray-700"
+                                  href={`/beneficiaries/barangay/${encodeURIComponent(item.barangay)}`}
+                                  className="block text-sm text-gray-700 hover:bg-gray-100 p-2 rounded"
                                 >
                                   {item.barangay}
-                                </a>
+                                </Link>
                               ))
                             ) : (
-                              <p className="text-sm text-gray-500">
-                                No barangays available
-                              </p>
+                              <p className="text-sm text-gray-500">No barangays available</p>
                             )}
                           </Popover.Panel>
                         </>
