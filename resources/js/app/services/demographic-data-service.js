@@ -26,3 +26,25 @@ export async function update_demographic_service(data) {
     const response = await axios.put(`/api/demographics/${data.id}`, data);
     return response.data;
 };
+
+export const deleteDemographicService = async (id) => {
+    try {
+      const response = await fetch(`/api/demographics/${id}`, {
+        method: "DELETE",
+        headers: {
+          "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').content,
+          "Accept": "application/json",
+          "Content-Type": "application/json",
+        },
+      });
+  
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || "Failed to delete.");
+      }
+  
+      return id; // Return ID to remove it from Redux state
+    } catch (error) {
+      throw error;
+    }
+  };

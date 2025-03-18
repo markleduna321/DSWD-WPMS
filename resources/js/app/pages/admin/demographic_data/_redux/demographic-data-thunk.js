@@ -1,6 +1,7 @@
 // src/redux/thunks/demographicDataThunk.js
-import { create_demographic_service, fetch_demographic_by_id_service, get_demographics_service, update_demographic_service } from '@/app/services/demographic-data-service';
+import { create_demographic_service, deleteDemographicService, fetch_demographic_by_id_service, get_demographics_service, update_demographic_service } from '@/app/services/demographic-data-service';
 import { demographicSlice, setDemographic } from './demographic-data-slice';
+import { createAsyncThunk } from '@reduxjs/toolkit';
 
 // Action types
 const CREATE_DEMOGRAPHIC_REQUEST = 'CREATE_DEMOGRAPHIC_REQUEST';
@@ -82,3 +83,15 @@ export const update_demographic_data_thunk = (data) => async (dispatch) => {
     const updatedDemographic = await update_demographic_service(data);
     dispatch(setDemographic(updatedDemographic)); // Update Redux state with new data
 };
+
+// Thunk to delete demographic data
+export const deleteDemographic = createAsyncThunk(
+  "demographic/deleteDemographic",
+  async (id, { rejectWithValue }) => {
+      try {
+          return await deleteDemographicService(id); // Calls the service
+      } catch (error) {
+          return rejectWithValue(error.message);
+      }
+  }
+);

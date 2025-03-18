@@ -4,12 +4,12 @@ import { useDispatch, useSelector } from 'react-redux'
 import DemographicEditSection from './demographic-edit-section';
 import { router } from '@inertiajs/react';
 import Button from '@/app/pages/components/button';
-import { get_demographics_thunk } from '../_redux/demographic-data-thunk';
+import { deleteDemographic, get_demographics_thunk } from '../_redux/demographic-data-thunk';
 import { useEffect } from 'react';
 
 export default function DemographicTableSection() {
-const dispatch = useDispatch();
-  const { demographics,  currentPage, totalPages} = useSelector((state) => state.demographic);
+  const dispatch = useDispatch();
+  const { demographics, currentPage, totalPages } = useSelector((state) => state.demographic);
   const demographicData = Array.isArray(demographics) ? demographics : [];
 
   const [isViewModalOpen, setViewModalOpen] = useState(false);
@@ -25,8 +25,8 @@ const dispatch = useDispatch();
   const page = getQueryParam('page') || 1;
 
   useEffect(() => {
-      dispatch(get_demographics_thunk(currentPage)); // Fetch contents for the current page
-    }, [dispatch, currentPage]);
+    dispatch(get_demographics_thunk(currentPage)); // Fetch contents for the current page
+  }, [dispatch, currentPage]);
 
   const handlePageChange = (value) => {
     if (value == 'next') {
@@ -49,6 +49,11 @@ const dispatch = useDispatch();
     setSelectedDemographic(null);
   };
 
+  const handleDelete = (id) => {
+    if (confirm("Are you sure you want to delete this item?")) {
+      dispatch(deleteDemographic(id));
+    }
+  };
 
   return (
     <div className="mt-8 flow-root bg-white p-5 rounded-lg">
@@ -96,7 +101,8 @@ const dispatch = useDispatch();
                   <td className="hidden px-3 py-4 text-sm text-gray-500 sm:table-cell">{demographic.civil_status}</td>
                   <td className="px-3 py-4 text-sm text-gray-500">{demographic.id_card_number}</td>
                   <td className="py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-0">
-                    <a href={`/admin/demographic_data/${demographic.id}`} className="text-indigo-600 hover:text-indigo-900">View</a>
+                    <a href={`/admin/demographic_data/${demographic.id}`} className="text-indigo-600 hover:text-indigo-900">View</a> |
+                    <a onClick={() => handleDelete(demographic.id)} className="text-red-600 hover:text-red-900 cursor-pointer"> Delete</a>
                   </td>
                 </tr>
               ))

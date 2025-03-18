@@ -23,7 +23,7 @@ class DemographicController extends Controller
         ]);
     }
 
-    
+
     /**
      * Show the form for creating a new resource.
      */
@@ -162,6 +162,7 @@ class DemographicController extends Controller
      */
     public function destroy(Demographic $demographic)
     {
-        //
+        $demographic->delete(); // Delete the record
+        return response()->json(['message' => 'Demographic deleted successfully.']);
     }
 }
