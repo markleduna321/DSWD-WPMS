@@ -105,6 +105,46 @@ export default function DemographicDataCreateSection() {
   const typeEvac = [
     { value: 'Calatrava Evacuation Center', label: 'Calatrava Evacuation Center' },
     { value: 'Bantayanon Evacuation Center', label: 'Bantayanon Evacuation Center' },
+    { value: 'Agpangi', label: 'Agpangi' },
+    { value: 'Ani-e', label: 'Ani-e' },
+    { value: 'Bagacay', label: 'Bagacay' },
+    { value: 'Bantayanon', label: 'Bantayanon' },
+    { value: 'Buenavista', label: 'Buenavista' },
+    { value: 'Cabungahan', label: 'Cabungahan' },
+    { value: 'Calampisawan', label: 'Calampisawan' },
+    { value: 'Cambayobo', label: 'Cambayobo' },
+    { value: 'Castellano', label: 'Castellano' },
+    { value: 'Cruz', label: 'Cruz' },
+    { value: 'Dolis', label: 'Dolis' },
+    { value: 'Hilub-Ang', label: 'Hilub-Ang' },
+    { value: 'Hinab-Ongan', label: 'Hinab-Ongan' },
+    { value: 'Ilaya', label: 'Ilaya' },
+    { value: 'Laga-an', label: 'Laga-an' },
+    { value: 'Lalong', label: 'Lalong' },
+    { value: 'Lemery', label: 'Lemery' },
+    { value: 'Lipat-on', label: 'Lipat-on' },
+    { value: 'Lo-ok (Poblacion)', label: 'Lo-ok (Poblacion)' },
+    { value: 'Ma-aslob', label: 'Ma-aslob' },
+    { value: 'Macasilao', label: 'Macasilao' },
+    { value: 'Malanog', label: 'Malanog' },
+    { value: 'Malatas', label: 'Malatas' },
+    { value: 'Marcelo', label: 'Marcelo' },
+    { value: 'Mina-utok', label: 'Mina-utok' },
+    { value: 'Menchaca', label: 'Menchaca' },
+    { value: 'Minapasuk', label: 'Minapasuk' },
+    { value: 'Mahilum', label: 'Mahilum' },
+    { value: 'Paghumayan', label: 'Paghumayan' },
+    { value: 'Pantao', label: 'Pantao' },
+    { value: 'Patun-an', label: 'Patun-an' },
+    { value: 'Pinocutan', label: 'Pinocutan' },
+    { value: 'Refugio', label: 'Refugio' },
+    { value: 'San Benito', label: 'San Benito' },
+    { value: 'San Isidro', label: 'San Isidro' },
+    { value: 'Suba (Poblacion)', label: 'Suba (Poblacion)' },
+    { value: 'Telim', label: 'Telim' },
+    { value: 'Tigbao', label: 'Tigbao' },
+    { value: 'Tigbon', label: 'Tigbon' },
+    { value: 'Winaswasan', label: 'Winaswasan' },
   ];
 
   const barangay = [
@@ -162,7 +202,7 @@ export default function DemographicDataCreateSection() {
           icon={<PlusIcon className="h-5 w-5" />}
           onClick={openModal}
         >
-          Add Content
+          Add Data
         </Button>
 
         <Modal isOpen={isModalOpen} onClose={closeModal} width='w-3/4'>

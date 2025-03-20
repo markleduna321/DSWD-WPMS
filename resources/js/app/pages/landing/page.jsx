@@ -224,7 +224,7 @@ export default function LandingPage() {
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <img
             alt="Descriptive text"
-            src="/img/mswdo.jpg"
+            src="/img/newl.jpeg"
             className="w-full object-cover"
           />
         </div>
