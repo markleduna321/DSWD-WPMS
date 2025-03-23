@@ -7,6 +7,7 @@ import ChartSection from './_sections/chart-section'
 import { useEffect } from 'react'
 import store from '@/app/store/store'
 import { get_beneficiaries_thunk, get_contents_thunk, get_countbrgy_thunk } from './_redux/dashboard-thunk'
+import StatsChartSection from './_sections/stats-chart-section'
 
 
 export default function AdminDashboardPage() {
@@ -27,18 +28,22 @@ export default function AdminDashboardPage() {
   }
   return (
     <AdminLayout>
-        <div className=''>
+      <div className='min-h-screen overflow-y-auto'>
         <div className='flex gap-4 justify-center'>
-          <NewsCardSection /> 
+          <NewsCardSection />
           {/* <UsersCardSection/> */}
           <BeneficiaryCardSection />
         </div>
 
         <div className='mt-4 bg-white shadow sm:rounded-md p-5'>
-          <ChartSection/>
+          <ChartSection />
         </div>
+
+        <div className='mt-4 bg-white shadow sm:rounded-md p-5'>
+          <StatsChartSection />
         </div>
-        
+      </div>
+
     </AdminLayout>
   )
 }

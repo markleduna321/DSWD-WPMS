@@ -69,7 +69,7 @@ export default function AdminLayout({ children }) {
 
   return (
     <>
-      <div className="h-screen overflow-hidden bg-gray-300">
+      <div className="h-screen overflow-auto bg-gray-300">
         <Dialog open={sidebarOpen} onClose={setSidebarOpen} className="relative z-50 lg:hidden">
           <DialogBackdrop
             transition

@@ -1,1 +1,0 @@
-import{j as e}from"./app-DMF23iq6.js";function a(){return e.jsxs("div",{className:" bg-white rounded-md shadow-2xl  w-fit",children:[e.jsx("div",{className:" bg-slate-100 p-3 text-xl font-bold",children:"Number of Barangays with Active Beneficiaries"}),e.jsx("div",{className:" text-9xl p-3 text-center",children:"24"})]})}export{a as default};
