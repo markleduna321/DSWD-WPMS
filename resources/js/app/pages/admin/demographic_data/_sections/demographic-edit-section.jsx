@@ -25,9 +25,9 @@ export default function DemographicEditSection({ selectedDemographic, onClose })
 
     const [familyMembers, setFamilyMembers] = useState(
         selectedDemographic.familyMembers || []
-      );
+    );
 
-    
+
 
     useEffect(() => {
         setDemographicData({
@@ -138,118 +138,118 @@ export default function DemographicEditSection({ selectedDemographic, onClose })
 
                     {/* Family Members */}
                     <div>
-    <form onSubmit={handleSubmit}>
-        <div className="space-y-4">
-            {/* Existing Inputs */}
-            <div>
-                <label htmlFor="city" className="block text-sm font-medium text-gray-700">
-                    City
-                </label>
-                <input
-                    type="text"
-                    name="city"
-                    id="city"
-                    value={demographicData.city}
-                    onChange={(e) => setDemographicData({ ...demographicData, city: e.target.value })}
-                    className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50"
-                />
-                <InputError message={errors?.city} />
-            </div>
+                        <form onSubmit={handleSubmit}>
+                            <div className="space-y-4">
+                                {/* Existing Inputs */}
+                                <div>
+                                    <label htmlFor="city" className="block text-sm font-medium text-gray-700">
+                                        City
+                                    </label>
+                                    <input
+                                        type="text"
+                                        name="city"
+                                        id="city"
+                                        value={demographicData.city}
+                                        onChange={(e) => setDemographicData({ ...demographicData, city: e.target.value })}
+                                        className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50"
+                                    />
+                                    <InputError message={errors?.city} />
+                                </div>
 
-            {/* Family Members */}
-            <div>
-                <h3 className="text-lg font-semibold text-gray-700">Family Members</h3>
-                {familyMembers.length > 0 ? (
-                    familyMembers.map((member, index) => (
-                        <div key={index} className="mt-4 p-4 bg-gray-50 rounded-md shadow-sm space-y-2">
-                            {/* Relation */}
-                            <div>
-                                <label
-                                    htmlFor={`relation-${index}`}
-                                    className="block text-sm font-medium text-gray-700"
-                                >
-                                    Relation
-                                </label>
-                                <input
-                                    type="text"
-                                    id={`relation-${index}`}
-                                    value={member.relation}
-                                    onChange={(e) => {
-                                        const updatedMembers = [...familyMembers];
-                                        updatedMembers[index].relation = e.target.value;
-                                        setFamilyMembers(updatedMembers);
-                                    }}
-                                    className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50"
-                                />
+                                {/* Family Members */}
+                                <div>
+                                    <h3 className="text-lg font-semibold text-gray-700">Family Members</h3>
+                                    {familyMembers.length > 0 ? (
+                                        familyMembers.map((member, index) => (
+                                            <div key={index} className="mt-4 p-4 bg-gray-50 rounded-md shadow-sm space-y-2">
+                                                {/* Relation */}
+                                                <div>
+                                                    <label
+                                                        htmlFor={`relation-${index}`}
+                                                        className="block text-sm font-medium text-gray-700"
+                                                    >
+                                                        Relation
+                                                    </label>
+                                                    <input
+                                                        type="text"
+                                                        id={`relation-${index}`}
+                                                        value={member.relation}
+                                                        onChange={(e) => {
+                                                            const updatedMembers = [...familyMembers];
+                                                            updatedMembers[index].relation = e.target.value;
+                                                            setFamilyMembers(updatedMembers);
+                                                        }}
+                                                        className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50"
+                                                    />
+                                                </div>
+
+                                                {/* Name */}
+                                                <div>
+                                                    <label
+                                                        htmlFor={`name-${index}`}
+                                                        className="block text-sm font-medium text-gray-700"
+                                                    >
+                                                        Name
+                                                    </label>
+                                                    <input
+                                                        type="text"
+                                                        id={`name-${index}`}
+                                                        value={member.name}
+                                                        onChange={(e) => {
+                                                            const updatedMembers = [...familyMembers];
+                                                            updatedMembers[index].name = e.target.value;
+                                                            setFamilyMembers(updatedMembers);
+                                                        }}
+                                                        className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50"
+                                                    />
+                                                </div>
+
+                                                {/* Age */}
+                                                <div>
+                                                    <label
+                                                        htmlFor={`age-${index}`}
+                                                        className="block text-sm font-medium text-gray-700"
+                                                    >
+                                                        Age
+                                                    </label>
+                                                    <input
+                                                        type="number"
+                                                        id={`age-${index}`}
+                                                        value={member.age}
+                                                        onChange={(e) => {
+                                                            const updatedMembers = [...familyMembers];
+                                                            updatedMembers[index].age = e.target.value;
+                                                            setFamilyMembers(updatedMembers);
+                                                        }}
+                                                        className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50"
+                                                    />
+                                                </div>
+                                            </div>
+                                        ))
+                                    ) : (
+                                        <p className="text-sm text-gray-500">No family members available.</p>
+                                    )}
+                                </div>
+
+                                {/* Submit and Cancel Buttons */}
+                                <div className="flex justify-end space-x-4">
+                                    <button
+                                        type="button"
+                                        onClick={onClose}
+                                        className="bg-gray-200 text-gray-700 px-4 py-2 rounded-md"
+                                    >
+                                        Cancel
+                                    </button>
+                                    <button
+                                        type="submit"
+                                        className="bg-indigo-600 text-white px-4 py-2 rounded-md"
+                                    >
+                                        Save
+                                    </button>
+                                </div>
                             </div>
-
-                            {/* Name */}
-                            <div>
-                                <label
-                                    htmlFor={`name-${index}`}
-                                    className="block text-sm font-medium text-gray-700"
-                                >
-                                    Name
-                                </label>
-                                <input
-                                    type="text"
-                                    id={`name-${index}`}
-                                    value={member.name}
-                                    onChange={(e) => {
-                                        const updatedMembers = [...familyMembers];
-                                        updatedMembers[index].name = e.target.value;
-                                        setFamilyMembers(updatedMembers);
-                                    }}
-                                    className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50"
-                                />
-                            </div>
-
-                            {/* Age */}
-                            <div>
-                                <label
-                                    htmlFor={`age-${index}`}
-                                    className="block text-sm font-medium text-gray-700"
-                                >
-                                    Age
-                                </label>
-                                <input
-                                    type="number"
-                                    id={`age-${index}`}
-                                    value={member.age}
-                                    onChange={(e) => {
-                                        const updatedMembers = [...familyMembers];
-                                        updatedMembers[index].age = e.target.value;
-                                        setFamilyMembers(updatedMembers);
-                                    }}
-                                    className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50"
-                                />
-                            </div>
-                        </div>
-                    ))
-                ) : (
-                    <p className="text-sm text-gray-500">No family members available.</p>
-                )}
-            </div>
-
-            {/* Submit and Cancel Buttons */}
-            <div className="flex justify-end space-x-4">
-                <button
-                    type="button"
-                    onClick={onClose}
-                    className="bg-gray-200 text-gray-700 px-4 py-2 rounded-md"
-                >
-                    Cancel
-                </button>
-                <button
-                    type="submit"
-                    className="bg-indigo-600 text-white px-4 py-2 rounded-md"
-                >
-                    Save
-                </button>
-            </div>
-        </div>
-    </form>
-</div>
+                        </form>
+                    </div>
 
 
 

@@ -1,44 +1,70 @@
-import React from 'react'
-import { useSelector } from 'react-redux';
-import { selectDemographic, selectError, selectLoading } from '../../_redux/demographic-data-slice';
-import InputTextComponent from '@/app/pages/components/input-text-component';
-import InputLabelComponent from '@/app/pages/components/input-label-component';
-import SelectComponent from '@/app/pages/components/input-select';
-import Button from '@/app/pages/components/button';
-import store from '@/app/store/store';
-import { update_demographic_data_thunk } from '../../_redux/demographic-data-thunk';
-import { useState } from 'react';
-import { useEffect } from 'react';
-import { router } from '@inertiajs/react';
+import React, { useState, useEffect, useRef } from "react";
+import { useSelector } from "react-redux";
+import { selectDemographic, selectError, selectLoading } from "../../_redux/demographic-data-slice";
+import store from "@/app/store/store";
+import { update_demographic_data_thunk } from "../../_redux/demographic-data-thunk";
+import { router } from "@inertiajs/react";
+import InputLabelComponent from "@/app/pages/components/input-label-component";
+import InputTextComponent from "@/app/pages/components/input-text-component";
+import SelectComponent from "@/app/pages/components/input-select";
+import Button from "@/app/pages/components/button";
 
 export default function DemographicDetailSection() {
-    const demographic = useSelector(selectDemographic); // Use selector to access purchase order
-    const loading = useSelector(selectLoading); // Use selector to access loading state
-    const error = useSelector(selectError); // Use selector to access error state
-    const [form, setForm] = useState({
-        family_members: []
-    })
+    const demographic = useSelector(selectDemographic);
+    const loading = useSelector(selectLoading);
+    const error = useSelector(selectError);
+    const [form, setForm] = useState({ family_members: [] });
 
+    const formRef = useRef(null); // ✅ Keeps reference to the form
 
     useEffect(() => {
-        setForm(demographic)
-    }, [demographic.id]);
-    // Handle loading state
-    if (loading) {
-        return <p>Loading...</p>;
+        if (demographic) {
+            setForm((prev) => ({
+                ...prev,
+                ...demographic, // ✅ Prevents direct mutation
+            }));
+        }
+    }, [demographic]); // ✅ Fix dependency
+
+    if (loading) return <p>Loading...</p>;
+    if (error) return <p>Error: {error}</p>;
+    if (!demographic || Object.keys(demographic).length === 0) return <p>No data available.</p>;
+
+    async function handleSubmit(e) {
+        e.preventDefault();
+        await store.dispatch(update_demographic_data_thunk(form));
+        router.visit('/admin/demographic_data');
     }
 
-    // Handle error state
-    if (error) {
-        return <p>Error: {error}</p>;
-    }
+    const handlePrint = () => {
+        if (!formRef.current) {
+            console.error("Form content not found.");
+            return;
+        }
 
-    // Check if purchaseOrder exists
-    if (!demographic || Object.keys(demographic).length === 0) {
-        return <p>No purchase order details available.</p>;
-    }
-    console.log('demographic', form)
+        const printWindow = window.open("", "", "height=600,width=800");
 
+        printWindow.document.write(`
+          <html>
+            <head>
+              <title>Form Report</title>
+              <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+              <style>
+                @media print { .hidden-print { display: none; } }
+              </style>
+            </head>
+            <body class="p-5">
+              <div class="mx-auto bg-white shadow-lg p-6 rounded-lg">
+                <h2 class="text-2xl font-semibold text-center mb-4">Location of the Affected Family</h2>
+                ${formRef.current.outerHTML}
+              </div>
+            </body>
+          </html>
+        `);
+
+        printWindow.document.close();
+        setTimeout(() => printWindow.print(), 500);
+    };
 
     const typeOptionsG = [
         { value: 'Male', label: 'Male' },
@@ -52,30 +78,19 @@ export default function DemographicDetailSection() {
         { value: 'Seperated', label: 'Seperated' },
     ];
 
-
-    async function handleSubmit(e) {
-        e.preventDefault();
-
-        await store.dispatch(update_demographic_data_thunk(form))
-        router.visit('/admin/demographic_data')
-
-    }
-
-    const handleFamilyMemberChange = (index, e) => {
-        const { name, value } = e.target;
-        const updatedMembers = [...form.family_members];
-        updatedMembers[index] = { ...updatedMembers[index], [name]: value };
-
-        // Update the state correctly by preserving the rest of the `form` object
-        setForm((prevForm) => ({
-            ...prevForm,
-            family_members: updatedMembers,
-        }));
-
-    };
     return (
-        <div className="mt-6 p-5 rounded-md shadow-2xl border-gray-100 bg-white">
-            <h1 className='mb-5 font-bold text-3xl'>Demographic Data of : {demographic.head_last_name || 'N/A'} {demographic.head_first_name || 'N/A'}</h1>
+        <div className="mt-6 p-5 rounded-md shadow-2xl border-gray-100 bg-white" id="printable-form" ref={formRef}>
+
+            <div className='flex justify-between'>
+                <h1 className='mb-5 font-bold text-3xl'>Demographic Data of : {demographic.head_last_name || 'N/A'} {demographic.head_first_name || 'N/A'}</h1>
+                {/* Print Button */}
+                <button
+                    onClick={handlePrint}
+                    className=" px-4 bg-blue-500 text-white rounded hover:bg-blue-700"
+                >
+                    Print Form
+                </button>
+            </div>
             <hr />
 
             <div className=' overflow-auto h-[700px]'>
@@ -631,7 +646,7 @@ export default function DemographicDetailSection() {
                                         </div>
                                     </div>
 
-                                    
+
                                 </div>
                             ))}
                         </div>

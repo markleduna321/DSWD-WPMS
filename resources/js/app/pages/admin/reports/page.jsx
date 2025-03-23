@@ -78,7 +78,7 @@ export default function ReportsPage() {
               className="inline-flex items-center px-2 h-8 text-white bg-blue-600 rounded-md hover:bg-blue-700"
             >
               <PrinterIcon className="h-5 w-5" />
-              
+
             </button>
 
             <button
@@ -86,7 +86,7 @@ export default function ReportsPage() {
               className="inline-flex items-center px-2 h-8 text-white bg-green-600 rounded-md hover:bg-green-700"
             >
               <ArrowDownIcon className="h-5 w-5" />
-             
+
             </button>
           </div>
 
