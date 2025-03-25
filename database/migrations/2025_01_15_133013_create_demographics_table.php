@@ -36,6 +36,8 @@ return new class extends Migration
             $table->string('id_card_number')->nullable();
             $table->string('contact_number')->nullable();
             $table->string('permanent_address')->nullable();
+            $table->string('lng')->nullable();
+            $table->string('lat')->nullable();
             $table->timestamps();
         });
     }

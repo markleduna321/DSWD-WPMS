@@ -55,7 +55,7 @@ export default function StatsChartSection() {
     const ageData51plus = chartMonths.map((month) => monthData[month].ageGroups["51+"]);
 
     return (
-        <div className="flex flex-col items-center h-[600px]">
+        <div className="flex flex-col items-center">
             <h1 className="text-center mb-1">Beneficiaries by Month, Gender & Age</h1>
             <div className="w-full max-w-full">
                 <div className="flex justify-center">

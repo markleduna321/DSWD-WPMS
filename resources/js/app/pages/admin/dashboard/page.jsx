@@ -1,49 +1,58 @@
-import React from 'react'
-import AdminLayout from '../layout'
-import NewsCardSection from './_sections/news-card-section'
-import UsersCardSection from './_sections/users-card-section'
-import BeneficiaryCardSection from './_sections/beneficiary-card-section'
-import ChartSection from './_sections/chart-section'
-import { useEffect } from 'react'
-import store from '@/app/store/store'
-import { get_beneficiaries_thunk, get_contents_thunk, get_countbrgy_thunk } from './_redux/dashboard-thunk'
-import StatsChartSection from './_sections/stats-chart-section'
-
+import React from "react";
+import AdminLayout from "../layout";
+import NewsCardSection from "./_sections/news-card-section";
+import UsersCardSection from "./_sections/users-card-section";
+import BeneficiaryCardSection from "./_sections/beneficiary-card-section";
+import ChartSection from "./_sections/chart-section";
+import { useEffect } from "react";
+import store from "@/app/store/store";
+import {
+    get_beneficiaries_thunk,
+    get_contents_thunk,
+    get_countbrgy_thunk,
+} from "./_redux/dashboard-thunk";
+import StatsChartSection from "./_sections/stats-chart-section";
+import BarangayBection from "./_sections/barangay-section";
 
 export default function AdminDashboardPage() {
-  useEffect(() => {
-    store.dispatch(get_beneficiaries_thunk())
-  }, []);
+    useEffect(() => {
+        store.dispatch(get_beneficiaries_thunk());
+    }, []);
 
-  useEffect(() => {
-    store.dispatch(get_contents_thunk())
-  }, []);
+    useEffect(() => {
+        store.dispatch(get_contents_thunk());
+    }, []);
 
-  useEffect(() => {
-    store.dispatch(get_countbrgy_thunk())
-  }, []);
+    useEffect(() => {
+        store.dispatch(get_countbrgy_thunk());
+    }, []);
 
-  function handleAccountAdded(params) {
-    // Handle account addition here
-  }
-  return (
-    <AdminLayout>
-      <div className='min-h-screen overflow-y-auto'>
-        <div className='flex gap-4 justify-center'>
-          <NewsCardSection />
-          {/* <UsersCardSection/> */}
-          <BeneficiaryCardSection />
-        </div>
+    function handleAccountAdded(params) {
+        // Handle account addition here
+    }
+    return (
+        <AdminLayout>
+            <div className="min-h-screen overflow-y-auto">
+                <div className="flex gap-4 justify-center">
+                    <NewsCardSection />
+                    {/* <UsersCardSection/> */}
+                    <BeneficiaryCardSection />
+                </div>
 
-        <div className='mt-4 bg-white shadow sm:rounded-md p-5'>
-          <ChartSection />
-        </div>
+                <div className="flex gap-3">
+                    <div className="mt-4 bg-white shadow sm:rounded-md p-5">
+                        <ChartSection />
+                    </div>
 
-        <div className='mt-4 bg-white shadow sm:rounded-md p-5'>
-          <StatsChartSection />
-        </div>
-      </div>
-
-    </AdminLayout>
-  )
+                    <div className="mt-4 bg-white shadow sm:rounded-md p-5">
+                        <StatsChartSection />
+                    </div>
+                </div>
+                <div className="mt-4 bg-white shadow sm:rounded-md p-5">
+                <BarangayBection />
+                  </div>
+                
+            </div>
+        </AdminLayout>
+    );
 }

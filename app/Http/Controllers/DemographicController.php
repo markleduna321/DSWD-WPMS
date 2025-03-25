@@ -13,6 +13,14 @@ class DemographicController extends Controller
     /**
      * Display a listing of the resource.
      */
+
+    public function get_barangay(Request $request)
+    {
+        $demographics = Demographic::where('barangay', $request->brgy)->get();
+        return response()->json([
+            'response' => $demographics,
+        ]);
+    }
     public function index()
     {
         $perPage = 10; // Number of items per page
@@ -64,6 +72,8 @@ class DemographicController extends Controller
             'contact_number' => 'nullable|string', // This is nullable if it can be empty
 
             'permanent_address' => 'required|string',
+            'lng' => 'required',
+            'lat' => 'required',
             // 'role_id' => 'nullable|string',
             // 'familyMembers' => 'nullable|array',
             // 'familyMembers.*.firstName' => 'required|string',

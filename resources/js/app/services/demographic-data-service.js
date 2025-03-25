@@ -5,6 +5,12 @@ export async function create_demographic_service(data) {
     return res.data;
 }
 
+export async function get_barangay_service() {
+  const res = await axios.get('/api/get_barangay'+window.location.search);
+  return res.data;
+}
+
+
 // export async function get_demographics_service() {
 //     const res = await axios.get('/api/demographics');
 //     return res.data.response;

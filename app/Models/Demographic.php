@@ -32,7 +32,9 @@ class Demographic extends Model
         'id_card_presented',
         'id_card_number',
         'contact_number',
-        'permanent_address'
+        'permanent_address',
+        'lng',
+        'lat'
     ];
 
     /**

@@ -32,7 +32,7 @@ export default function ChartSection() {
     console.log('Filtered Year Data:', filteredYearData);
 
     return (
-        <div className="flex flex-col items-center h-[600px]">
+        <div className="flex flex-col items-center ">
             <h1 className="text-center mb-1">Beneficiaries per Year (Last 5 Years)</h1>
             <div className="w-full max-w-full ">
                 <div className="flex justify-center">

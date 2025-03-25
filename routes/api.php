@@ -32,3 +32,6 @@ Route::get('/get_latest_content', [ContentController::class, 'get_latest_content
 Route::get('/beneficiaries', [DashboardController::class, 'beneficiaries']);
 Route::get('/dashboardContents', [DashboardController::class, 'dashboardContents']);
 Route::get('/countbrgy', [DashboardController::class, 'countbrgy']);
+
+
+Route::get('/get_barangay', [DemographicController::class, 'get_barangay']);

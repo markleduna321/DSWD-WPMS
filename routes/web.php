@@ -51,6 +51,10 @@ Route::middleware('auth:sanctum', 'role:1')->prefix('admin')->group(function () 
         return Inertia::render('admin/dashboard/page');
     });
 
+    Route::get('barangay', function () {
+        return Inertia::render('admin/maps/page');
+    });
+
     Route::prefix('user_management')->group(function () {
         Route::get('/', function () {
         return Inertia::render('admin/user_management/page');
