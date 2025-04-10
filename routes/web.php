@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\DemographicController;
 use App\Http\Controllers\ProfileController;
 use App\Models\Demographic;
 use Illuminate\Foundation\Application;
@@ -107,6 +108,16 @@ Route::middleware('auth:sanctum', 'role:1')->prefix('admin')->group(function () 
             ]);
         });
     });
+
+    Route::get('approved', function () {
+        return Inertia::render('admin/approved/page');
+    });
+
+    Route::get('released', function () {
+        return Inertia::render('admin/released/page');
+    });
+
+    Route::patch('demographic_data/{id}/status', [DemographicController::class, 'updateStatus']);
 
 });
 

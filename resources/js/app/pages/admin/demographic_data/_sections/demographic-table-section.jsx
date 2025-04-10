@@ -74,10 +74,10 @@ export default function DemographicTableSection() {
                 scope="col"
                 className="hidden px-3 py-3.5 text-left text-sm font-semibold text-gray-900 sm:table-cell"
               >
-                Civil Status
+                ID Card Number
               </th>
               <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
-                ID Card Number
+                Status
               </th>
               <th scope="col" className="relative py-3.5 pl-3 pr-4 sm:pr-0">
                 <span className="sr-only">Edit</span>
@@ -98,8 +98,32 @@ export default function DemographicTableSection() {
                     </dl>
                   </td>
                   <td className="hidden px-3 py-4 text-sm text-gray-500 lg:table-cell">{demographic.permanent_address}</td>
-                  <td className="hidden px-3 py-4 text-sm text-gray-500 sm:table-cell">{demographic.civil_status}</td>
-                  <td className="px-3 py-4 text-sm text-gray-500">{demographic.id_card_number}</td>
+                  <td className="hidden px-3 py-4 text-sm text-gray-500 sm:table-cell">{demographic.id_card_number}</td>
+                  <td className="px-3 py-4 text-sm text-gray-500">
+                    {demographic.status == "pending" && (
+                      <>
+                        <span class="bg-yellow-100 text-yellow-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded-sm dark:bg-yellow-900 dark:text-yellow-300">{demographic.status}</span>
+                      </>
+                    )}
+
+                    {demographic.status == "approved" && (
+                      <>
+                        <span class="bg-green-100 text-green-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded-sm dark:bg-green-900 dark:text-green-300">{demographic.status}</span>
+                      </>
+                    )}
+
+                    {demographic.status == "disapproved" && (
+                      <>
+                        <span class="bg-red-100 text-red-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded-sm dark:bg-red-900 dark:text-red-300">{demographic.status}</span>
+                      </>
+                    )}
+
+                    {demographic.status == "released" && (
+                      <>
+                        <span class="bg-blue-100 text-blue-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded-sm dark:bg-blue-900 dark:text-blue-300">{demographic.status}</span>
+                      </>
+                    )}
+                  </td>
                   <td className="py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-0">
                     <a href={`/admin/demographic_data/${demographic.id}`} className="text-indigo-600 hover:text-indigo-900">View</a> |
                     <a onClick={() => handleDelete(demographic.id)} className="text-red-600 hover:text-red-900 cursor-pointer"> Delete</a>

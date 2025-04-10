@@ -32,6 +32,9 @@ Route::get('/get_latest_content', [ContentController::class, 'get_latest_content
 Route::get('/beneficiaries', [DashboardController::class, 'beneficiaries']);
 Route::get('/dashboardContents', [DashboardController::class, 'dashboardContents']);
 Route::get('/countbrgy', [DashboardController::class, 'countbrgy']);
+Route::patch('/updateStatus', [DemographicController::class, 'updateStatus']);
+Route::patch('/admin/demographic_data/{id}/status', [DemographicController::class, 'updateStatus']);
+
 
 
 Route::get('/get_barangay', [DemographicController::class, 'get_barangay']);

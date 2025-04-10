@@ -32,6 +32,8 @@ const navigation = [
   { name: 'Page Contents', href: '/admin/contents', icon: FolderIcon },
   { name: 'Reports', href: '/admin/reports', icon: ChartPieIcon },
   { name: 'Demographic Data', href: '/admin/demographic_data', icon: IdentificationIcon },
+  { name: 'Approved Assistance', href: '/admin/approved', icon: IdentificationIcon },
+  { name: 'Released Assistance Data', href: '/admin/released', icon: IdentificationIcon },
 ];
 
 const userNavigation = [

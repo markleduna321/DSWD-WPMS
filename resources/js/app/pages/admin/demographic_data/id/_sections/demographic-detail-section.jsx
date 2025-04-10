@@ -6,7 +6,7 @@ import {
     selectLoading,
 } from "../../_redux/demographic-data-slice";
 import store from "@/app/store/store";
-import { update_demographic_data_thunk } from "../../_redux/demographic-data-thunk";
+import { update_demographic_data_thunk, update_demographic_status_data_thunk } from "../../_redux/demographic-data-thunk";
 import { router } from "@inertiajs/react";
 import InputLabelComponent from "@/app/pages/components/input-label-component";
 import InputTextComponent from "@/app/pages/components/input-text-component";
@@ -14,6 +14,7 @@ import SelectComponent from "@/app/pages/components/input-select";
 import Button from "@/app/pages/components/button";
 import EditMap from "../../../maps/edit-map";
 import Swal from "sweetalert2";
+import { CheckBadgeIcon, CheckCircleIcon, CheckIcon, HandThumbDownIcon, HandThumbUpIcon, TrashIcon } from "@heroicons/react/24/outline";
 
 export default function DemographicDetailSection() {
     const demographic = useSelector(selectDemographic);
@@ -48,6 +49,28 @@ export default function DemographicDetailSection() {
             timer: 1500,
         });
     }
+
+    const updateStatus = async (id, newStatus) => {
+        try {
+            await axios.patch(`/admin/demographic_data/${id}/status`, { status: newStatus });
+
+            Swal.fire({
+                icon: "success",
+                title: `Status updated to ${newStatus}`,
+                showConfirmButton: false,
+                timer: 1500,
+            });
+
+            // Optionally refresh your data
+            // fetchData(); or window.location.reload();
+        } catch (error) {
+            console.error("Status update failed", error);
+            Swal.fire({
+                icon: "error",
+                title: "Failed to update status",
+            });
+        }
+    };
 
     const handlePrint = () => {
         if (!formRef.current) {
@@ -102,13 +125,44 @@ export default function DemographicDetailSection() {
                     Demographic Data of : {demographic.head_last_name || "N/A"}{" "}
                     {demographic.head_first_name || "N/A"}
                 </h1>
-                {/* Print Button */}
-                <button
-                    onClick={handlePrint}
-                    className=" px-4 bg-blue-500 text-white rounded hover:bg-blue-700"
-                >
-                    Print Form
-                </button>
+                <div className="flex gap-4">
+                    {/* Print Button */}
+                    <button
+                        onClick={handlePrint}
+                        className=" px-4 bg-blue-500 text-white rounded hover:bg-blue-700"
+                    >
+                        Print Form
+                    </button>
+                    {demographic?.status === "pending" && (
+                        <>
+                            <button
+                                onClick={() => updateStatus(demographic.id, 'approved')}
+                                className="px-4 bg-green-600 text-white rounded hover:bg-blue-700"
+                            >
+                                <HandThumbUpIcon className="h-6" />
+                            </button>
+
+                            <button
+                                onClick={() => updateStatus(demographic.id, 'disapproved')}
+                                className="px-4 bg-red-600 text-white rounded hover:bg-blue-700"
+                            >
+                                <HandThumbDownIcon className="h-6" />
+                            </button>
+                        </>
+                    )}
+
+                    {demographic?.status === "approved" && (
+                        <>
+                            <button
+                                onClick={() => updateStatus(demographic.id, 'released')}
+                                className="px-4 bg-green-600 text-white rounded hover:bg-blue-700"
+                            >
+                                <CheckIcon className="h-6" /> Release
+                            </button>
+                        </>
+                    )}
+                </div>
+
             </div>
             <hr />
 

@@ -33,6 +33,11 @@ export async function update_demographic_service(data) {
     return response.data;
 };
 
+export async function update_demographic_status_service(data) {
+  const response = await axios.put(`/api/updateStatus/${data.id}`, data);
+  return response.data;
+};
+
 export const deleteDemographicService = async (id) => {
     try {
       const response = await fetch(`/api/demographics/${id}`, {

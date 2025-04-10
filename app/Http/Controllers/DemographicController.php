@@ -167,6 +167,20 @@ class DemographicController extends Controller
         return response()->json('success', 200);
     }
 
+
+    public function updateStatus(Request $request, $id)
+    {
+        $request->validate([
+            'status' => 'required|string', // Adjust validation rules as needed
+        ]);
+
+        $demographic = Demographic::findOrFail($id);
+        $demographic->status = $request->status;
+        $demographic->save();
+
+        return response()->json(['message' => 'Status updated successfully'], 200);
+    }
+
     /**
      * Remove the specified resource from storage.
      */

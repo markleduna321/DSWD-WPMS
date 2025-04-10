@@ -23,7 +23,7 @@ class DemographicSeeder extends Seeder
             "Telim", "Tigbao", "Tigbon", "Winaswasan"
         ];
         foreach ($barangays as $barangay) {
-            for ($i = 0; $i < 5; $i++) {
+            for ($i = 0; $i < 2; $i++) {
                 $data[] = [
                     'region' => 'Region 6',
                     'province' => 'Negros Occidental',
@@ -52,6 +52,7 @@ class DemographicSeeder extends Seeder
                     'updated_at' => Carbon::now(),
                     'lng' => 123.482. + ($i *1),
                     'lat' => 10.59. + ($i *1),
+                    'status' => $faker->randomElement(['approved', 'disapproved', 'pending', 'released']),
                 ];
             }
         }

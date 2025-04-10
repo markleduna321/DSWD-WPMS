@@ -38,6 +38,7 @@ return new class extends Migration
             $table->string('permanent_address')->nullable();
             $table->string('lng')->nullable();
             $table->string('lat')->nullable();
+            $table->string('status')->nullable();
             $table->timestamps();
         });
     }
