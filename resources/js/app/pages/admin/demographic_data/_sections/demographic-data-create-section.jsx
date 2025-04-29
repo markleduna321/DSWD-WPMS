@@ -8,7 +8,7 @@ import InputError from "@/Components/InputError";
 import { PlusIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { create_demographic_thunk } from "../_redux/demographic-data-thunk";
+import { create_demographic_thunk, get_demographics_thunk } from "../_redux/demographic-data-thunk";
 import store from "@/app/store/store";
 import AddMap from "../../maps/add-map";
 import Swal from "sweetalert2";
@@ -41,11 +41,28 @@ export default function DemographicDataCreateSection() {
     // Handle form input changes
     const handleChange = (e) => {
         const { name, value } = e.target;
-        setNewAgent((prevState) => ({
-            ...prevState,
-            [name]: value,
-        }));
+
+        setNewAgent((prevState) => {
+            const updatedState = {
+                ...prevState,
+                [name]: value,
+            };
+
+            if (name === "birthday") {
+                const birthDate = new Date(value);
+                const today = new Date();
+                let age = today.getFullYear() - birthDate.getFullYear();
+                const m = today.getMonth() - birthDate.getMonth();
+                if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+                    age--;
+                }
+                updatedState.age = age;
+            }
+
+            return updatedState;
+        });
     };
+
 
     // Handle form submission
     const handleSubmit = async (e) => {
@@ -56,8 +73,10 @@ export default function DemographicDataCreateSection() {
                 create_demographic_thunk({
                     ...newAgent,
                     familyMembers: familyMembers,
+                    status: "pending",
                 })
             );
+            await store.dispatch(get_demographics_thunk())
             console.log("result", result);
             setNewAgent({
                 name: "",
@@ -89,9 +108,24 @@ export default function DemographicDataCreateSection() {
     const handleFamilyMemberChange = (index, e) => {
         const { name, value } = e.target;
         const updatedMembers = [...familyMembers];
+
         updatedMembers[index] = { ...updatedMembers[index], [name]: value };
+
+        // Automatically calculate age when birth_date changes
+        if (name === "birth_date") {
+            const birthDate = new Date(value);
+            const today = new Date();
+            let age = today.getFullYear() - birthDate.getFullYear();
+            const m = today.getMonth() - birthDate.getMonth();
+            if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+                age--;
+            }
+            updatedMembers[index].age = age;
+        }
+
         setFamilyMembers(updatedMembers);
     };
+
 
     // Add a new family member input group
     const addFamilyMember = () => {
@@ -122,9 +156,50 @@ export default function DemographicDataCreateSection() {
 
     const typeOptionsC = [
         { value: "Single", label: "Single" },
-        { value: "Merried", label: "Merried" },
+        { value: "Married", label: "Married" },
         { value: "Widowed", label: "Widowed" },
         { value: "Seperated", label: "Seperated" },
+    ];
+
+    const typeOptionsR = [
+        { value: "Roman Catholic", label: "Roman Catholic" },
+        { value: "Iglesia ni Cristo (Church of Christ)", label: "Iglesia ni Cristo (Church of Christ)" },
+        { value: "Baptist", label: "Baptist" },
+        { value: "Church of Christ (non-INC}", label: "Church of Christ (non-INC}" },
+        { value: "Islam", label: "Islam" },
+        { value: "Jehovah’s Witnesses", label: "Jehovah’s Witnesses" },
+        { value: "The Church of Jesus Christ of Latter-day Saints (Mormons)", label: "The Church of Jesus Christ of Latter-day Saints (Mormons)" },
+        { value: "Seventh-day Adventist Church", label: "Seventh-day Adventist Church" },
+        { value: "Evangelical Christianity", label: "Evangelical Christianity" },
+        { value: "Methodist", label: "Methodist" },
+        { value: "Iglesia Filipina Independiente", label: "Iglesia Filipina Independiente" },
+        { value: "Pentecostal (Assemblies of God)", label: "Pentecostal (Assemblies of God)" },
+        { value: "Indigenous Philippine Folk Religions (Animism, Anito worship)", label: "Indigenous Philippine Folk Religions (Animism, Anito worship)" },
+        { value: "Taoism", label: "Taoism" },
+        { value: "Chinese Folk Religion", label: "Chinese Folk Religion" },
+        { value: "Grace Communion International", label: "Grace Communion International" },
+        { value: "Pentecostal Missionary Church of Christ", label: "Pentecostal Missionary Church of Christ" },
+        { value: "Baháʼí Faith", label: "Baháʼí Faith" },
+        { value: "Buddhism", label: "Buddhism" },
+        { value: "Non-religious / Atheism/Agnosticism", label: "Non-religious / Atheism/Agnosticism" },
+    ];
+
+    const typeOptionsS = [
+        { value: "Jr.", label: "Jr." },
+        { value: "Sr.", label: "Sr." },
+        { value: "II", label: "II" },
+        { value: "III", label: "III" },
+        { value: "IV", label: "IV" },
+        { value: "V", label: "V" },
+        { value: "VI", label: "VI" },
+        { value: "VII", label: "VII" },
+    ];
+
+    const typeOptionsP = [
+        { value: "Pantawid Pamilyang Pilipino Program(4 P's)", label: "Pantawid Pamilyang Pilipino Program(4 P's)" },
+        { value: "Sustainable Livelihood Program(SLP)", label: "Sustainable Livelihood Program(SLP)" },
+        { value: "Kapit Bisig Laban sa Kahirapan-Comprehensive and Integrated Delivery of Social Services(KALAHI-CIDSS)", label: "Kapit Bisig Laban sa Kahirapan-Comprehensive and Integrated Delivery of Social Services(KALAHI-CIDSS)" },
+        { value: "Walang Gutom Program", label: "Walang Gutom Program" },
     ];
 
     const typeEvac = [
@@ -236,102 +311,101 @@ export default function DemographicDataCreateSection() {
                     Add Data
                 </Button>
 
-                <Modal isOpen={isModalOpen} onClose={closeModal} width="w-3/4">
-                    <h2 className="text-xl font-semibold mb-4">
+                <Modal isOpen={isModalOpen} width="w-3/4">
+                    <h2 className="text-xl font-semibold mb-4 flex justify-between">
                         FAMILY ASSISTANCE IN EMERGENCY AND DISASTER (FACED)
+                        <button
+                            className=" top-2 right-2 text-gray-500 hover:text-gray-700"
+                            onClick={closeModal}
+                        >
+                            <b><XMarkIcon className="h-6" /></b>
+                        </button>
                     </h2>
                     <div className="overflow-y-auto max-h-[calc(100vh-4rem)] sm:max-h-[calc(100vh-8rem)]">
                         <form onSubmit={handleSubmit}>
                             <h3 className="text-xl font-semibold mb-4">
                                 Location of the affected family
                             </h3>
-                            <div className="flex flex-wrap gap-6">
+                            <div className="flex flex-1  gap-6">
                                 {/* Left Column */}
-                                <div className="w-full md:flex-1 mb-6">
-                                    <div className="mb-4">
-                                        {/* <InputLabelComponent htmlFor="region" labelText="Region" /> */}
-                                        <InputTextComponent
-                                            id="region"
-                                            name="region"
-                                            type="hidden"
-                                            required
-                                            value={newAgent.region}
-                                            placeholder="Region"
-                                            onChange={handleChange}
-                                        />
-                                    </div>
+                                <div className="w-full mb-6">
+                                    {/* <InputLabelComponent htmlFor="region" labelText="Region" /> */}
+                                    <InputTextComponent
+                                        id="region"
+                                        name="region"
+                                        type="hidden"
+                                        required
+                                        value={newAgent.region}
+                                        placeholder="Region"
+                                        onChange={handleChange}
+                                    />
 
-                                    <div className="mb-4">
-                                        {/* <InputLabelComponent htmlFor="province" labelText="Province" /> */}
-                                        <InputTextComponent
-                                            id="province"
-                                            name="province"
-                                            type="hidden"
-                                            required
-                                            value={newAgent.province}
-                                            placeholder="Province"
-                                            onChange={handleChange}
-                                        />
-                                    </div>
+                                    {/* <InputLabelComponent htmlFor="province" labelText="Province" /> */}
+                                    <InputTextComponent
+                                        id="province"
+                                        name="province"
+                                        type="hidden"
+                                        required
+                                        value={newAgent.province}
+                                        placeholder="Province"
+                                        onChange={handleChange}
+                                    />
 
-                                    <div className="mb-4">
-                                        {/* <InputLabelComponent htmlFor="district" labelText="District" /> */}
-                                        <InputTextComponent
-                                            id="district"
-                                            name="district"
-                                            type="hidden"
-                                            required
-                                            value={newAgent.district}
-                                            placeholder="District"
-                                            onChange={handleChange}
-                                        />
-                                    </div>
+                                    {/* <InputLabelComponent htmlFor="district" labelText="District" /> */}
+                                    <InputTextComponent
+                                        id="district"
+                                        name="district"
+                                        type="hidden"
+                                        required
+                                        value={newAgent.district}
+                                        placeholder="District"
+                                        onChange={handleChange}
+                                    />
+                                    <InputTextComponent
+                                        id="city"
+                                        name="city"
+                                        type="hidden"
+                                        required
+                                        value={newAgent.city}
+                                        placeholder="City/Municipality"
+                                        onChange={handleChange}
+                                    />
 
-                                    <div className="mb-4">
-                                        <InputLabelComponent
-                                            htmlFor="barangay"
-                                            labelText="Barangay"
-                                        />
-                                        <SelectComponent
-                                            id="barangay"
-                                            name="barangay"
-                                            value={newAgent.barangay}
-                                            onChange={handleChange}
-                                            options={barangay}
-                                            required
-                                        />
-                                    </div>
+                                    <div className="flex flex-1 gap-5 w-full">
+                                        <div className="mb-4 w-full">
+                                            <InputLabelComponent
+                                                htmlFor="barangay"
+                                                labelText="Barangay"
+                                            />
+                                            <SelectComponent
+                                                id="barangay"
+                                                name="barangay"
+                                                value={newAgent.barangay}
+                                                onChange={handleChange}
+                                                options={barangay}
+                                                required
+                                            />
+                                        </div>
 
-                                    <div className="mb-4">
-                                        <InputLabelComponent
-                                            htmlFor="evacuation_site"
-                                            labelText="Evacuation Site"
-                                        />
-                                        <SelectComponent
-                                            id="evacuation_site"
-                                            name="evacuation_site"
-                                            value={newAgent.evacuation_site}
-                                            onChange={handleChange}
-                                            options={typeEvac}
-                                            required
-                                        />
+                                        <div className="mb-4 w-full">
+                                            <InputLabelComponent
+                                                htmlFor="evacuation_site"
+                                                labelText="Evacuation Site"
+                                            />
+                                            <SelectComponent
+                                                id="evacuation_site"
+                                                name="evacuation_site"
+                                                value={newAgent.evacuation_site}
+                                                onChange={handleChange}
+                                                options={typeEvac}
+                                                required
+                                            />
+                                        </div>
                                     </div>
                                 </div>
                                 {/* Right Column */}
-                                <div className="w-full md:flex-1">
-                                    <div className="mb-4">
-                                        {/* <InputLabelComponent htmlFor="city" labelText="City/Municipality" /> */}
-                                        <InputTextComponent
-                                            id="city"
-                                            name="city"
-                                            type="hidden"
-                                            required
-                                            value={newAgent.city}
-                                            placeholder="City/Municipality"
-                                            onChange={handleChange}
-                                        />
-                                    </div>
-                                </div>
+                                {/* <InputLabelComponent htmlFor="city" labelText="City/Municipality" /> */}
+
                             </div>
                             <h3 className="text-xl font-semibold mb-4">
                                 Head of the family
@@ -389,46 +463,23 @@ export default function DemographicDataCreateSection() {
                                     <div className="mb-4">
                                         <InputLabelComponent
                                             htmlFor="extension_name"
-                                            labelText="Extension (Jr., Sr. etc.)"
+                                            labelText="Suffix (Jr., Sr. etc.)"
                                         />
-                                        <InputTextComponent
+                                        {/* <InputTextComponent
                                             id="extension_name"
                                             name="extension_name"
                                             type="text"
-                                            required
                                             value={newAgent.extension_name}
                                             placeholder="Jr., Sr. etc."
                                             onChange={handleChange}
-                                        />
-                                    </div>
+                                        /> */}
 
-                                    <div className="mb-4">
-                                        <InputLabelComponent
-                                            htmlFor="age"
-                                            labelText="Age"
-                                        />
-                                        <InputTextComponent
-                                            id="age"
-                                            name="age"
-                                            type="number"
-                                            required
-                                            value={newAgent.age}
-                                            placeholder="Age"
-                                            onChange={handleChange}
-                                        />
-                                    </div>
-
-                                    <div className="mb-4">
-                                        <InputLabelComponent
-                                            htmlFor="gender"
-                                            labelText="Gender"
-                                        />
                                         <SelectComponent
-                                            id="gender"
-                                            name="gender"
-                                            value={newAgent.gender}
+                                            id="extension_name"
+                                            name="extension_name"
+                                            value={newAgent.extension_name}
                                             onChange={handleChange}
-                                            options={typeOptionsG}
+                                            options={typeOptionsS}
                                             required
                                         />
                                     </div>
@@ -447,6 +498,42 @@ export default function DemographicDataCreateSection() {
                                             onChange={handleChange}
                                         />
                                     </div>
+
+                                    <div className="mb-4">
+                                        <InputLabelComponent
+                                            htmlFor="age"
+                                            labelText="Age"
+                                        />
+                                        <InputTextComponent
+                                            id="age"
+                                            name="age"
+                                            type="text"
+                                            required
+                                            value={newAgent.age}
+                                            placeholder="Age"
+                                            disabled
+                                            readOnly
+                                        />
+                                    </div>
+
+
+
+                                    <div className="mb-4">
+                                        <InputLabelComponent
+                                            htmlFor="gender"
+                                            labelText="Gender"
+                                        />
+                                        <SelectComponent
+                                            id="gender"
+                                            name="gender"
+                                            value={newAgent.gender}
+                                            onChange={handleChange}
+                                            options={typeOptionsG}
+                                            required
+                                        />
+                                    </div>
+
+
 
                                     <div className="mb-4">
                                         <InputLabelComponent
@@ -503,7 +590,7 @@ export default function DemographicDataCreateSection() {
                                             htmlFor="religion"
                                             labelText="Religion"
                                         />
-                                        <InputTextComponent
+                                        {/* <InputTextComponent
                                             id="religion"
                                             name="religion"
                                             type="text"
@@ -511,6 +598,14 @@ export default function DemographicDataCreateSection() {
                                             value={newAgent.religion}
                                             placeholder="Religion"
                                             onChange={handleChange}
+                                        /> */}
+                                        <SelectComponent
+                                            id="religion"
+                                            name="religion"
+                                            value={newAgent.religion}
+                                            onChange={handleChange}
+                                            options={typeOptionsR}
+                                            required
                                         />
                                     </div>
 
@@ -621,6 +716,29 @@ export default function DemographicDataCreateSection() {
                                     onChange={handleChange}
                                 />
                             </div>
+                            <div className="mb-4">
+                                <InputLabelComponent
+                                    htmlFor="program"
+                                    labelText="Program"
+                                />
+                                {/* <InputTextComponent
+                                            id="religion"
+                                            name="religion"
+                                            type="text"
+                                            required
+                                            value={newAgent.religion}
+                                            placeholder="Religion"
+                                            onChange={handleChange}
+                                        /> */}
+                                <SelectComponent
+                                    id="program"
+                                    name="program"
+                                    value={newAgent.program}
+                                    onChange={handleChange}
+                                    options={typeOptionsP}
+                                    required
+                                />
+                            </div>
                             <AddMap
                                 setNewAgent={setNewAgent}
                                 newAgent={newAgent}
@@ -708,12 +826,7 @@ export default function DemographicDataCreateSection() {
                                                 required
                                                 value={member.birth_date}
                                                 placeholder="Birth Date"
-                                                onChange={(e) =>
-                                                    handleFamilyMemberChange(
-                                                        index,
-                                                        e
-                                                    )
-                                                }
+                                                onChange={(e) => handleFamilyMemberChange(index, e)}
                                             />
                                         </div>
 
@@ -725,18 +838,15 @@ export default function DemographicDataCreateSection() {
                                             <InputTextComponent
                                                 id={`age-${index}`}
                                                 name="age"
-                                                type="number"
+                                                type="text"
                                                 required
                                                 value={member.age}
                                                 placeholder="Age"
-                                                onChange={(e) =>
-                                                    handleFamilyMemberChange(
-                                                        index,
-                                                        e
-                                                    )
-                                                }
+                                                disabled // make it read-only
+                                                readOnly
                                             />
                                         </div>
+
 
                                         <div className="flex-1">
                                             <InputLabelComponent
@@ -839,7 +949,7 @@ export default function DemographicDataCreateSection() {
                                 </div>
                             ))}
 
-                            <div className="flex flex-col md:flex-row justify-end gap-4 mt-4">
+                            <div className="flex flex-col md:flex-row justify-end gap-3 mt-4">
                                 <Button
                                     type="submit"
                                     variant="primary"
@@ -858,7 +968,7 @@ export default function DemographicDataCreateSection() {
                                     disabled={false}
                                     onClick={closeModal}
                                 >
-                                    <XMarkIcon className="h-5 w-5" />
+                                    Cancel
                                 </Button>
                             </div>
                         </form>

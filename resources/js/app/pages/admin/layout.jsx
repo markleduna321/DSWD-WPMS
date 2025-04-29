@@ -10,10 +10,12 @@ import {
   TransitionChild,
 } from '@headlessui/react';
 import {
+  BanknotesIcon,
   Bars3Icon,
   BellIcon,
   CalendarIcon,
   ChartPieIcon,
+  CheckCircleIcon,
   Cog6ToothIcon,
   Cog8ToothIcon,
   DocumentDuplicateIcon,
@@ -32,8 +34,8 @@ const navigation = [
   { name: 'Page Contents', href: '/admin/contents', icon: FolderIcon },
   { name: 'Reports', href: '/admin/reports', icon: ChartPieIcon },
   { name: 'Demographic Data', href: '/admin/demographic_data', icon: IdentificationIcon },
-  { name: 'Approved Assistance', href: '/admin/approved', icon: IdentificationIcon },
-  { name: 'Released Assistance Data', href: '/admin/released', icon: IdentificationIcon },
+  { name: 'Approved Assistance', href: '/admin/approved', icon: CheckCircleIcon },
+  { name: 'Released Assistance Data', href: '/admin/released', icon: BanknotesIcon },
 ];
 
 const userNavigation = [
@@ -121,7 +123,7 @@ export default function AdminLayout({ children }) {
                         ))}
                       </ul>
                     </li>
-                    
+
                     <li className="mt-auto">
                       {/* <a
                         href="#"
@@ -171,7 +173,7 @@ export default function AdminLayout({ children }) {
                     ))}
                   </ul>
                 </li>
-                
+
                 <li className="mt-auto">
                   {/* <a
                     href="#"
@@ -187,7 +189,7 @@ export default function AdminLayout({ children }) {
         </div>
 
         <div className="lg:pl-72">
-          <div className="sticky top-0 z-40 flex h-16 shrink-0 items-center gap-x-4 border-b border-gray-200 bg-white px-4 shadow-sm sm:gap-x-6 sm:px-6 lg:px-8">
+          <div className=" top-0 z-40 flex h-16 shrink-0 items-center gap-x-4 border-b border-gray-200 bg-white px-4 shadow-sm sm:gap-x-6 sm:px-6 lg:px-8">
             <button type="button" onClick={() => setSidebarOpen(true)} className="-m-2.5 p-2.5 text-gray-700 lg:hidden">
               <span className="sr-only">Open sidebar</span>
               <Bars3Icon aria-hidden="true" className="h-6 w-6" />
@@ -227,15 +229,15 @@ export default function AdminLayout({ children }) {
                   <MenuButton className="-m-1.5 flex items-center p-1.5">
                     <span className="sr-only">Open user menu</span>
                     {/* <Cog8ToothIcon className='h-5 w-5 text-slate-500' /> */}
-                    <span className="hidden lg:flex lg:items-center">
-                      <span aria-hidden="true" className="ml-4 text-sm font-semibold leading-6 text-gray-900">
-                      {/* {user ? (
+                    <span className=" lg:flex lg:items-center">
+                      <span aria-hidden="true" className="text-sm font-semibold leading-6 text-gray-900">
+                        {/* {user ? (
                           <span className="mb-0 text-sm font-weight-bold">{user.name}</span>
                         ) : (
                           <span className="mb-0 text-sm font-weight-bold">Loading...</span>
                         )} */}
                       </span>
-                      <ChevronDownIcon aria-hidden="true" className="ml-2 h-5 w-5 text-gray-400" />
+                      <ChevronDownIcon aria-hidden="true" className="ml-2 h-5 w-5 text-gray-400 hover:text-gray-500" />
                     </span>
                   </MenuButton>
                   <MenuItems

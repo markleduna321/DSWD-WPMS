@@ -46,6 +46,8 @@ class DemographicController extends Controller
     public function store(Request $request)
     {
         $data = $request->validate([
+
+            'status' => 'nullable|string',
             'region' => 'nullable|string',
             'province' => 'nullable|string',
             'district' => 'nullable|string',
@@ -57,14 +59,14 @@ class DemographicController extends Controller
             'head_first_name' => 'required|string',
             'head_middle_name' => 'required|string',
             'extension_name' => 'nullable|string',
-            'age' => 'nullable|string',
+            'age' => 'nullable|int',
             'gender' => 'required|string|in:Male,Female', // Adjust options as necessary
             'birthday' => 'required|date',
             'birth_place' => 'required|string',
 
-            'civil_status' => 'required|string|in:Single,Merried,Widowed,Seperated', // Adjust based on allowed statuses
-            'mother_maiden_name' => 'required|string',
-            'religion' => 'required|string',
+            'civil_status' => 'required|string|in:Single,Married,Widowed,Seperated', // Adjust based on allowed statuses
+            'mother_maiden_name' => 'nullable|string',
+            'religion' => 'nullable|string',
             'occupation' => 'required|string',
             'income' => 'nullable|string',
             'id_card_presented' => 'nullable|string',
@@ -72,6 +74,7 @@ class DemographicController extends Controller
             'contact_number' => 'nullable|string', // This is nullable if it can be empty
 
             'permanent_address' => 'required|string',
+            'program' => 'nullable|string',
             'lng' => 'required',
             'lat' => 'required',
             // 'role_id' => 'nullable|string',
@@ -89,6 +92,24 @@ class DemographicController extends Controller
 
 
         $demographic = Demographic::create($data);
+
+        $length = strlen($demographic->id);
+
+        // Step 3: Generate a formatted id by prefixing zeros based on the length
+        if ($length == 1) {
+            $id = date("dmy") . '00000' . $demographic->id;
+        } else if ($length == 2) {
+            $id = date("dmy") . '0000' . $demographic->id;
+        } else if ($length == 3) {
+            $id = date("dmy") . '000' . $demographic->id;
+        } else {
+            $id = date("dmy") . str_pad($demographic->id, 6, '0', STR_PAD_LEFT);
+        }
+        $demographic->update([
+            'serial_id' => 'MSWD' . $id,
+            'status' => 'pending',
+        ]);
+
 
         if ($request->has('familyMembers')) {
             foreach ($request->familyMembers as $family) {

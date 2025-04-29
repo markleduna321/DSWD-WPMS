@@ -10,6 +10,8 @@ class Demographic extends Model
     use HasFactory;
 
     protected $fillable = [
+        'serial_id',
+        'status',
         'region',
         'province',
         'district',
@@ -33,6 +35,7 @@ class Demographic extends Model
         'id_card_number',
         'contact_number',
         'permanent_address',
+        'program',
         'lng',
         'lat'
     ];
@@ -43,12 +46,10 @@ class Demographic extends Model
      */
     public function familyMembers()
     {
-        return $this->hasMany(FamilyMember::class,'demographics_id','id');
+        return $this->hasMany(FamilyMember::class, 'demographics_id', 'id');
     }
     public function family_members()
     {
-        return $this->hasMany(FamilyMember::class,'demographics_id','id');
+        return $this->hasMany(FamilyMember::class, 'demographics_id', 'id');
     }
-    
-
 }

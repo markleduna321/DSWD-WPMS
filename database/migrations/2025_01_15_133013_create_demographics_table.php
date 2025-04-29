@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('demographics', function (Blueprint $table) {
             $table->id();
+            $table->string('serial_id')->nullable();
             $table->string('region')->nullable();
             $table->string('province')->nullable();
             $table->string('district')->nullable();
@@ -36,6 +37,7 @@ return new class extends Migration
             $table->string('id_card_number')->nullable();
             $table->string('contact_number')->nullable();
             $table->string('permanent_address')->nullable();
+            $table->string('program')->nullable();
             $table->string('lng')->nullable();
             $table->string('lat')->nullable();
             $table->string('status')->nullable();

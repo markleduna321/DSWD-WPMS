@@ -3,7 +3,7 @@
         'name' => 'laravel/laravel',
         'pretty_version' => 'dev-deathwish',
         'version' => 'dev-deathwish',
-        'reference' => '7e23b584217aca3b60f2ab72bfca57f3af2583b4',
+        'reference' => 'bdca0a251f6a9847600300edf64f9074f86e72a4',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -400,7 +400,7 @@
         'laravel/laravel' => array(
             'pretty_version' => 'dev-deathwish',
             'version' => 'dev-deathwish',
-            'reference' => '7e23b584217aca3b60f2ab72bfca57f3af2583b4',
+            'reference' => 'bdca0a251f6a9847600300edf64f9074f86e72a4',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
@@ -775,8 +775,8 @@
         'psr/log-implementation' => array(
             'dev_requirement' => false,
             'provided' => array(
-                0 => '1.0|2.0|3.0',
-                1 => '3.0.0',
+                0 => '3.0.0',
+                1 => '1.0|2.0|3.0',
             ),
         ),
         'psr/simple-cache' => array(

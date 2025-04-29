@@ -6,7 +6,7 @@ import {
     selectLoading,
 } from "../../_redux/demographic-data-slice";
 import store from "@/app/store/store";
-import { update_demographic_data_thunk, update_demographic_status_data_thunk } from "../../_redux/demographic-data-thunk";
+import { fetch_demographic_by_id_thunk, update_demographic_data_thunk } from "../../_redux/demographic-data-thunk";
 import { router } from "@inertiajs/react";
 import InputLabelComponent from "@/app/pages/components/input-label-component";
 import InputTextComponent from "@/app/pages/components/input-text-component";
@@ -14,7 +14,7 @@ import SelectComponent from "@/app/pages/components/input-select";
 import Button from "@/app/pages/components/button";
 import EditMap from "../../../maps/edit-map";
 import Swal from "sweetalert2";
-import { CheckBadgeIcon, CheckCircleIcon, CheckIcon, HandThumbDownIcon, HandThumbUpIcon, TrashIcon } from "@heroicons/react/24/outline";
+import { CheckBadgeIcon, CheckCircleIcon, CheckIcon, HandThumbDownIcon, HandThumbUpIcon, PrinterIcon, TrashIcon, XCircleIcon, XMarkIcon } from "@heroicons/react/24/outline";
 
 export default function DemographicDetailSection() {
     const demographic = useSelector(selectDemographic);
@@ -23,6 +23,7 @@ export default function DemographicDetailSection() {
     const [form, setForm] = useState({ family_members: [] });
 
     const formRef = useRef(null); // ✅ Keeps reference to the form
+    const idss = window.location.pathname.split('/')[3]
 
     useEffect(() => {
         if (demographic) {
@@ -51,16 +52,17 @@ export default function DemographicDetailSection() {
     }
 
     const updateStatus = async (id, newStatus) => {
+
         try {
             await axios.patch(`/admin/demographic_data/${id}/status`, { status: newStatus });
-
+            await store.dispatch(fetch_demographic_by_id_thunk(idss));
             Swal.fire({
                 icon: "success",
                 title: `Status updated to ${newStatus}`,
                 showConfirmButton: false,
                 timer: 1500,
             });
-
+            // router.visit("/admin/approved");
             // Optionally refresh your data
             // fetchData(); or window.location.reload();
         } catch (error) {
@@ -109,10 +111,45 @@ export default function DemographicDetailSection() {
 
     const typeOptionsC = [
         { value: "Single", label: "Single" },
-        { value: "Merried", label: "Merried" },
+        { value: "Married", label: "Married" },
         { value: "Widowed", label: "Widowed" },
         { value: "Seperated", label: "Seperated" },
     ];
+
+    const typeOptionsR = [
+        { value: "Roman Catholic", label: "Roman Catholic" },
+        { value: "Iglesia ni Cristo (Church of Christ)", label: "Iglesia ni Cristo (Church of Christ)" },
+        { value: "Baptist", label: "Baptist" },
+        { value: "Church of Christ (non-INC}", label: "Church of Christ (non-INC}" },
+        { value: "Islam", label: "Islam" },
+        { value: "Jehovah’s Witnesses", label: "Jehovah’s Witnesses" },
+        { value: "The Church of Jesus Christ of Latter-day Saints (Mormons)", label: "The Church of Jesus Christ of Latter-day Saints (Mormons)" },
+        { value: "Seventh-day Adventist Church", label: "Seventh-day Adventist Church" },
+        { value: "Evangelical Christianity", label: "Evangelical Christianity" },
+        { value: "Methodist", label: "Methodist" },
+        { value: "Iglesia Filipina Independiente", label: "Iglesia Filipina Independiente" },
+        { value: "Pentecostal (Assemblies of God)", label: "Pentecostal (Assemblies of God)" },
+        { value: "Indigenous Philippine Folk Religions (Animism, Anito worship)", label: "Indigenous Philippine Folk Religions (Animism, Anito worship)" },
+        { value: "Taoism", label: "Taoism" },
+        { value: "Chinese Folk Religion", label: "Chinese Folk Religion" },
+        { value: "Grace Communion International", label: "Grace Communion International" },
+        { value: "Pentecostal Missionary Church of Christ", label: "Pentecostal Missionary Church of Christ" },
+        { value: "Baháʼí Faith", label: "Baháʼí Faith" },
+        { value: "Buddhism", label: "Buddhism" },
+        { value: "Non-religious / Atheism/Agnosticism", label: "Non-religious / Atheism/Agnosticism" },
+    ];
+
+    const typeOptionsS = [
+        { value: "Jr.", label: "Jr." },
+        { value: "Sr.", label: "Sr." },
+        { value: "II", label: "II" },
+        { value: "III", label: "III" },
+        { value: "IV", label: "IV" },
+        { value: "V", label: "V" },
+        { value: "VI", label: "VI" },
+        { value: "VII", label: "VII" },
+    ];
+
 
     return (
         <div
@@ -125,45 +162,59 @@ export default function DemographicDetailSection() {
                     Demographic Data of : {demographic.head_last_name || "N/A"}{" "}
                     {demographic.head_first_name || "N/A"}
                 </h1>
-                <div className="flex gap-4">
+                <div className="flex flex-col sm:flex-row gap-2 sm:gap-4 mb-4">
                     {/* Print Button */}
-                    <button
-                        onClick={handlePrint}
-                        className=" px-4 bg-blue-500 text-white rounded hover:bg-blue-700"
-                    >
-                        Print Form
-                    </button>
+
                     {demographic?.status === "pending" && (
                         <>
                             <button
                                 onClick={() => updateStatus(demographic.id, 'approved')}
-                                className="px-4 bg-green-600 text-white rounded hover:bg-blue-700"
+                                className="px-4 flex items-center justify-center bg-green-600 text-white rounded hover:bg-green-700"
                             >
-                                <HandThumbUpIcon className="h-6" />
+                                <HandThumbUpIcon className="h-6" />Approve
                             </button>
 
                             <button
                                 onClick={() => updateStatus(demographic.id, 'disapproved')}
-                                className="px-4 bg-red-600 text-white rounded hover:bg-blue-700"
+                                className="px-4 flex items-center justify-center bg-red-600 text-white rounded hover:bg-red-700"
                             >
-                                <HandThumbDownIcon className="h-6" />
+                                <XMarkIcon className="h-6" />Disapprove
                             </button>
                         </>
                     )}
-
                     {demographic?.status === "approved" && (
                         <>
                             <button
                                 onClick={() => updateStatus(demographic.id, 'released')}
-                                className="px-4 bg-green-600 text-white rounded hover:bg-blue-700"
+                                className="px-4 flex items-center justify-center bg-green-600 text-white rounded hover:bg-green-700"
                             >
                                 <CheckIcon className="h-6" /> Release
                             </button>
                         </>
                     )}
+                    <button
+                        onClick={handlePrint}
+                        className=" flex items-center justify-center px-4 bg-blue-500 text-white rounded hover:bg-blue-700"
+                    >
+                        <PrinterIcon className="h-6" /> Print Form
+                    </button>
                 </div>
 
             </div>
+            <h1>
+                Status: &nbsp;<p className={`mb-5 inline-block px-3 py-1 rounded-full ring-1 text-sm font-medium ${demographic?.status === 'released'
+                    ? 'bg-blue-200 text-blue-700 ring-blue-600/20'
+                    : demographic?.status === 'pending'
+                        ? 'bg-yellow-50 text-yellow-700 ring-yellow-600/20'
+                        : demographic?.status === 'approved'
+                            ? 'bg-green-300 text-green-700 ring-green-600/20'
+                            : demographic?.status === 'disapproved'
+                                ? 'bg-red-300 text-red-700 ring-red-600/20'
+                                : demographic?.status === 'ineligible'
+                                    ? 'bg-red-200 text-red-700 ring-red-600/20'
+                                    : 'bg-gray-200 text-gray-700 ring-gray-400/20'
+                    }`}>{demographic?.status || 'Unknown'}</p>
+            </h1>
             <hr />
 
             <div className="">
@@ -398,24 +449,51 @@ export default function DemographicDetailSection() {
 
                             <div className="mb-4">
                                 <InputLabelComponent
+                                    htmlFor="birthday"
+                                    labelText="Date of Birth"
+                                />
+                                <InputTextComponent
+                                    id="birthday"
+                                    name="birthday"
+                                    type="date"
+                                    required
+                                    value={form.birthday ?? ""}
+                                    onChange={(e) => {
+                                        const birthday = e.target.value;
+                                        const birthDate = new Date(birthday);
+                                        const today = new Date();
+                                        let age = today.getFullYear() - birthDate.getFullYear();
+                                        const m = today.getMonth() - birthDate.getMonth();
+                                        if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+                                            age--;
+                                        }
+
+                                        setForm({
+                                            ...form,
+                                            birthday,
+                                            age: age.toString(), // ✅ ensure age is a string
+                                        });
+                                    }}
+                                />
+                            </div>
+
+                            <div className="mb-4">
+                                <InputLabelComponent
                                     htmlFor="age"
                                     labelText="Age"
                                 />
                                 <InputTextComponent
                                     id="age"
                                     name="age"
-                                    type="text"
+                                    type="text" // ✅ must be "text" for string support
                                     required
                                     value={form.age ?? ""}
                                     placeholder="Age"
-                                    onChange={(e) =>
-                                        setForm({
-                                            ...form,
-                                            [e.target.name]: e.target.value,
-                                        })
-                                    }
+                                    disabled
+                                    readOnly
                                 />
                             </div>
+
 
                             <div className="mb-4">
                                 <InputLabelComponent
@@ -428,26 +506,6 @@ export default function DemographicDetailSection() {
                                     value={form.gender ?? ""}
                                     options={typeOptionsG}
                                     required
-                                    onChange={(e) =>
-                                        setForm({
-                                            ...form,
-                                            [e.target.name]: e.target.value,
-                                        })
-                                    }
-                                />
-                            </div>
-
-                            <div className="mb-4">
-                                <InputLabelComponent
-                                    htmlFor="birthday"
-                                    labelText="Date of Birth"
-                                />
-                                <InputTextComponent
-                                    id="birthday"
-                                    name="birthday"
-                                    type="date"
-                                    required
-                                    value={form.birthday ?? ""}
                                     onChange={(e) =>
                                         setForm({
                                             ...form,

@@ -41,6 +41,9 @@ export default function ReleasedTablePage() {
           <thead>
             <tr>
               <th scope="col" className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0">
+                Serial ID
+              </th>
+              <th scope="col" className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0">
                 Name
               </th>
               <th
@@ -58,8 +61,8 @@ export default function ReleasedTablePage() {
               <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
                 Status
               </th>
-              <th scope="col" className="relative py-3.5 pl-3 pr-4 sm:pr-0">
-                <span className="sr-only">Edit</span>
+              <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+                Action
               </th>
             </tr>
           </thead>
@@ -69,8 +72,9 @@ export default function ReleasedTablePage() {
                 .filter((demographic) => demographic.status === 'released') // Only include approved status
                 .map((demographic) => (
                   <tr key={demographic.id}>
+                    <td className="hidden px-3 py-4 text-sm text-gray-500 lg:table-cell">{demographic.serial_id}</td>
                     <td className="w-full max-w-0 py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:w-auto sm:max-w-none sm:pl-0">
-                      {demographic.head_last_name} {demographic.head_first_name}
+                    {demographic.head_last_name}, {demographic.head_first_name} {demographic.extension_name}
                       <dl className="font-normal lg:hidden">
                         <dt className="sr-only">Title</dt>
                         <dd className="mt-1 truncate text-gray-700">{demographic.permanent_address}</dd>
@@ -85,7 +89,7 @@ export default function ReleasedTablePage() {
                         <span class="bg-blue-100 text-blue-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded-sm dark:bg-blue-900 dark:text-blue-300">{demographic.status}</span>
                       </>
                     )}</td>
-                    <td className="py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-0">
+                    <td className="py-4 pl-3 pr-4 text-sm font-medium sm:pr-0">
                       <a href={`/admin/demographic_data/${demographic.id}`} className="text-indigo-600 hover:text-indigo-900">View</a>
                     </td>
                   </tr>
