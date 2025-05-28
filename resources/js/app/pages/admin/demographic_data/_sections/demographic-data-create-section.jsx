@@ -735,7 +735,6 @@ export default function DemographicDataCreateSection() {
                                     value={newAgent.program}
                                     onChange={handleChange}
                                     options={typeOptionsP}
-                                    required
                                 />
                             </div>
                             <AddMap
