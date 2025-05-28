@@ -1,0 +1,1 @@
+import{j as e}from"./app-jUhhewhb.js";const n=({isOpen:s,onClose:i,children:t,width:l="w-1/2"})=>s?e.jsx("div",{className:"fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50",children:e.jsx("div",{className:`flex flex-col gap-4 bg-white p-6 rounded-lg shadow-lg ${l} max-h-5/6 min-w-fit`,children:t})}):null;export{n as default};

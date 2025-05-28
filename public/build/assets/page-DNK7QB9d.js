@@ -1,1 +1,0 @@
-import{j as r}from"./app-Bp0vTBp6.js";import t from"./layout-Dtwq-Q0l.js";import"./transition-BB4VXFcb.js";import"./XMarkIcon-0Lu8sMnr.js";import"./Bars3Icon-Dq_2wrKx.js";import"./floating-ui.react-dom-5SJ_TPea.js";import"./MagnifyingGlassIcon-C4jsnEdd.js";import"./CheckCircleIcon-B-L_BWZv.js";function u(){return r.jsx(t,{children:"AdminProductsPage"})}export{u as default};

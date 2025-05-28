@@ -480,7 +480,6 @@ export default function DemographicDataCreateSection() {
                                             value={newAgent.extension_name}
                                             onChange={handleChange}
                                             options={typeOptionsS}
-                                            required
                                         />
                                     </div>
 
